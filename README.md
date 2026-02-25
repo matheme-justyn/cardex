@@ -1,5 +1,9 @@
 # My Vibe Coding Template
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](./VERSION)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
+
 這是我的個人 vibe coding 專案模板，主要使用 [OpenCode](https://github.com/OpenCodeProject/opencode) 作為 AI 協作工具。
 
 ## 🚀 使用方式
@@ -19,6 +23,9 @@
 - **`.gitignore`** - 通用的 Git 忽略規則，包含常見的 OS、編輯器和語言 artifacts
 - **`.editorconfig`** - 統一的編輯器設定（縮排、編碼、換行符等）
 - **`.env.example`** - 環境變數範例檔案，提供設定結構但不含真實值
+- **`VERSION`** - 當前模板版本號（語意化版本）
+- **`CHANGELOG.md`** - 版本變更歷史記錄
+- **`TEMPLATE_SYNC.md`** - 模板更新同步指南
 
 ### GitHub Templates
 
@@ -40,6 +47,24 @@
 
 詳細規範請參考 `AGENTS.md`。
 
+## 🔖 版本管理
+
+此模板採用 [語意化版本 2.0.0](https://semver.org/lang/zh-TW/) 進行版本管理。
+
+- **查看當前版本**：`cat VERSION`
+- **查看版本歷史**：參閱 [CHANGELOG.md](./CHANGELOG.md)
+- **同步模板更新**：參閱 [TEMPLATE_SYNC.md](./TEMPLATE_SYNC.md)
+
+### 如何將模板更新同步到現有專案？
+
+如果你已經使用舊版本建立了專案，當模板發布新版本時，你可以選擇性地將新功能引入到你的專案中。
+
+詳細的同步方法請參考 [TEMPLATE_SYNC.md](./TEMPLATE_SYNC.md)，支援：
+
+- ✅ 選擇性手動同步（推薦）
+- ✅ 使用 Git Remote 追蹤
+- ✅ 完整差異比對
+
 ## 🎯 適用場景
 
 這個模板適合：
@@ -52,3 +77,9 @@
 
 - [OpenCode 官方文件](https://github.com/OpenCodeProject/opencode)
 - [Architecture Decision Records (ADR)](https://adr.github.io/)
+- [語意化版本規範](https://semver.org/lang/zh-TW/)
+- [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)
+
+## 📄 授權
+
+此模板使用 MIT 授權。你可以自由使用、修改和分發。
