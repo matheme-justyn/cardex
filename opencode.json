@@ -1,0 +1,28 @@
+{
+  "$schema": "https://opencode.vercel.app/opencode.schema.json",
+  "mcpServers": {
+    // Add project-specific MCP servers here
+    // Example:
+    // "filesystem": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/directory"],
+    //   "env": {}
+    // },
+    // "database": {
+    //   "command": "node",
+    //   "args": ["path/to/your/mcp-server.js"],
+    //   "env": {
+    //     "DATABASE_URL": "postgresql://..."
+    //   }
+    // }
+    //
+    // IMPORTANT SECURITY NOTES:
+    // - Never commit API keys, passwords, or credentials in this file
+    // - Use environment variables (loaded from .env) instead
+    // - Example: "env": { "API_KEY": "${API_KEY}" }
+    // - The ${VAR_NAME} syntax will load from environment variables
+    //
+    // For more information about MCP servers:
+    // https://modelcontextprotocol.io/
+  }
+}
