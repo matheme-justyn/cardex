@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-02-26
+
+### Added
+- **Post-Installation Cleanup System**
+  - New script: `.template/scripts/post-install-cleanup.sh`
+  - Interactive cleanup of unnecessary scaffolding content:
+    - Marketing assets (logo, illustrations) - saves ~6MB
+    - Unused language configs (Go, Python, Rust if not needed)
+    - Scaffolding guides (README_GUIDE.md, TEMPLATE_SYNC.md after reading)
+    - Unused AI tool configs (.claude/, .roo/ if not used)
+  - New guide: `.template/docs/POST_INSTALL_CLEANUP.md`
+    - Complete cleanup instructions
+    - What to keep vs what to delete
+    - Worth learning: ADR examples, Root Directory Policy
+    - Not worth learning: Bilingual comments in code
+
+### Changed
+- **INSTALL.md**: Added Step 6 (Post-Installation Cleanup) to integration workflow
+
+### Philosophy
+- **Scaffolding is temporary support**: Keep only what you need, remove the rest
+- After setup, projects should be lightweight and contain only relevant content
+
+
 ## [1.6.0] - 2026-02-26
 
 ### Added
