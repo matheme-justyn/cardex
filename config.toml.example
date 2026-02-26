@@ -68,6 +68,22 @@ auto_merge_gitignore = false
 # Project information that could be used by tools or documentation generators
 
 [project]
+# Working mode: 'template' or 'project'
+#
+# - template: You're developing this scaffolding template itself
+#   → Template ADRs: .template/docs/adr/
+#   → Template scripts: .template/scripts/
+#   → Template assets: .template/assets/
+#   → Keep root docs/, scripts/, assets/ empty or minimal
+#
+# - project: You're using this scaffolding for your project
+#   → Project ADRs: docs/adr/
+#   → Project scripts: scripts/
+#   → Project assets: assets/
+#   → .template/ contains reference examples only
+mode = "project"  # Change to 'template' if developing the scaffolding itself
+
+# Project metadata
 # name = "my-project"
 # description = "Project description"
 # version = "0.1.0"

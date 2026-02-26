@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/images/20260225_vibe-scaffolding-logo.png" alt="Vibe Scaffolding Logo" width="400"/>
+<img src="./.template/assets/images/20260225_vibe-scaffolding-logo.png" alt="Vibe Scaffolding Logo" width="400"/>
 
 # My Vibe Coding Template
 
@@ -15,8 +15,8 @@
 ## 🏛️ 理念與靈感 | Concept & Inspiration
 
 <div align="center">
-<img src="./assets/images/20260225_vibe-scaffolding-illustration-american.png" alt="American Style Illustration" width="300"/>
-<img src="./assets/images/20260225_vibe-scaffolding-illustration-japanese.png" alt="Japanese Style Illustration" width="300"/>
+<img src="./.template/assets/images/20260225_vibe-scaffolding-illustration-american.png" alt="American Style Illustration" width="300"/>
+<img src="./.template/assets/images/20260225_vibe-scaffolding-illustration-japanese.png" alt="Japanese Style Illustration" width="300"/>
 </div>
 
 ### Vygotsky 的鷹架理論 | Vygotsky's Scaffolding Theory

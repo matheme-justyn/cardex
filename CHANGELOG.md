@@ -40,13 +40,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **CONTRIBUTING.md**: Contribution guidelines (no PRs accepted, issues welcome)
 - **SECURITY.md**: Security policy and vulnerability reporting guidelines
 - **ADR Examples**: Three comprehensive Architecture Decision Record templates:
-  - `docs/adr/0002-example-tech-stack-selection.md` - Technology stack selection example
-  - `docs/adr/0003-example-api-design-principles.md` - API design principles example
-  - `docs/adr/0004-example-testing-strategy.md` - Testing strategy example
+  - `.template/docs/adr/0002-example-tech-stack-selection.md` - Technology stack selection example
+  - `.template/docs/adr/0003-example-api-design-principles.md` - API design principles example
+  - `.template/docs/adr/0004-example-testing-strategy.md` - Testing strategy example
 - **Visual Branding**: Logo and illustration assets
-  - `assets/images/20260225_vibe-scaffolding-logo.png` - Primary logo
-  - `assets/images/20260225_vibe-scaffolding-illustration-american.png` - American style illustration
-  - `assets/images/20260225_vibe-scaffolding-illustration-japanese.png` - Japanese style illustration
+  - `.template/assets/images/20260225_vibe-scaffolding-logo.png` - Primary logo
+  - `.template/assets/images/20260225_vibe-scaffolding-illustration-american.png` - American style illustration
+  - `.template/assets/images/20260225_vibe-scaffolding-illustration-japanese.png` - Japanese style illustration
 
 ### Changed
 - **CHANGELOG.md**: Converted to English for international accessibility
@@ -76,12 +76,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `.github/pull_request_template.md` - Pull request template (Angular style)
   - `.github/workflows/ci-placeholder.yml` - CI workflow placeholder
 - Documentation:
-  - `docs/adr/0001-record-architecture-decisions.md` - First ADR example
+  - `.template/docs/adr/0001-record-architecture-decisions.md` - First ADR example
 - Version management:
   - `VERSION` - Version number file
   - `CHANGELOG.md` - Version changelog
   - `.template/docs/TEMPLATE_SYNC.md` - Template synchronization guide
-  - `scripts/bump-version.sh` - Version management script
+  - `.template/scripts/bump-version.sh` - Version management script
 
 ### Coding Conventions
 - Test-driven development (TDD) approach
