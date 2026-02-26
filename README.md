@@ -13,6 +13,30 @@
 
 ---
 
+## ⚠️ OpenCode 穩定性改善方案 | OpenCode Stability Improvements
+
+**如果你遇到 OpenCode 頻繁崩潰或 session 遺失問題 | If you're experiencing frequent OpenCode crashes or session loss:**
+
+👉 **立即查看 | Quick Start**: [`GET_STARTED.md`](./GET_STARTED.md)
+
+**已實施的完整解決方案 | Implemented Solutions:**
+- ✅ Fixed configuration errors (`opencode.json`)
+- ✅ Increased VSCode memory limit to 8GB
+- ✅ Automated workflow tools
+- ✅ Session backup & recovery mechanism
+- ✅ 7-day stability monitoring system
+
+**預期改善 | Expected Improvements:**
+- Crash frequency: Daily → < Once per week
+- Session recovery: Failed → 100% success
+- Work duration: 1-2 hours → 4+ hours
+
+📚 **完整文件 | Full Documentation**: [`docs/OPENCODE_STABILITY.md`](./docs/OPENCODE_STABILITY.md)
+
+---
+
+---
+
 ## 🏛️ 理念與靈感 | Concept & Inspiration
 
 <div align="center">
