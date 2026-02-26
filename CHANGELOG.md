@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-02-26
+
+### Added
+- **One-Line Installation for AI Assistants**:
+  - Created `.opencode/INSTALL.md` with comprehensive installation guide
+  - Support for OpenCode, Cursor, and other AI assistants
+  - Three installation options: New project, Existing project, Cherry-pick features
+  - AI can read and guide users through the entire setup process
+
+### Changed
+- **README Updates**:
+  - Added Quick Install section with AI-friendly one-liner
+  - Reorganized installation instructions for clarity
+  - Added manual installation alternatives
+
+### Documentation
+- **INSTALL.md Sections**:
+  - Option 1: New Project (GitHub template method)
+  - Option 2: Integrate into Existing Project (git merge method)
+  - Option 3: Cherry-Pick Features (selective installation)
+  - Configuration guide (mode, language, project info)
+  - Troubleshooting section
+  - What You Get overview
+
+### Infrastructure
+- Cleaned up duplicate lines in pre-push hook
+
+
 ## [1.4.0] - 2026-02-26
 
 ### Added

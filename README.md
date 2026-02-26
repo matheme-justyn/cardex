@@ -4,7 +4,7 @@
 
 # My Vibe Coding Template
 
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](./.template/VERSION)
+[![Version](https://img.shields.io/badge/version-1.5.0-blue.svg)](./.template/VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
 
@@ -47,11 +47,45 @@ A **growth-oriented learning and development framework** that progressively impr
 
 ---
 
-## 🚀 使用方式
+## 🚀 快速安裝 | Quick Install
+
+### For OpenCode / Cursor / AI Assistants
+
+**Just paste this in your AI chat:**
+
+```
+my-vibe-scaffolding (scaffolding template)
+Install and configure my-vibe-scaffolding by following the instructions here:
+https://raw.githubusercontent.com/matheme-justyn/my-vibe-scaffolding/main/.opencode/INSTALL.md
+```
+
+The AI will guide you through the installation process.
+
+---
+
+### Manual Installation
+
+#### New Project
 
 1. 點擊 GitHub 上的 **"Use this template"** 按鈕
 2. 建立新的 repository
-3. Clone 到本地開始開發
+3. Clone 到本地：
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo
+   ./.template/scripts/init-project.sh
+   ```
+
+#### Existing Project
+
+```bash
+# Add as remote and merge
+git remote add scaffolding https://github.com/matheme-justyn/my-vibe-scaffolding.git
+git fetch scaffolding
+git merge scaffolding/main --allow-unrelated-histories
+```
+
+See [INSTALL.md](./.opencode/INSTALL.md) for detailed instructions.
 
 ## 📁 包含檔案
 

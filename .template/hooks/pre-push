@@ -63,12 +63,19 @@ do
             echo "Consider creating a tag:"
             echo "  ${GREEN}git tag -a v$CURRENT_VERSION -m \"Release v$CURRENT_VERSION\"${NC}"
             echo ""
-            read -p "Continue anyway? (y/N): " confirm
-            if [[ ! $confirm =~ ^[Yy]$ ]]; then
-                echo "Push cancelled."
-                exit 1
+            # In non-interactive mode (CI), allow push without tag
+            if [ -t 0 ]; then
+                read -p "Continue anyway? (y/N): " confirm
+                if [[ ! $confirm =~ ^[Yy]$ ]]; then
+                    echo "Push cancelled."
+                    exit 1
+                fi
+            else
+                echo "${YELLOW}Non-interactive mode detected, continuing without tag${NC}"
             fi
         fi
+
+
         
         echo -e "${GREEN}✅ Version check passed: $CURRENT_VERSION${NC}"
     fi
