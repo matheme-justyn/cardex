@@ -80,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version management:
   - `VERSION` - Version number file
   - `CHANGELOG.md` - Version changelog
-  - `TEMPLATE_SYNC.md` - Template synchronization guide
+  - `.template/docs/TEMPLATE_SYNC.md` - Template synchronization guide
   - `scripts/bump-version.sh` - Version management script
 
 ### Coding Conventions

@@ -102,7 +102,7 @@ Update all references to moved files:
 ### Required Reading
 - `.template/docs/DOCUMENTATION_GUIDELINES.md` (MUST READ)
 - `.template/docs/README_GUIDE.md`
-- `TEMPLATE_SYNC.md`
+- `.template/docs/TEMPLATE_SYNC.md`
 ```
 
 **README.md**:

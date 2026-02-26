@@ -145,6 +145,78 @@ For detailed information, see [`i18n/README.md`](./i18n/README.md).
 
 **Reference:** [RFC 5646 - Language Tags](https://www.rfc-editor.org/rfc/rfc5646.html)
 
+## AI Agent Communication Protocol
+
+**CRITICAL: AI agents MUST follow this protocol at the start of EVERY session.**
+
+### 1. Read User's Language Preference
+
+On session start, ALWAYS read the user's language configuration:
+
+```bash
+# Read config.toml
+[i18n]
+primary_locale = "zh-TW"  # User's preferred language
+fallback_locale = "en-US"
+```
+
+**If config.toml doesn't exist:** Use `en-US` as default.
+
+### 2. Load Translation Files
+
+Load translations from `.template/i18n/locales/{primary_locale}/`:
+
+- `agents.toml` - Coding conventions, commit format, PR guidelines
+- `readme.toml` - Project documentation phrases
+- `templates.toml` - Issue/PR template text
+- `adr.toml` - ADR template phrases
+
+**Example (zh-TW):**
+```bash
+# Load coding conventions
+.template/i18n/locales/zh-TW/agents.toml
+
+[coding_conventions]
+title = "編碼規範"
+test_first = "**永遠先寫測試**：所有新功能和 bug 修復都必須先寫測試"
+```
+
+### 3. Communication Language Rules
+
+**Use the user's configured language for ALL responses and communication:**
+
+| Configuration | Communication Language | Example |
+|---------------|------------------------|---------|
+| `primary_locale = "zh-TW"` | 繁體中文（台灣） | "我已經完成了這個功能..." |
+| `primary_locale = "en-US"` | English (US) | "I've completed this feature..." |
+| `primary_locale = "ja-JP"` | 日本語 | "この機能を完了しました..." |
+
+**Code and Technical Terms:**
+- Variable names, function names → Always English
+- Code comments → Use primary_locale language
+- Commit messages → Follow locale-specific format in `agents.toml`
+- Technical documentation → Use primary_locale language
+
+### 4. Fallback Strategy
+
+If a translation key is missing:
+
+1. Check `fallback_locale` in config.toml (usually `en-US`)
+2. Load the key from fallback locale
+3. Continue without error
+4. Optionally note the missing translation
+
+### 5. Session Start Checklist
+
+**Before responding to ANY user message:**
+
+- [ ] Read `config.toml` and identify `primary_locale`
+- [ ] Load translation files from `.template/i18n/locales/{primary_locale}/`
+- [ ] Set communication language to match `primary_locale`
+- [ ] Verify fallback locale is available
+
+**This is MANDATORY. No exceptions.**
+
 
 ## Documentation Standards
 
@@ -161,7 +233,7 @@ For detailed information, see [`i18n/README.md`](./i18n/README.md).
 
 - **[`.template/docs/DOCUMENTATION_GUIDELINES.md`](./.template/docs/DOCUMENTATION_GUIDELINES.md)** - File organization standards (MUST READ)
 - **[`.template/docs/README_GUIDE.md`](./.template/docs/README_GUIDE.md)** - How to write project README when using this template
-- **[`TEMPLATE_SYNC.md`](./TEMPLATE_SYNC.md)** - How to sync template updates
+- **[`.template/docs/TEMPLATE_SYNC.md`](./.template/docs/TEMPLATE_SYNC.md)** - How to sync template updates
 
 ### When Creating Documents
 

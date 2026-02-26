@@ -66,7 +66,7 @@ A **growth-oriented learning and development framework** that progressively impr
 - **`.env.example`** - 環境變數範例檔案，提供設定結構但不含真實值
 - **`VERSION`** - 當前模板版本號（語意化版本）
 - **`CHANGELOG.md`** - 版本變更歷史記錄
-- **`TEMPLATE_SYNC.md`** - 模板更新同步指南
+- **`.template/docs/TEMPLATE_SYNC.md`** - 模板更新同步指南
 
 ### GitHub Templates
 
@@ -205,13 +205,13 @@ For detailed language configuration instructions and best practices, refer to th
 
 - **查看當前版本**：`cat VERSION`
 - **查看版本歷史**：參閱 [CHANGELOG.md](./CHANGELOG.md)
-- **同步模板更新**：參閱 [TEMPLATE_SYNC.md](./TEMPLATE_SYNC.md)
+- **同步模板更新**：參閱 [.template/docs/TEMPLATE_SYNC.md](./.template/docs/TEMPLATE_SYNC.md)
 
 ### 如何將模板更新同步到現有專案？
 
 如果你已經使用舊版本建立了專案，當模板發布新版本時，你可以選擇性地將新功能引入到你的專案中。
 
-詳細的同步方法請參考 [TEMPLATE_SYNC.md](./TEMPLATE_SYNC.md)，支援：
+詳細的同步方法請參考 [.template/docs/TEMPLATE_SYNC.md](./.template/docs/TEMPLATE_SYNC.md)，支援：
 
 - ✅ 選擇性手動同步（推薦）
 - ✅ 使用 Git Remote 追蹤
@@ -257,4 +257,4 @@ For detailed language configuration instructions and best practices, refer to th
 
 ### 同步模板更新
 
-當模板有新版本時，參考 [TEMPLATE_SYNC.md](./TEMPLATE_SYNC.md)。
+當模板有新版本時，參考 [.template/docs/TEMPLATE_SYNC.md](./.template/docs/TEMPLATE_SYNC.md)。
