@@ -4,7 +4,7 @@
 
 # My Vibe Coding Template
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
 
@@ -80,6 +80,59 @@ A **growth-oriented learning and development framework** that progressively impr
 
 - **`docs/adr/0001-record-architecture-decisions.md`** - 架構決策記錄（ADR）的首個範例，說明為何使用 ADR
 
+## 🌐 語言支援 | Language Support
+
+### 開箱即用支援 | Out-of-the-box Support
+
+此模板的核心檔案（`.gitignore`, `.editorconfig`）已包含以下語言的基本支援：
+
+This template's core files (`.gitignore`, `.editorconfig`) include basic support for:
+
+- **Go** - Modern Go development
+- **Python** - Python 3.x projects
+- **TypeScript** - TypeScript/Node.js applications
+- **Rust** - Rust systems programming
+
+### 深度語言配置模組 | Deep Language Configuration Modules
+
+在 `languages/` 目錄中提供各語言的**深度配置模組**，包含專屬的 linter、formatter、build tools 和範例：
+
+The `languages/` directory provides **deep configuration modules** for each language, including language-specific linters, formatters, build tools, and examples:
+
+```
+languages/
+├── go/              # Go: .golangci.yml, Makefile, go.mod.example
+├── python/          # Python: pyproject.toml, .python-version
+├── typescript/      # TypeScript: tsconfig.json, ESLint, package.json
+└── rust/            # Rust: Cargo.toml, rust-toolchain.toml
+```
+
+**使用方式 | Usage:**
+
+1. 選擇你的語言目錄 | Choose your language directory
+2. 參考該目錄的 `README.md` | Refer to the `README.md` in that directory
+3. 複製需要的配置檔案到專案根目錄 | Copy required config files to project root
+4. 根據專案需求自訂配置 | Customize configs for your project needs
+
+**範例 | Example (TypeScript):**
+
+```bash
+# 複製 TypeScript 專屬的 .gitignore 規則
+cat languages/typescript/.gitignore >> .gitignore
+
+# 複製 TypeScript compiler 配置
+cp languages/typescript/tsconfig.json .
+
+# 使用 package.json 作為參考
+cp languages/typescript/package.json.example package.json
+
+# 複製 ESLint 配置
+cp languages/typescript/.eslintrc.json .
+```
+
+詳細的語言配置說明和最佳實踐，請參考各語言目錄內的 `README.md`。
+
+For detailed language configuration instructions and best practices, refer to the `README.md` in each language directory.
 ## 📝 編碼規範
 
 - 永遠先寫測試（TDD）

@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-02-26
+
+### Added
+- **Multi-language Support**: Comprehensive language-specific configuration modules
+  - `languages/go/` - Go development module (golangci-lint, Makefile, go.mod example)
+  - `languages/python/` - Python development module (pyproject.toml, .python-version)
+  - `languages/typescript/` - TypeScript development module (tsconfig, ESLint, package.json)
+  - `languages/rust/` - Rust development module (Cargo.toml, rust-toolchain.toml)
+- **Enhanced Core Configs**:
+  - `.gitignore` - Added patterns for Go, Python, TypeScript, Rust
+  - `.editorconfig` - Added language-specific formatting rules
+
+### Documentation
+- Each language module includes comprehensive README with:
+  - Quick start guide
+  - Configuration explanations
+  - Best practices
+  - Common workflows
+  - Troubleshooting tips
+- **README.md**: Added "Language Support" section explaining out-of-box and deep module support
+
+### Philosophy
+- Hybrid approach: basic support out-of-box, opt-in deep configurations
+- Language modules in `languages/` directory (not `templates/` to avoid confusion)
+- Each module is self-contained and optional
+
 ## [1.1.0] - 2026-02-25
 
 ### Added
@@ -84,6 +110,6 @@ Following [Semantic Versioning 2.0.0](https://semver.org/):
 - `1.0.0` → `1.1.0`: Add Docker support, add testing framework configuration
 - `1.0.0` → `2.0.0`: Change project structure, remove certain files
 
-[Unreleased]: https://github.com/matheme-justyn/my-vibe-scaffolding/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/matheme-justyn/my-vibe-scaffolding/compare/v1.0.0...v1.1.0
+[Unreleased]: https://github.com/matheme-justyn/my-vibe-scaffolding/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/matheme-justyn/my-vibe-scaffolding/compare/v1.1.0...v1.2.0
 [1.0.0]: https://github.com/matheme-justyn/my-vibe-scaffolding/releases/tag/v1.0.0

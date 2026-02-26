@@ -94,5 +94,40 @@ temp/
 *.bak
 *.backup
 
+# Go
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/
+
+# Go build cache
+.cache/
+
+# Rust
+# Compiled files
+*.rlib
+*.rmeta
+target/
+Cargo.lock
+
+# Rust analyzer
+.rust-analyzer/
+
+# Generated documentation
+doc/
 # OpenCode
 .opencode/sessions/
