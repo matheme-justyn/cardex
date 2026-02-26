@@ -8,21 +8,21 @@ This document serves as the primary instruction set for AI agents (like OpenCode
 
 ## Working Mode
 
-**This template has two working modes configured in `config.toml`:**
+**This scaffolding has two working modes configured in `config.toml`:**
 
-### Template Mode (`mode = "template"`)
+### Scaffolding Mode (`mode = "scaffolding"`)
 
-You're developing this scaffolding template itself. File organization:
+You're developing this scaffolding itself. File organization:
 
-- **Template ADRs**: `.template/docs/adr/`
-- **Template scripts**: `.template/scripts/`
-- **Template assets**: `.template/assets/`
+- **Scaffolding ADRs**: `.template/docs/adr/`
+- **Scaffolding scripts**: `.template/scripts/`
+- **Scaffolding assets**: `.template/assets/`
 - **Root directories**: Keep `docs/`, `scripts/`, `assets/` empty or minimal
 
 **AI Agent behavior:**
 - Create new ADRs in `.template/docs/adr/`
-- Reference template scripts from `.template/scripts/`
-- Reference template assets from `.template/assets/`
+- Reference scaffolding scripts from `.template/scripts/`
+- Reference scaffolding assets from `.template/assets/`
 
 ### Project Mode (`mode = "project"`)
 
@@ -39,7 +39,7 @@ You're using this scaffolding for your project. File organization:
 - Place project-specific assets in `assets/`
 - Reference `.template/` examples but don't modify them
 
-**To change mode:** Edit `config.toml` and set `[project] mode = "template"` or `"project"`
+**To change mode:** Edit `config.toml` and set `[project] mode = "scaffolding"` or `"project"`
 
 
 ## Tech Stack
