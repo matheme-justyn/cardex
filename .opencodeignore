@@ -1,0 +1,81 @@
+# OpenCode Ignore File
+# Reduces memory footprint by excluding large/unnecessary files
+
+# Dependencies (CRITICAL - these can be 100MB+)
+node_modules/
+.pnpm-store/
+vendor/
+bower_components/
+jspm_packages/
+
+# Lock Files (SILENT KILLERS - 50k+ lines in monorepos)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lockb
+Cargo.lock
+Gemfile.lock
+Pipfile.lock
+poetry.lock
+composer.lock
+
+# Build Outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+target/
+*.min.js
+*.min.css
+
+# Coverage & Test Reports
+coverage/
+.nyc_output/
+__snapshots__/
+test-results/
+
+# Documentation & Static Assets
+docs/
+documentation/
+public/
+assets/
+static/
+*.pdf
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# System & IDE
+.DS_Store
+.vscode/
+.idea/
+.git/
+.svn/
+.hg/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# i18n (if project has many locales)
+# locales/
+# i18n/messages/
