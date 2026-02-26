@@ -18,25 +18,25 @@ This document serves as the primary instruction set for AI agents (like OpenCode
 
 ## Commit Message
 
-使用繁體中文撰寫 commit message，格式為：
+Write commit messages in English, format:
 
 ```
-type: 描述
+type: brief description
 ```
 
-**允許的 type：**
-- `feat`: 新功能
-- `fix`: 修復 bug
-- `docs`: 文件更新
-- `refactor`: 重構（不改變功能的程式碼改進）
-- `test`: 測試相關
-- `chore`: 其他維護性工作
+**Allowed types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation update
+- `refactor`: Refactoring (code improvement without changing functionality)
+- `test`: Testing related
+- `chore`: Other maintenance work
 
-**範例：**
+**Examples:**
 ```
-feat: 新增使用者登入功能
-fix: 修正資料庫連線錯誤
-docs: 更新 API 文件
+feat: add user login functionality
+fix: resolve database connection error
+docs: update API documentation
 ```
 
 ## Pull Request
