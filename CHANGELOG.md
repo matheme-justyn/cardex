@@ -7,6 +7,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-02-26
+
+### Added
+- **Complete Scaffolding Template Isolation**:
+  - All scaffolding infrastructure moved to `.template/` directory
+  - Clear separation between scaffolding and project files
+  - Mode system: `scaffolding` (developing template) vs `project` (using template)
+- **Working Mode Configuration**:
+  - `config.toml` mode setting determines file organization
+  - Template mode: ADRs, scripts, assets in `.template/`
+  - Project mode: ADRs, scripts, assets in root directories
+- **AI Agent i18n Integration**:
+  - AI Agent Communication Protocol in AGENTS.md
+  - Session start checklist for language configuration
+  - Automatic translation loading from `.template/i18n/locales/`
+  - Communication language adapts to user's `primary_locale`
+- **Project Policy Files Management**:
+  - Dual-location strategy for LICENSE, CONTRIBUTING.md, SECURITY.md
+  - Root files for current context (scaffolding or project)
+  - `.template/` copies as permanent reference
+  - Comprehensive project guides for creating policies
+- **Project Setup Guides**:
+  - PROJECT_LICENSE_GUIDE.md - License selection and creation
+  - PROJECT_CONTRIBUTING_GUIDE.md - Contribution policy writing
+  - PROJECT_SECURITY_GUIDE.md - Security policy creation
+
+### Changed
+- **File Organization**:
+  - Moved ADRs: `docs/adr/` → `.template/docs/adr/`
+  - Moved scripts: `scripts/` → `.template/scripts/`
+  - Moved assets: `assets/` → `.template/assets/`
+  - TEMPLATE_SYNC.md → `.template/docs/TEMPLATE_SYNC.md`
+- **Terminology Consistency**:
+  - Unified use of "scaffolding" (鷹架) throughout
+  - Mode values: `scaffolding` and `project` (not `template` or `framework`)
+- **Enhanced init-project.sh**:
+  - Interactive LICENSE creation (MIT or custom)
+  - CONTRIBUTING.md generation (accepting PRs or not)
+  - Optional SECURITY.md creation with contact info
+  - Project VERSION initialization to 0.1.0
+
+### Documentation
+- **AGENTS.md Updates**:
+  - Added Working Mode section explaining scaffolding vs project mode
+  - Added AI Agent Communication Protocol (mandatory for all agents)
+  - Updated file organization rules based on mode
+- **README Updates**:
+  - Updated all asset paths to `.template/assets/`
+  - VERSION badge points to `.template/VERSION`
+  - Clear documentation of dual-mode system
+- **Path References**:
+  - All documentation updated to reference `.template/` paths
+  - CHANGELOG.md reflects new file structure
+
+### Architecture
+- **ADR 0006**: Template Directory Isolation
+  - Documents the rationale for `.template/` structure
+  - Explains scaffolding vs project file separation
+  - Outlines migration strategy and benefits
+
+
 ## [1.2.0] - 2026-02-26
 
 ### Added
