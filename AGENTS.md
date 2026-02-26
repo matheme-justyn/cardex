@@ -23,6 +23,10 @@ You're developing this scaffolding itself. File organization:
 - Create new ADRs in `.template/docs/adr/`
 - Reference scaffolding scripts from `.template/scripts/`
 - Reference scaffolding assets from `.template/assets/`
+- **Generate bilingual README** following [README_BILINGUAL_FORMAT.md](./.template/docs/README_BILINGUAL_FORMAT.md)
+- Create new ADRs in `.template/docs/adr/`
+- Reference scaffolding scripts from `.template/scripts/`
+- Reference scaffolding assets from `.template/assets/`
 
 ### Project Mode (`mode = "project"`)
 

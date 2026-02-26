@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.4] - 2026-02-26
+
+### Changed
+- **README Format**: Complete restructure to proper bilingual format
+  - Headers: `## 中文 | English` (same line)
+  - Bullet lists: Chinese line, then English line (two-space line break)
+  - Tables: `<br>` for line breaks within cells (Chinese<br>English)
+  - Code blocks: Appear only once (no duplication)
+  - Links: Inline bilingual `詳細說明 | For details:`
+
+### Added
+- **README_BILINGUAL_FORMAT.md**: Complete bilingual formatting rules for AI agents
+  - Language pairing rules (zh-TW+EN, ja-JP+EN, etc.)
+  - Formatting rules for headers, paragraphs, lists, tables, code
+  - AI agent implementation guidelines
+  - Validation examples and common mistakes
+
+### Fixed
+- AGENTS.md now references README_BILINGUAL_FORMAT.md for bilingual generation
+
+
 ## [1.5.3] - 2026-02-26
 
 ### Changed
