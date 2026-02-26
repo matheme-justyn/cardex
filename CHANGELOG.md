@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.2] - 2026-02-26
+
+### Changed
+- **README Bilingual Format**: Restructured to paragraph-by-paragraph format (Chinese then English)
+- **README Illustrations**: Added back two illustrations under scaffolding theory section
+- **README Tech Stack**: Core philosophy changed from heading to italic text
+
+
 ### Changed
 - **README Simplification**: Drastically simplified README to focus on core message
   - What is this scaffolding
