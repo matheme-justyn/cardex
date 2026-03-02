@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.4] - 2026-03-02
+
+### Added
+- **System Environment Detection**: AGENTS.md 新增 System Environment 段落，指導 AI 讀取 config.toml 來使用正確的 OS 特定指令
+  - timeout 指令範例（macOS vs Linux）
+  - sed in-place 編輯範例
+  - 套件管理器檢查
+
+### Changed
+- **opencode.json**: 移除硬編碼的 environment 變數，改用 .env 檔案（由 start-opencode.sh 載入）
+- **MCP Setup Guide**: 加強 MCP 設定指南的詳細說明
+- **INSTALL.md**: 更新環境偵測步驟說明
+- **test-mcp-setup.sh**: 改善錯誤報告和診斷訊息
+
 ## [1.8.3] - 2026-03-02
 
 ### Changed
