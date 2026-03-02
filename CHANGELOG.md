@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.1] - 2026-03-02
+
+### Fixed
+- **pre-push hook remote tag checking**: Hook now correctly checks remote tags instead of local tags
+  - Bug: Previously used `git describe --tags --abbrev=0` which only checked local repository
+  - Fix: Now uses `git ls-remote --tags origin` to check actual remote tags
+  - Impact: Prevents false "VERSION NOT UPDATED" errors when tag exists locally but not pushed yet
+  - Validation: Tested with v1.8.0 tag - correctly identifies remote version
+
+
 ## [1.8.0] - 2026-03-02
 
 ### Added
