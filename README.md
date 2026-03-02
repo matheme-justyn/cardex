@@ -4,7 +4,7 @@
 
 # My Vibe Scaffolding
 
-[![Version](https://img.shields.io/badge/version-1.6.0-blue.svg)](./.template/VERSION)
+[![Version](https://img.shields.io/badge/version-1.8.0-blue.svg)](./.template/VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
 
@@ -28,14 +28,105 @@
 - 🤖 **AI Agent 整合** — `AGENTS.md` 驅動的 OpenCode/Cursor 開發體驗  
   **AI Agent Integration** — OpenCode/Cursor development experience driven by `AGENTS.md`
 
+  <details>
+  <summary>📄 AGENTS.md 範例預覽 | Preview</summary>
+  
+  ```markdown
+  # AGENTS.md
+  
+  ## Coding Conventions
+  - **永遠先寫測試**：所有新功能和 bug 修復都必須先寫測試
+  - **所有函數要有 docstring 和型別標注**
+  
+  ## Commit Message
+  格式：`type: brief description`
+  允許的 type：feat, fix, docs, refactor, test, chore
+  
+  ## What NOT to do
+  - ❌ 不要自作主張改架構
+  - ❌ 不要在沒被要求的情況下重構
+  ```
+  
+  → 完整內容見 [AGENTS.md](./AGENTS.md)
+  </details>
+
 - 🌐 **多語言支援** — BCP 47 i18n 系統，AI 自動適應使用者語言  
   **Multi-language Support** — BCP 47 i18n system, AI automatically adapts to user's language
 
 - 📦 **嚴格版本管理** — Pre-push hook 強制版本更新，避免混亂  
   **Strict Version Management** — Pre-push hook enforces version updates
+  
+  <details>
+  <summary>🔍 運作機制 | How It Works</summary>
+  
+  **自動檢查**：每次 `git push` 時，hook 會比對：
+  - 當前 `VERSION` 檔案內容
+  - 最新 Git tag 的版本號
+  
+  **如果版本未更新**：
+  - ❌ Push 被阻止
+  - 💡 提示執行 `.template/scripts/bump-version.sh patch|minor|major`
+  
+  **緊急繞過**（不建議）：
+  ```bash
+  git push --no-verify  # 跳過所有 hooks
+  ```
+  
+  **安裝 hook**：
+  ```bash
+  ./.template/scripts/install-hooks.sh
+  ```
+  
+  **Automatic checks**: On every `git push`, the hook compares:
+  - Current `VERSION` file content
+  - Latest Git tag version
+  
+  **If version not updated**:
+  - ❌ Push blocked
+  - 💡 Prompts to run `.template/scripts/bump-version.sh patch|minor|major`
+  
+  **Emergency bypass** (not recommended):
+  ```bash
+  git push --no-verify  # Skip all hooks
+  ```
+  
+  **Install hooks**:
+  ```bash
+  ./.template/scripts/install-hooks.sh
+  ```
+  </details>
 
 - 🗂️ **檔案分離設計** — `.template/` 隔離鷹架基礎設施，專案檔案清晰獨立  
   **File Separation Design** — `.template/` isolates scaffolding infrastructure
+  
+  <details>
+  <summary>📁 目錄結構說明 | Directory Structure</summary>
+  
+  ```
+  .template/          # 鷹架基礎設施（模板本體）
+  ├── docs/           # 模板文件
+  ├── scripts/        # 模板腳本
+  └── VERSION         # 模板版本（你使用的鷹架版本）
+  
+  .opencode/          # OpenCode AI 助手專用配置
+  └── INSTALL.md      # AI 輔助安裝指令（供 AI 讀取）
+  
+  docs/               # 你的專案文件
+  scripts/            # 你的專案腳本
+  VERSION             # 你的專案版本（獨立於模板版本）
+  ```
+  
+  **版本檔案說明 | Version Files:**
+  - `.template/VERSION`: 模板自身的版本（你正在使用哪個版本的 scaffolding）
+  - `VERSION`: 你專案的版本（你的專案目前是哪個版本）
+  
+  **Scaffolding Mode 特別註意 | Special Note for Scaffolding Mode:**
+  - 如果你在開發這個模板本身（`config.toml` 設定 `mode = "scaffolding"`）
+  - 兩個 VERSION 檔案**必須同步**，由 pre-push hook 強制檢查
+  - 使用 `.template/scripts/bump-version.sh` 會自動同步兩個檔案
+  
+  → 詳見 [AGENTS.md § Working Mode](./AGENTS.md#working-mode)
+  </details>
 
 - 📚 **完整專案指引** — LICENSE、CONTRIBUTING、SECURITY 互動式設定  
   **Complete Project Guides** — Interactive setup for LICENSE, CONTRIBUTING, SECURITY
@@ -44,8 +135,17 @@
 
 ## 🎯 Vibe 技術選型 | Vibe Tech Stack
 
-**為什麼選擇這些技術來實現 AI 驅動的開發鷹架？**  
-**Why these technologies for AI-driven development scaffolding?**
+🧠 **核心概念：將 AI 助手變成你的虛擬開發團隊**  
+**Core Concept: Turn AI assistants into your virtual dev team**
+
+我們使用 [superpowers](https://github.com/ohmyopencode/superpowers) —— 一套可重複使用的 AI 開發工作流程（類似程式碼的函數，但針對 AI 行為）。
+
+We use [superpowers](https://github.com/ohmyopencode/superpowers) — reusable AI development workflows (like functions for code, but for AI behavior).
+
+---
+
+**為什麼選擇這些技術？**  
+**Why these technologies?**
 
 | 技術決策<br>Technology | 選擇理由<br>Why | 解決的問題<br>Problem Solved |
 |---------|---------|-----------|
@@ -58,6 +158,41 @@
 
 _選擇開放、可組合、社群驅動的工具，而非封閉的商業解決方案。_  
 _Choose open, composable, community-driven tools over closed commercial solutions._
+
+---
+
+## 📸 使用範例 | Usage Examples
+
+_🚧 截圖製作中…… 以下是計劃中的 Demo | Screenshots in progress... Planned demos below:_
+
+### AI 助手自動安裝 | AI-Assisted Installation
+
+```
+🤖 展示如何透過 AI 對話一鍵安裝配置
+   Demo: One-command installation via AI chat
+
+[尚未製作 | Not yet created]
+```
+
+### 版本管理自動執行 | Version Management Enforcement
+
+```
+🔒 展示 pre-push hook 阻止未更新版本的 push
+   Demo: pre-push hook blocking push without version bump
+
+[尚未製作 | Not yet created]
+```
+
+### OpenCode AGENTS.md 驅動開發 | AGENTS.md-Driven Development
+
+```
+🧠 展示 AI 讀取 AGENTS.md 後遵守專案規範
+   Demo: AI following project conventions from AGENTS.md
+
+[尚未製作 | Not yet created]
+```
+
+_如果你想貢獻截圖，歡迎開 PR！| Want to contribute screenshots? PRs welcome!_
 
 ---
 

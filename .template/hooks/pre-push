@@ -18,6 +18,17 @@ do
     if [[ "$remote_ref" == "refs/heads/main" ]]; then
         echo -e "${YELLOW}⚠️  Pushing to main branch - checking version...${NC}"
         
+        # 檢查 scaffolding mode 下的版本同步
+        if [ -f "config.toml" ] && grep -q '^mode = "scaffolding"' config.toml; then
+            echo -e "${YELLOW}⚠️  Scaffolding mode detected - checking version sync...${NC}"
+            
+            if ! ./.template/scripts/check-version-sync.sh; then
+                echo -e "${RED}❌ Version sync check failed${NC}"
+                exit 1
+            fi
+        fi
+        
+        
         # Get current version
         if [ -f ".template/VERSION" ]; then
             CURRENT_VERSION=$(cat .template/VERSION)

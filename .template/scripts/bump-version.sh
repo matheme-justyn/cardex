@@ -68,9 +68,25 @@ if [[ ! $confirm =~ ^[Yy]$ ]]; then
   exit 0
 fi
 
+# 檢查工作模式（scaffolding 或 project）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+CONFIG_FILE="${PROJECT_ROOT}/config.toml"
+
+MODE="project"  # 預設為 project mode
+if [ -f "$CONFIG_FILE" ]; then
+  MODE=$(grep '^mode = ' "$CONFIG_FILE" | sed 's/mode = "\(.*\)"/\1/')
+fi
+
 # 更新 VERSION 檔案
 echo "$NEW_VERSION" > VERSION
 echo -e "${GREEN}✓ 已更新 VERSION 檔案${NC}"
+
+# 如果是 scaffolding mode，同步更新 .template/VERSION
+if [ "$MODE" = "scaffolding" ]; then
+  echo "$NEW_VERSION" > .template/VERSION
+  echo -e "${GREEN}✓ 已同步更新 .template/VERSION（scaffolding mode）${NC}"
+fi
 
 # 提示更新 CHANGELOG.md
 echo ""
@@ -99,7 +115,12 @@ if [ -z "$commit_msg" ]; then
   commit_msg="chore: bump version to ${NEW_VERSION}"
 fi
 
-git add VERSION CHANGELOG.md
+# Git add（scaffolding mode 需包含 .template/VERSION）
+if [ "$MODE" = "scaffolding" ]; then
+  git add VERSION .template/VERSION CHANGELOG.md README.md
+else
+  git add VERSION CHANGELOG.md
+fi
 git commit -m "$commit_msg"
 echo -e "${GREEN}✓ 已建立 commit${NC}"
 

@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-03-02
+
+### Added
+- **VERSION Sync Enforcement System** for Scaffolding Mode
+  - New script: `.template/scripts/check-version-sync.sh`
+  - Ensures `VERSION` and `.template/VERSION` stay synchronized in scaffolding mode
+  - Integrated into pre-push hook for automatic validation
+  - Prevents accidental version mismatch in template development
+
+- **README.md Comprehensive Improvements** (6 major enhancements)
+  - **AGENTS.md Preview**: Collapsible snippet showing coding conventions, commit format, and best practices
+  - **superpowers Explanation**: Added "Core Concept" section with GitHub link explaining reusable AI workflows
+  - **VERSION Dual-File Design**: Complete directory structure diagram, version file purposes, and scaffolding mode sync requirements
+  - **Git Hook Mechanism**: Full workflow explanation with automatic checks, failure handling, and emergency bypass instructions
+  - **.opencode/ Directory Structure**: Clear explanation of AI assistant configuration directory
+  - **Usage Examples Placeholder**: Section for future screenshots/demos (AI installation, version management, AGENTS.md-driven development)
+
+### Changed
+- **bump-version.sh**: Now detects working mode from `config.toml` and automatically syncs both VERSION files in scaffolding mode
+- **pre-push hook**: Enhanced with version sync check for scaffolding mode before allowing push to main
+
+### Fixed
+- **VERSION inconsistency**: Synchronized `.template/VERSION` and `VERSION` to 1.7.0
+- **README badge**: Updated version badge to match actual VERSION file (1.7.0 → 1.8.0)
+
+
+
 ## [1.7.0] - 2026-02-26
 
 ### Added
