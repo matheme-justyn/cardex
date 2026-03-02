@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.3] - 2026-03-02
+
+### Changed
+- **test-release.sh → health-check.sh**: 重新定位為專案健康度檢查腳本，移除發版語氣，使其可隨時執行驗證環境配置
+  - 更新標題："Release Testing" → "Project Health Check"
+  - 調整成功訊息：從「發版就緒」改為「專案健康良好」
+  - 新增提示：如需發版，執行 bump-version.sh
+
 ## [1.8.2] - 2026-03-02
 
 ### Added
