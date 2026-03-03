@@ -1,0 +1,32 @@
+# Docker Compose / Podman Compose configuration for Cardex
+version: '3.8'
+
+services:
+  cardex:
+    build:
+      context: .
+      dockerfile: Containerfile
+    container_name: cardex
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount your PDF library (change the path as needed)
+      - ${CARDEX_LIBRARY_PATH:-~/Documents/papers}:/library:z
+      # Mount config directory
+      - ${HOME}/.cardex:/root/.cardex:z
+    environment:
+      - CARDEX_LIBRARY_ROOT=/library
+      - CARDEX_WEB_PORT=8501
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8501/_stcore/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+# Optional: Add a volume for persistent data
+volumes:
+  cardex-config:
+    driver: local

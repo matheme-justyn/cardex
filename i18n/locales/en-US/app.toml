@@ -1,0 +1,156 @@
+# Streamlit UI translations - English (US)
+
+[page]
+title = "Cardex - PDF Library"
+subtitle = "Phase 0: Service Foundation"
+
+[sidebar]
+settings_header = "⚙️ Settings"
+library_label = "Library"
+recursive_label = "Recursive"
+refresh_button = "🔄 Refresh"
+config_label = "Config"
+language_label = "🌐 Language"
+theme_label = "🎨 Theme"
+save_preferences_button = "💾 Save Preferences"
+library_config_header = "📁 Library Configuration"
+current_library = "Current library"
+browse_folder = "Browse Folder..."
+manual_input = "✏️ Or enter path manually"
+path_input_label = "📂 Path"
+path_input_help = "Enter full path, supports ~ symbol"
+update_manual = "✅ Confirm Update"
+quick_paths = "Quick Select"
+desktop = "Desktop"
+documents = "Documents"
+downloads = "Downloads"
+update_path = "Update Path"
+default = "Default Folder"
+
+[dialog]
+select_library = "Select Library Folder"
+
+[stats]
+total_pdfs = "Total PDFs"
+readable = "Readable"
+unreadable = "Unreadable"
+total_size = "Total Size"
+
+[search]
+placeholder = "Enter filename..."
+label = "🔍 Search by filename"
+showing = "Showing {count} of {total} files"
+
+[table]
+status = "Status"
+filename = "Filename"
+size = "Size"
+pages = "Pages"
+modified = "Modified"
+path = "Path"
+status_readable = "✅ Readable"
+status_unreadable = "❌ Unreadable"
+
+[errors]
+config_not_found = "❌ Config not found. Run `cardex init` first."
+library_not_found = "❌ Library path not found: {path}"
+run_init = "Run `cardex init` to configure library path."
+no_pdfs = "📭 No PDFs found in library."
+place_pdfs = "Place PDF files in: {path}"
+path_not_exist = "❌ Path does not exist: {path}"
+not_directory = "❌ Not a directory: {path}"
+invalid_path = "❌ Invalid path"
+permission_denied = "❌ Permission denied - cannot read this folder"
+tkinter_not_available = "❌ System dialog not available, please use manual input"
+dialog_failed = "⚠️ Cannot open dialog, please use manual input"
+
+[messages]
+scanning = "🔍 Scanning library..."
+unreadable_files = "⚠️ {count} unreadable file(s)"
+error_label = "Error"
+preferences_saved = "✅ Preferences saved! Will be applied on next launch."
+library_updated = "✅ Library path updated!"
+no_folders = "📂 This folder is empty"
+
+[theme]
+light = "☀️ Light"
+dark = "🌙 Dark"
+auto = "🔄 Follow System"
+
+[tabs]
+library = "📚 Library"
+tutorial = "📖 Tutorial"
+
+[tutorial]
+title = "🎓 Cardex Tutorial"
+welcome = "Welcome to Cardex"
+welcome_desc = "Cardex is an academic literature management system that helps you manage and organize PDF documents."
+
+[tutorial.quick_start]
+title = "🚀 Quick Start"
+step1_title = "1️⃣ Set Library Path"
+step1_desc = "Select your PDF storage folder in the left sidebar. You can use quick select buttons or enter the path manually."
+step2_title = "2️⃣ Browse PDFs"
+step2_desc = "Switch back to the 'Library' tab to view all scanned PDF files."
+step3_title = "3️⃣ Search Files"
+step3_desc = "Use the search box to quickly find the documents you need."
+
+[tutorial.features]
+title = "✨ Key Features"
+library_title = "📁 Library Management"
+library_desc = "- **Quick Select**: Quickly switch between Default, Desktop, Documents, and Downloads folders\n- **Recursive Scan**: Automatically scan PDFs in subfolders\n- **Relative Path Display**: Clearly see file locations within your library"
+search_title = "🔍 File Search"
+search_desc = "Filter PDF list by filename with instant search support."
+stats_title = "📊 Statistics"
+stats_desc = "View library statistics including total PDFs, readable count, and total size."
+
+[tutorial.quick_buttons]
+title = "⭐ Quick Select Buttons"
+default_title = "⭐ Default"
+default_desc = "Switch to the default library path set in your config file."
+desktop_title = "🖥️ Desktop"
+desktop_desc = "Quickly switch to your Desktop folder."
+documents_title = "📝 Documents"
+documents_desc = "Quickly switch to Documents folder (usually for formal documents)."
+downloads_title = "📥 Downloads"
+downloads_desc = "Quickly switch to Downloads folder (check recently downloaded PDFs)."
+
+[tutorial.tips]
+title = "💡 Usage Tips"
+tip1_title = "📝 Let AI Configure for You"
+tip1_desc = "No need to manually edit config files! Copy the prompt below and give it to your AI assistant (Claude, ChatGPT, Cursor, etc.):"
+tip1_prompt = """Please help me configure Cardex's default library path:
+
+1. Edit ~/.cardex/config.yaml
+2. Set library.default_path to: [your common folder path]
+3. Ensure recursive_scan is set to true (auto-scan subfolders)
+
+Example paths:
+- macOS: ~/Documents/papers or ~/Library/CloudStorage/Dropbox/research
+- Windows: C:\\\\Users\\\\YourName\\\\Documents\\\\papers
+- Linux: ~/documents/research
+
+Show me the config file content after setup for confirmation."""
+tip2_title = "📂 Organize Your PDFs"
+tip2_desc = "We recommend using subfolders to categorize documents with recursive scan enabled. Need help? Copy this to AI:"
+tip2_prompt = """I want to organize my PDF library. Please suggest a folder structure considering:
+
+1. Organize by year (e.g., 2024/, 2023/)
+2. Organize by topic or field (e.g., AI/, Security/, HCI/)
+3. Separate folder for must-read classics
+4. To-read list folder
+
+Please provide a tree structure example and explain how to use it."""
+tip3_title = "🎨 Quick Customization"
+tip3_desc = "Want to adjust language, theme, or other settings? Simply switch in the left sidebar - changes take effect immediately."
+
+[tutorial.coming_soon]
+title = "🔮 Coming Soon"
+phase1 = "**Phase 1**: Automatic PDF metadata extraction (title, authors, year)"
+phase2 = "**Phase 2**: AI multi-angle summarization (methodology, evidence strength, etc.)"
+phase3 = "**Phase 3**: Citation graph and argumentation engine"
+
+[tutorial.feedback]
+title = "💬 Feedback"
+desc = "If you encounter issues or have suggestions, please open an issue on GitHub:"
+link_text = "GitHub Issues"

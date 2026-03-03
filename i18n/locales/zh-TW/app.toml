@@ -1,0 +1,156 @@
+# Streamlit UI 翻譯 - 繁體中文（台灣）
+
+[page]
+title = "📎 Cardex - PDF 圖書館"
+subtitle = "Phase 0：服務基礎"
+
+[sidebar]
+settings_header = "⚙️ 設定"
+library_label = "圖書館"
+recursive_label = "遞迴掃描"
+refresh_button = "🔄 刷新"
+config_label = "配置檔"
+language_label = "🌐 語言"
+theme_label = "🎨 主題"
+save_preferences_button = "💾 儲存偏好設定"
+library_config_header = "📁 圖書館設定"
+current_library = "當前圖書館"
+browse_folder = "瀏覽資料夾..."
+manual_input = "✏️ 或手動輸入路徑"
+path_input_label = "📂 路徑"
+path_input_help = "輸入完整路徑，支援 ~ 符號"
+update_manual = "✅ 確認更新"
+quick_paths = "快速選擇"
+desktop = "桌面"
+documents = "文件"
+downloads = "下載"
+update_path = "更新路徑"
+default = "預設資料夾"
+
+[dialog]
+select_library = "選擇圖書館資料夾"
+
+[stats]
+total_pdfs = "PDF 總數"
+readable = "可讀取"
+unreadable = "無法讀取"
+total_size = "總大小"
+
+[search]
+placeholder = "輸入檔名..."
+label = "🔍 依檔名搜尋"
+showing = "顯示 {total} 個檔案中的 {count} 個"
+
+[table]
+status = "狀態"
+filename = "檔名"
+size = "大小"
+pages = "頁數"
+modified = "修改時間"
+path = "路徑"
+status_readable = "✅ 可讀取"
+status_unreadable = "❌ 無法讀取"
+
+[errors]
+config_not_found = "❌ 找不到配置檔。請先執行 `cardex init`。"
+library_not_found = "❌ 找不到圖書館路徑：{path}"
+run_init = "執行 `cardex init` 來配置圖書館路徑。"
+no_pdfs = "📭 圖書館中沒有 PDF 檔案。"
+place_pdfs = "請將 PDF 檔案放入：{path}"
+path_not_exist = "❌ 路徑不存在：{path}"
+not_directory = "❌ 不是資料夾：{path}"
+invalid_path = "❌ 無效路徑"
+permission_denied = "❌ 權限不足，無法讀取此資料夾"
+tkinter_not_available = "❌ 系統對話框不可用，請使用手動輸入"
+dialog_failed = "⚠️ 無法開啟對話框，請使用手動輸入"
+
+[messages]
+scanning = "🔍 正在掃描圖書館..."
+unreadable_files = "⚠️ {count} 個無法讀取的檔案"
+error_label = "錯誤"
+preferences_saved = "✅ 偏好設定已儲存！下次開啟會自動套用。"
+library_updated = "✅ 圖書館路徑已更新！"
+no_folders = "📂 此資料夾為空"
+
+[theme]
+light = "☀️ 明亮"
+dark = "🌙 暗黑"
+auto = "🔄 跟隨系統"
+
+[tabs]
+library = "📚 圖書館"
+tutorial = "📖 使用教學"
+
+[tutorial]
+title = "🎓 Cardex 使用教學"
+welcome = "歡迎使用 Cardex"
+welcome_desc = "Cardex 是一個學術文獻管理系統，幫助您管理和整理 PDF 文獻。"
+
+[tutorial.quick_start]
+title = "🚀 快速開始"
+step1_title = "1️⃣ 設定圖書館路徑"
+step1_desc = "在左側邊欄選擇您的 PDF 存放資料夾。您可以使用快速選擇按鈕或手動輸入路徑。"
+step2_title = "2️⃣ 瀏覽 PDF"
+step2_desc = "切換回「圖書館」分頁，查看所有掃描到的 PDF 檔案。"
+step3_title = "3️⃣ 搜尋檔案"
+step3_desc = "使用搜尋框快速找到您需要的文獻。"
+
+[tutorial.features]
+title = "✨ 主要功能"
+library_title = "📁 圖書館管理"
+library_desc = "- **快速選擇**：使用預設、桌面、文件、下載資料夾快速切換\n- **遞迴掃描**：自動掃描子資料夾中的 PDF\n- **相對路徑顯示**：清楚看到檔案在圖書館中的位置"
+search_title = "🔍 檔案搜尋"
+search_desc = "依檔名快速過濾 PDF 清單，支援即時搜尋。"
+stats_title = "📊 統計資訊"
+stats_desc = "查看圖書館的 PDF 總數、可讀取數量、總大小等資訊。"
+
+[tutorial.quick_buttons]
+title = "⭐ 快速選擇按鈕說明"
+default_title = "⭐ 預設"
+default_desc = "切換到您在配置檔中設定的預設圖書館路徑。"
+desktop_title = "🖥️ 桌面"
+desktop_desc = "快速切換到桌面資料夾。"
+documents_title = "📝 文件"
+documents_desc = "快速切換到文件資料夾（通常用於存放正式文獻）。"
+downloads_title = "📥 下載"
+downloads_desc = "快速切換到下載資料夾（查看最近下載的 PDF）。"
+
+[tutorial.tips]
+title = "💡 使用技巧"
+tip1_title = "📝 讓 AI 幫你設定"
+tip1_desc = "不需要手動編輯配置檔！複製下方指令給你的 AI 助手（Claude、ChatGPT、Cursor 等），讓它幫你設定："
+tip1_prompt = """請幫我設定 Cardex 的預設圖書館路徑：
+
+1. 編輯 ~/.cardex/config.yaml
+2. 將 library.default_path 設定為：[你的常用資料夾路徑]
+3. 確認 recursive_scan 設為 true（自動掃描子資料夾）
+
+範例路徑：
+- macOS: ~/Documents/papers 或 ~/Library/CloudStorage/Dropbox/research
+- Windows: C:\\Users\\YourName\\Documents\\papers
+- Linux: ~/documents/research
+
+設定完成後顯示配置檔內容讓我確認。"""
+tip2_title = "📂 組織你的 PDF"
+tip2_desc = "我們建議使用子資料夾分類文獻，並啟用遞迴掃描。如果需要幫助，複製這段給 AI："
+tip2_prompt = """我想整理 PDF 文獻庫，請給我一個資料夾結構建議，考慮：
+
+1. 按年份分類（例如：2024/、2023/）
+2. 按主題或領域分類（例如：AI/、Security/、HCI/）
+3. 經典必讀的獨立資料夾
+4. 待讀清單資料夾
+
+請給我一個樹狀結構範例，並說明如何使用。"""
+tip3_title = "🎨 快速客製化"
+tip3_desc = "想要調整語言、主題或其他設定？直接在左側 sidebar 切換即可，變更會立即生效。"
+
+[tutorial.coming_soon]
+title = "🔮 即將推出"
+phase1 = "**Phase 1**：自動提取 PDF 元數據（標題、作者、年份）"
+phase2 = "**Phase 2**：AI 多角度摘要（方法論、證據強度等）"
+phase3 = "**Phase 3**：引用圖譜和論證引擎"
+
+[tutorial.feedback]
+title = "💬 問題回報"
+desc = "如果您遇到問題或有建議，請在 GitHub 開 issue："
+link_text = "GitHub Issues"

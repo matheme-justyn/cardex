@@ -1,0 +1,45 @@
+# Library Workflow Configuration Example
+# This file defines the initialization workflow for a Cardex library folder.
+# 
+# Copy this to .library-workflow.toml (gitignored) to customize per library.
+
+[workflow]
+# Current workflow version (managed by Cardex)
+version = "0.1.1"
+
+[workflow.steps]
+# Linear workflow steps for library initialization
+# Each step creates required directories and files
+
+[[workflow.steps.step]]
+id = "create_input"
+description = "Create .input folder for new PDFs"
+action = "mkdir"
+target = ".input"
+required = true
+
+[[workflow.steps.step]]
+id = "create_processed"
+description = "Create .processed folder for ingested PDFs"
+action = "mkdir"
+target = ".processed"
+required = false
+
+[[workflow.steps.step]]
+id = "create_version_file"
+description = "Create version tracking file"
+action = "write_version"
+target = ".cardex-version"
+required = true
+
+[folders]
+# Folder structure for the library
+input = ".input"          # New PDFs go here
+processed = ".processed"  # Optional: move PDFs after processing
+version_file = ".cardex-version"
+
+[upgrade]
+# Upgrade instructions for version migrations
+# Format: "from_version" = ["list", "of", "migration", "steps"]
+"0.1.0" = ["create_processed"]
+"0.1.1" = []  # No migration needed from 0.1.1 to current
