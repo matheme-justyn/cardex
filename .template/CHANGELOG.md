@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] - 2026-03-03
+
+### Added
+- **PRD (Product Requirements Document) System**: Complete framework for AI-assisted development
+  - New: `.template/docs/PRD_GUIDE.md` (417 lines) - Comprehensive PRD writing guide
+  - New: `.template/docs/templates/PRD_TEMPLATE.md` (445 lines) - Copy-ready PRD template
+  - New: `.template/docs/templates/` directory structure
+  - 14 major sections: Overview, Features, Technical Requirements, API Specs, User Flows, etc.
+  - Mermaid diagram examples for user flows and architecture
+  - API specification format with JSON examples
+  - MoSCoW prioritization framework (Must/Should/Could/Won't Have)
+  - Testing requirements and success metrics templates
+
+- **PRD Integration Guidelines**
+  - Recommended location: `docs/PRD.md` (version controlled, team visible)
+  - Alternative locations for large projects and AI-exclusive use cases
+  - AGENTS.md reference pattern with examples
+  - Benefits for AI coding: complete context, no lost context between sessions
+
+- **PRD Conversion Guide**
+  - Convert from Word/Google Docs to Markdown using Pandoc
+  - Cleanup and enhancement steps
+  - AI-friendly formatting (code blocks, tables, Mermaid diagrams)
+
+### Changed
+- **DOCUMENTATION_GUIDELINES.md Enhanced**: Added PRD section
+  - PRD placement in docs/ structure
+  - Reference requirement from AGENTS.md
+  - Links to PRD_GUIDE.md and template
+
+- **AGENTS.md Enhanced**: Added PRD usage example
+  - New "Product Requirements Document (PRD)" section in Project Overview
+  - Example PRD reference pattern for Cardex project
+  - Benefits of PRD for AI coding listed
+  - Links to guide and template
+
+### Documentation
+- PRD writing guidelines: What, Why, How to write for AI
+- Best practices: Do's and Don'ts (15 items)
+- Quality checklist: 10 items before committing PRD
+- Real-world structure examples throughout
+
+### Technical Details
+- Total new content: 862 lines (PRD_GUIDE + PRD_TEMPLATE)
+- Template covers: Executive summary, Features, Technical specs, API contracts, User flows, Testing
+- Includes Mermaid sequence diagram examples
+- JSON API request/response examples
+
+---
+
+
 ## [1.11.0] - 2026-03-03
 
 ### Added

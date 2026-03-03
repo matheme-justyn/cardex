@@ -54,15 +54,18 @@ project-root/
 
 | 子目錄 | 用途 | 範例 |
 |--------|------|------|
+| `docs/PRD.md` | 產品需求文件 | AI 開發指導文件 ⭐ |
 | `docs/adr/` | 架構決策記錄 | `0001-use-typescript.md` |
 | `docs/api/` | API 文件 | `endpoints.md`, `schemas.md` |
 | `docs/design/` | 設計文件 | 系統設計、資料庫設計 |
 | `docs/archive/` | 研究記錄、過時文件 | 實驗結果、已解決問題的研究 |
 
-**❌ 禁止：**
-- 個人工作記錄
-- 工具使用教學（應該在工具本身的 README）
-- 臨時問題追蹤
+**⭐ PRD (Product Requirements Document)**
+- **位置**: `docs/PRD.md` (推薦) 或 `docs/specs/PRD.md` (大型專案)
+- **用途**: AI 開發指導文件，定義功能、技術需求、使用者流程
+- **必須從 AGENTS.md 引用**: 讓 AI 在 session 開始時讀取
+- **詳細指南**: 見 [PRD_GUIDE.md](./PRD_GUIDE.md)
+- **模板**: 見 [templates/PRD_TEMPLATE.md](./templates/PRD_TEMPLATE.md)
 
 ### scripts/ 目錄
 

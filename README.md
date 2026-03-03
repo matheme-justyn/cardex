@@ -4,7 +4,7 @@
 
 # My Vibe Scaffolding
 
-[![Version](https://img.shields.io/badge/version-1.11.0-blue.svg)](./.template/VERSION)
+[![Version](https://img.shields.io/badge/version-1.12.0-blue.svg)](./.template/VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
 

@@ -73,6 +73,41 @@ This document serves as the primary instruction set for AI agents (like OpenCode
 
 <!-- TODO: Fill in project description, goals, and context -->
 
+### 📋 Product Requirements Document (PRD)
+
+**For projects with detailed requirements, maintain a PRD file:**
+
+- **Location**: `docs/PRD.md` (recommended) or `docs/specs/PRD.md`
+- **Purpose**: Define features, technical requirements, user flows for AI-assisted development
+- **Template**: See [.template/docs/templates/PRD_TEMPLATE.md](./.template/docs/templates/PRD_TEMPLATE.md)
+- **Guide**: See [.template/docs/PRD_GUIDE.md](./.template/docs/PRD_GUIDE.md)
+
+**Example PRD reference**:
+```markdown
+## Project Overview
+
+Cardex is an academic knowledge management system for researchers.
+
+**📋 Product Requirements**: See [docs/PRD.md](./docs/PRD.md) for complete specification.
+
+**Key Features** (from PRD):
+- Bidirectional linking between notes and papers
+- Citation graph visualization
+- Full-text search with filters
+- Markdown-based note editor
+
+**Current Phase**: Phase 1 - MVP (see PRD Section 6)
+```
+
+**Benefits of PRD for AI coding**:
+- ✅ AI has complete context at session start
+- ✅ Consistent implementation across features
+- ✅ No lost context between sessions
+- ✅ Explicit edge cases and error handling
+
+
+<!-- TODO: Fill in project description, goals, and context -->
+
 ## Working Mode
 
 **This scaffolding has two working modes configured in `config.toml`:**
