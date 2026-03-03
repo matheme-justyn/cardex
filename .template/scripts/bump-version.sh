@@ -68,6 +68,22 @@ if [[ ! $confirm =~ ^[Yy]$ ]]; then
   exit 0
 fi
 
+# 🚨 Pre-1.0 version constraint check
+# Project must stay in 0.X until official release
+IFS='.' read -r -a NEW_VERSION_PARTS <<< "$NEW_VERSION"
+NEW_MAJOR="${NEW_VERSION_PARTS[0]}"
+
+if [ "$NEW_MAJOR" -ge 1 ]; then
+  echo -e "${RED}❌ ERROR: Version bump to 1.0.0 or higher is BLOCKED${NC}"
+  echo ""
+  echo "This project uses 0.X versioning until official release."
+  echo "All versions must stay below 1.0.0 until the project owner announces release."
+  echo ""
+  echo "See AGENTS.md for version policy details."
+  exit 1
+fi
+
+
 # 檢查工作模式（scaffolding 或 project）
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"

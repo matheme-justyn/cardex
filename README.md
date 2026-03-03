@@ -1,183 +1,396 @@
-<div align="center">
+# Cardex
 
-<img src="./.template/assets/images/20260225_vibe-scaffolding-logo.png" alt="Vibe Scaffolding Logo" width="400"/>
-
-# My Vibe Scaffolding
-
-[![Version](https://img.shields.io/badge/version-1.10.0-blue.svg)](./.template/VERSION)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
-[![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](./VERSION)
+[![License](https://img.shields.io/badge/license-TBD-yellow.svg)](./LICENSE)
 
 English | [繁體中文](./README.zh-TW.md)
 
-</div>
+> **Academic Knowledge Management System** — Complete lifecycle from PDF to structured knowledge cards
 
-> **📌 This is the Template's README**  
-> If you've used this template for your project, run `.template/scripts/init-project.sh` to initialize your project
+Cardex is a fully programmatic academic literature management system designed for researchers. It has no dependency on any GUI application; all data is stored in open formats (SQLite + Markdown) and can be visualized through self-hosted web services.
 
-## 🏛️ What is My Vibe Scaffolding?
+> ⚠️ **Pre-release**: This project is in active development (0.X versioning). Breaking changes may occur before 1.0.0 release.
 
-**AI-driven project scaffolding template** — Based on psychologist Lev Vygotsky's scaffolding theory, quickly build project structures with AI assistance, follow best practices, and freely remove or customize as you grow.
-
-<div align="center">
-<img src="./.template/assets/images/20260225_vibe-scaffolding-illustration-american.png" alt="American Style" width="300"/>
-<img src="./.template/assets/images/20260225_vibe-scaffolding-illustration-japanese.png" alt="Japanese Style" width="300"/>
-</div>
 
 ---
 
-## ⚡ Core Features
+## 📋 Table of Contents
 
-### 🤖 AI Agent Integration
-
-OpenCode/Cursor development experience driven by `AGENTS.md`, AI automatically follows project conventions.
-
-<details>
-<summary>📄 AGENTS.md Preview</summary>
-
-```markdown
-# AGENTS.md
-
-## Coding Conventions
-- **Always write tests first**: All new features and bug fixes must have tests first
-- **All functions must have docstrings and type annotations**
-
-## Commit Message
-Format: `type: brief description`
-Allowed types: feat, fix, docs, refactor, test, chore
-
-## What NOT to do
-- ❌ Don't change architecture without discussion
-- ❌ Don't refactor existing code unless requested
-```
-
-→ Full content: [AGENTS.md](./AGENTS.md)
-</details>
-
-### 🌐 Multi-language Support
-
-BCP 47 i18n system, AI automatically adapts to user's language preference.
-
-### 📦 Strict Version Management
-
-Pre-push hook enforces version updates, preventing version chaos. Every push ensures version number is updated.
-
-<details>
-<summary>🔍 How It Works</summary>
-
-**Automatic checks**: On every `git push`, the hook compares:
-- Current `VERSION` file content
-- Latest Git tag version
-
-**If version not updated**:
-- ❌ Push blocked
-- 💡 Prompts to run `.template/scripts/bump-version.sh patch|minor|major`
-
-**Emergency bypass** (not recommended):
-```bash
-git push --no-verify  # Skip all hooks
-```
-
-**Install hooks**:
-```bash
-./.template/scripts/install-hooks.sh
-```
-</details>
-
-### 🗂️ File Separation Design
-
-`.template/` isolates scaffolding infrastructure, keeping project files clean and independent.
-
-<details>
-<summary>📁 Directory Structure</summary>
-
-```
-.template/          # Scaffolding infrastructure (template core)
-├── docs/           # Template documentation
-├── scripts/        # Template scripts
-└── VERSION         # Template version
-
-.opencode/          # OpenCode AI assistant configuration
-└── INSTALL.md      # AI-assisted installation instructions
-
-docs/               # Your project documentation
-scripts/            # Your project scripts
-VERSION             # Your project version (independent from template version)
-```
-
-**Version Files:**
-- `.template/VERSION`: Template version (which scaffolding version you're using)
-- `VERSION`: Your project version
-
-→ See [AGENTS.md § Working Mode](./AGENTS.md#working-mode)
-</details>
-
-### 📚 Complete Project Guides
-
-Interactive setup for LICENSE, CONTRIBUTING, SECURITY.
+- [Core Features](#core-features)
+- [System Architecture](#system-architecture)
+- [Workflow](#workflow)
+- [Quick Start](#quick-start)
+- [Tech Stack](#tech-stack)
+- [Development Roadmap](#development-roadmap)
 
 ---
 
-## 🎯 Tech Stack
+## ✨ Core Features
 
-🧠 **Core Concept: Turn AI assistants into your virtual dev team**
+### 🎯 Design Philosophy
 
-We use [superpowers](https://github.com/ohmyopencode/superpowers) — reusable AI development workflows.
+- **Fully Programmatic** - No GUI dependency, fully operable via CLI or API
+- **Open Formats** - SQLite (single source of truth) + Markdown (knowledge cards)
+- **Self-hosted** - Not a SaaS, your data stays on your machine
+- **AI-powered** - LlamaIndex + pluggable LLM backend
 
-| Technology | Why | Problem Solved |
-|---------|---------|-----------|
-| **OpenCode** (Open-source AI assistant) | 75+ models, CLI-first, scriptable | Avoid vendor lock-in |
-| **AGENTS.md Standard** | Cross-tool compatible (OpenCode/Cursor/Windsurf) | AI understands project conventions |
-| **superpowers Skills** | Reusable development workflows | Encode best practices as executable commands |
-| **Subagents (Multi-agent)** | Specialized roles (explore/librarian/oracle) | Simulate real team collaboration |
-| **Single-instance Workflow** | Avoid SQLite conflicts (ADR 0005) | Stability boost (crashes: daily → weekly) |
-| **MCP Servers Support** | Connect external tools (DB, API, services) | Extend AI capabilities |
+### 💡 Unique Capabilities
 
-_Choose open, composable, community-driven tools over closed commercial solutions._
+1. **Skill System** - Generate multiple summary cards from different analytical angles
+   - Examples: methodology perspective, security evaluation, evidence strength analysis
+   - Fully extensible: just add YAML + Markdown files
+
+2. **Evidence Grading** - Automatic evidence strength assessment based on journal/conference rankings
+   - Tier 1 (Strong): Nature/Science/CORE A* + RCT methodology
+   - Tier 2-4: Progressive decline
+   - Locally overridable ranking data
+
+3. **Argue Engine** - AI-assisted argument generation
+   - Extract relevant evidence from your library
+   - Weight and rank by evidence strength
+   - Generate structured arguments with inline citations
+
+4. **Citation Tracking** - Automatic citation graph construction
+   - Flag "cited but not yet ingested" papers
+   - Track research groups and academic lineage
 
 ---
 
-## 🚀 Quick Install
+## 🏗️ System Architecture
 
-### Option 1: AI Assistant Install (Recommended)
-
-Paste this in OpenCode/Cursor/Claude chat:
+Cardex uses a layered pipeline design. Each layer can be operated independently via CLI and accessed collectively through the Web UI:
 
 ```
-my-vibe-scaffolding (scaffolding template)
-Install and configure my-vibe-scaffolding by following the instructions here:
-https://raw.githubusercontent.com/matheme-justyn/my-vibe-scaffolding/main/.opencode/INSTALL.md
+┌─────────────────────────────────────────────────────────────┐
+│                         Web UI (Layer 7)                     │
+│              FastAPI Backend + React Frontend                │
+└─────────────────────────────────────────────────────────────┘
+                              ▲
+                              │
+┌─────────────────────────────────────────────────────────────┐
+│  Layer 6: Argue         │  Topic input → AI composes argument│
+├─────────────────────────────────────────────────────────────┤
+│  Layer 5: Quality       │  Evidence strength evaluation      │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 4: Graph         │  Build citation graph, detect gaps │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: Summarize     │  Apply Skill definitions           │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 2: Metadata      │  Extract bibliographic data + enrich│
+├─────────────────────────────────────────────────────────────┤
+│  Layer 1: Ingest        │  File intake, integrity check      │
+└─────────────────────────────────────────────────────────────┘
+                              ▲
+                              │
+                         ┌────┴────┐
+                         │  PDFs   │
+                         └─────────┘
 ```
 
-### Option 2: Manual Install
+---
+
+## 🔄 Workflow
+
+### Stage 1: Literature Ingestion (Ingest Pipeline)
+
+```mermaid
+graph LR
+    A[Drop PDF] --> B{Readable?}
+    B -->|Yes| C[Extract Text]
+    B -->|No| D[Flag as OCR Required]
+    C --> E[Parse Metadata]
+    D --> E
+    E --> F[API Enrichment<br/>Semantic Scholar/CrossRef]
+    F --> G[Venue Ranking Lookup]
+    G --> H[Apply Naming Strategy]
+    H --> I[Move to Target Folder]
+    I --> J[Write to SQLite]
+```
+
+**Details:**
+- File integrity check (openable, extractable structure)
+- Text extraction below threshold → flag as "OCR required" (v1 does NOT perform OCR)
+- Extract title, authors, year from PDF
+- Enrich via Semantic Scholar / CrossRef API for DOI, venue, etc.
+- Query CORE / JCR database for journal ranking
+- Rename and move to correct folder based on YAML naming strategy
+
+### Stage 2: Knowledge Card Generation (Skill System)
+
+```mermaid
+graph TD
+    A[Paper Ingested] --> B[LlamaIndex<br/>Chunking + Embedding]
+    B --> C{Select Skills}
+    C --> D[Skill: general]
+    C --> E[Skill: methodology]
+    C --> F[Skill: security_eval]
+    C --> G[Custom Skill...]
+    D --> H[Generate Summary Card 1]
+    E --> I[Generate Summary Card 2]
+    F --> J[Generate Summary Card 3]
+    G --> K[Generate Summary Card N]
+    H --> L[Store in summaries table]
+    I --> L
+    J --> L
+    K --> L
+```
+
+**Details:**
+- One paper can have multiple Skills applied
+- Each Skill generates an independent summary card
+- All cards stored in Markdown format in `summaries` table
+- Skill definitions in `skills/` folder as YAML + Markdown prompt
+
+**Skill Example**:
+```yaml
+# skills/methodology.yaml
+name: methodology
+description: Focus on research design, datasets, evaluation metrics
+output_format: markdown
+prompt_template: methodology_prompt.md
+```
+
+### Stage 3: Citation Graph (Citation Graph)
+
+```mermaid
+graph TD
+    A[Parse Reference List] --> B[Extract cited papers'<br/>DOI/Title]
+    B --> C{In library?}
+    C -->|Yes| D[Create citing_id → cited_id relation]
+    C -->|No| E[Record to citations table<br/>in_library=0]
+    D --> F[Update citation count]
+    E --> G{Cited ≥ N times?}
+    G -->|Yes| H[Generate "Unread Alert"]
+    G -->|No| I[Keep record]
+```
+
+**Details:**
+- Extract reference list from paper (LLM parsing or dedicated parser)
+- Cross-check against library, flag ingested vs. not-yet-ingested
+- "Cited multiple times but not yet ingested" papers trigger alerts in Web UI
+
+### Stage 4: AI-Assisted Argumentation (Argue Engine)
+
+```mermaid
+graph LR
+    A[Input Topic/Thesis] --> B[Semantic Search<br/>LlamaIndex Vector Store]
+    B --> C[Retrieve Top-K<br/>Relevant Cards]
+    C --> D[Re-rank by<br/>Evidence Strength]
+    D --> E[LLM Assembles Argument<br/>+ Inline Citations]
+    E --> F[Web UI Display<br/>Clickable Citations]
+    F --> G[Export to Markdown]
+```
+
+**Details:**
+- User inputs topic or thesis statement
+- Semantic search finds most relevant knowledge cards
+- Tier 1 papers weighted higher
+- Every LLM-generated claim maps to specific paper + page number
+- Output includes evidence tier badges
+
+---
+
+## 🚀 Quick Start
+
+### Requirements
+
+- Python 3.10+
+- Docker + Docker Compose (for quick deployment)
+- (Optional) Ollama (for local LLM inference)
+
+### Installation
 
 ```bash
-# 1. Click "Use this template" on GitHub → Clone project
-# 2. Initialize project
-./.template/scripts/init-project.sh
+# Clone the repository
+git clone https://github.com/your-username/cardex.git
+cd cardex
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables
+cp .env.example .env
+# Edit .env to add API keys (if using OpenAI/Anthropic)
 ```
 
-For details: [INSTALL.md](./.opencode/INSTALL.md)
+### Quick Test
+
+```bash
+# Initialize database
+python -m cardex.cli init
+
+# Ingest first paper
+python -m cardex.cli ingest path/to/paper.pdf
+
+# Start Web UI
+python -m cardex.web
+# Open browser at http://localhost:8000
+```
+
+### Docker Deployment
+
+```bash
+docker-compose up -d
+# Web UI: http://localhost:8000
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology | Description |
+|-------|------------|-------------|
+| **Backend** | FastAPI | Lightweight, high-performance Python web framework |
+| **Frontend** | React + Tailwind | v1 can use Streamlit prototype |
+| **Database** | SQLite | Single-file database, easy backup and migration |
+| **ORM** | SQLAlchemy | Python SQL toolkit |
+| **AI / RAG** | LlamaIndex | Document indexing, vector search, LLM orchestration |
+| **LLM** | OpenAI / Anthropic / Ollama | Pluggable backend |
+| **Vector Store** | ChromaDB (v1) / Qdrant (future) | Embedding storage |
+| **OCR** | *Not in v1* | v2 considers Marker |
+| **Citation Parser** | LLM-based | v1 uses LLM to parse citations |
+
+---
+
+## 📊 Data Model
+
+### Core Tables
+
+**papers** - Main paper table
+```sql
+id TEXT PRIMARY KEY,           -- SHA256 of original file
+title TEXT,
+authors TEXT,                  -- JSON array
+year INTEGER,
+venue TEXT,
+venue_rank TEXT,               -- e.g. CORE A*, Q1
+doi TEXT,
+file_path TEXT,
+status TEXT,                   -- unread / reading / done
+ocr_required INTEGER,          -- 0 or 1
+ingested_at TEXT
+```
+
+**summaries** - Knowledge cards
+```sql
+id TEXT PRIMARY KEY,           -- UUID
+paper_id TEXT,                 -- FK → papers.id
+skill_name TEXT,               -- e.g. methodology, security_eval
+content TEXT,                  -- Markdown
+generated_at TEXT,
+model TEXT                     -- LLM model used
+```
+
+**citations** - Citation relationships
+```sql
+citing_id TEXT,                -- FK → papers.id
+cited_doi TEXT,
+cited_title TEXT,
+in_library INTEGER,            -- 0 = not yet ingested, 1 = in library
+citation_count INTEGER
+```
+
+---
+
+## 📁 File System Layout
+
+```
+library/
+├── 2024/
+│   ├── Nature/
+│   │   └── Smith_2024_Quantum_Computing.pdf
+│   ├── ICML/
+│   │   └── Chen_2024_Neural_Architecture.pdf
+│   └── arXiv/
+│       └── Lee_2024_Preprint.pdf
+├── 2023/
+│   └── ...
+└── needs_ocr/
+    └── unreadable_scan.pdf
+```
+
+Naming strategy defined in `config/naming_strategy.yaml`, fully customizable.
+
+---
+
+## 🗓️ Development Roadmap
+
+### Phase 1: Core Foundation (M1-M2)
+- [x] Project scaffold, SQLite schema, Docker Compose
+- [ ] Ingest pipeline (without OCR)
+  - File check, text extraction
+  - Metadata parsing + API enrichment
+  - Naming strategy + file movement
+- [ ] CLI basic commands (init, ingest, list)
+
+### Phase 2: AI Capabilities (M3-M4)
+- [ ] LlamaIndex integration (chunking, embedding, vector store)
+- [ ] Skill system implementation
+  - YAML spec parser
+  - Built-in Skills: general, methodology
+  - Summary card generation
+- [ ] Web UI v1 (Streamlit prototype)
+  - Library view (paper list)
+  - Paper detail view (metadata + cards)
+
+### Phase 3: Advanced Features (M5-M7)
+- [ ] Citation graph construction
+- [ ] Unread citation alerts
+- [ ] Argue Engine (semantic search + evidence-weighted arguments)
+- [ ] Web UI v2 (React + Tailwind)
+
+### Phase 4: Polish & Community (M8+)
+- [ ] Complete documentation
+- [ ] Test coverage
+- [ ] Performance optimization
+- [ ] Community contribution guide
 
 ---
 
 ## 📖 Documentation
 
-- [Template Changelog](./.template/CHANGELOG.md) - Template version changes
-- [Project Changelog](./CHANGELOG.md) - Your project changes
-- [Template Sync](./.template/docs/TEMPLATE_SYNC.md) - Update to new versions
-- [Project Guides](./.template/docs/) - LICENSE, CONTRIBUTING, SECURITY writing guides
+- [Development Guide](./docs/development.md) - Local development setup
+- [API Documentation](./docs/api.md) - REST API specification
+- [Skill Writing Guide](./docs/skills.md) - How to create custom Skills
+- [Naming Strategy](./docs/naming.md) - File naming rules
+
+---
+
+## 🤝 Contributing
+
+This project is primarily driven by the author's own needs, but community issues and feature suggestions are welcome.
+
+To contribute code:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (follow conventions in [AGENTS.md](./AGENTS.md))
+4. Push to your branch
+5. Open a Pull Request
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details
 
 ---
 
 ## 📄 License
 
-MIT License - See [LICENSE](./LICENSE)
+License TBD - Will choose an open source license, see [LICENSE](./LICENSE)
 
 ---
 
-<div align="center">
+## 🙏 Acknowledgments
 
-**Based on Vygotsky's Scaffolding Theory | Powered by AI | Designed for Developers**
+Cardex is inspired by:
+- Zotero (literature management)
+- Obsidian (knowledge linking)
+- LlamaIndex (RAG architecture)
+- And all researchers struggling with academic research 📚
 
-</div>
+---
+
+**Based on**: [my-vibe-scaffolding](https://github.com/matheme-justyn/my-vibe-scaffolding) v1.10.0
+
+For more guidance on writing READMEs, see [.template/docs/README_GUIDE.md](./.template/docs/README_GUIDE.md)

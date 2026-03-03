@@ -544,6 +544,32 @@ Given a version number MAJOR.MINOR.PATCH (e.g., 1.3.0):
 
 Breaking changes require users to modify their code/config. If they don't need to change anything, it's NOT breaking.
 
+**PROJECT-SPECIFIC VERSION POLICY:**
+
+**🚨 CRITICAL: This project uses 0.X versioning until official release.**
+
+- **All versions MUST stay below 1.0.0** until the project owner explicitly announces official release
+- Version format: `0.MINOR.PATCH`
+  - **0.1.0 → 0.2.0**: New features (equivalent to MINOR bump)
+  - **0.2.0 → 0.2.1**: Bug fixes (equivalent to PATCH bump)
+  - **0.X.Y → 1.0.0**: **FORBIDDEN** until official release announcement
+- This signals to users that the API is not yet stable and may change
+- Breaking changes are allowed in 0.X versions (part of pre-1.0 development)
+
+**When bumping versions:**
+```bash
+./.template/scripts/bump-version.sh patch  # 0.1.0 → 0.1.1 (bug fixes)
+./.template/scripts/bump-version.sh minor  # 0.1.0 → 0.2.0 (new features)
+./.template/scripts/bump-version.sh major  # BLOCKED - will not exceed 0.X
+```
+
+**Before 1.0.0 release:**
+- Core features must be stable
+- API must be finalized
+- Documentation must be complete
+- Explicit approval from project owner required
+
+
 
 **For template users:**
 - After "Use this template": run `./.template/scripts/init-project.sh`
