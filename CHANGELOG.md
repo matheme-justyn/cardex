@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-03-03
+
+### Changed
+- Restructured README to be product-focused (moved technical details to docs/)
+- Added "Recommended Workflow" section with three usage options
+- Added "Development Status" section for better project visibility
+- Simplified documentation structure per my-vibe-scaffolding guidelines
+
+### Documentation
+- All SQL schemas and file layouts now in `docs/data-model.md`
+- README reduced from 472 to 221 lines
+- Updated Chinese README (README.zh-TW.md) to match new structure
+
+## [0.1.0] - 2026-03-03
+
 ## [1.0.0] - YYYY-MM-DD
 
 ### Added
