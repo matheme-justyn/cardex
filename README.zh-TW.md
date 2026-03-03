@@ -251,6 +251,53 @@ docker-compose up -d
 
 ## 🛠️ 技術棧
 
+**設計理念**：基於成熟的開源工具，不重複造輪。
+
+### 核心技術
+
+| 層級 | 技術 | 選擇理由 |
+|------|------|----------|
+| **Backend** | FastAPI | 現代 Python 框架，自動 OpenAPI 文件，WebSocket 支援 |
+| **Frontend** | Streamlit (Phase 0-1)<br>React + Tailwind (Phase 2+) | 快速原型 → 正式 UI |
+| **Database** | SQLite + SQLAlchemy | 無需配置，可移植，Git 友善 |
+| **AI/RAG** | LlamaIndex | 經過實戰檢驗的 RAG 框架，處理 chunking/embedding/retrieval |
+| **LLM Provider** | LiteLLM | 統一 API（OpenAI/Anthropic/Ollama）- 易於切換 |
+| **Vector Store** | ChromaDB | 無需伺服器，程序內執行 |
+| **PDF Processing** | PyMuPDF (fitz) | 快速、穩定、10+ 年成熟套件 |
+| **CLI** | Click | Python CLI 的業界標準 |
+| **File Watcher** | watchdog | 跨平台檔案系統監控 |
+
+### 編輯器整合
+
+**主要**：VSCode + Foam（Markdown 的 Zettelkasten）
+**可選**：Obsidian 相容格式（給偏好 Obsidian 的用戶）
+
+**為什麼優先 Markdown？**
+- 純文字 → 未來證明、Git 友善、工具無關
+- 可用於 VSCode、Obsidian、Vim、Emacs 或任何文字編輯器
+- 易於備份、移植或用腳本處理
+
+### 視覺化
+
+| 用途 | 技術 | 理由 |
+|------|------|------|
+| **引用關係圖** | Cytoscape.js | 最成熟的網絡視覺化庫（10+ 年） |
+| **圖表** | Recharts | 宣告式、React 友善 |
+| **Markdown 渲染** | react-markdown + remark | 統一的 Markdown 生態系統 |
+
+### 可選整合
+
+**Zotero**：如果你已經使用 Zotero 管理 PDF，Cardex 可以讀取其資料庫並同步標註。
+
+```yaml
+# config.yaml（可選）
+zotero:
+  enabled: true
+  library_path: ~/Zotero/storage
+```
+
+**完整技術棧詳情**：[docs/technology-stack.md](./docs/technology-stack.md)
+
 | 層級 | 技術 | 說明 |
 |------|------|------|
 | **Backend** | FastAPI | 輕量、高效能的 Python Web 框架 |

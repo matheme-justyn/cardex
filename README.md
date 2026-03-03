@@ -251,6 +251,53 @@ docker-compose up -d
 
 ## 🛠️ Tech Stack
 
+**Philosophy**: Build on mature open-source tools, not reinvent the wheel.
+
+### Core Technologies
+
+| Layer | Technology | Why This Choice |
+|-------|------------|-----------------|
+| **Backend** | FastAPI | Modern Python framework, auto OpenAPI docs, WebSocket support |
+| **Frontend** | Streamlit (Phase 0-1)<br>React + Tailwind (Phase 2+) | Rapid prototyping → Production UI |
+| **Database** | SQLite + SQLAlchemy | Zero-config, portable, Git-friendly |
+| **AI/RAG** | LlamaIndex | Battle-tested RAG framework, handles chunking/embedding/retrieval |
+| **LLM Provider** | LiteLLM | Unified API for OpenAI/Anthropic/Ollama - easy switching |
+| **Vector Store** | ChromaDB | In-process, no server needed |
+| **PDF Processing** | PyMuPDF (fitz) | Fast, reliable, 10+ years mature |
+| **CLI** | Click | Industry standard for Python CLIs |
+| **File Watcher** | watchdog | Cross-platform filesystem monitoring |
+
+### Editor Integration
+
+**Primary**: VSCode + Foam (Zettelkasten for Markdown)
+**Optional**: Obsidian-compatible vault format (for users who prefer it)
+
+**Why Markdown-First?**
+- Plain text → future-proof, Git-friendly, tool-agnostic
+- Works with VSCode, Obsidian, Vim, Emacs, or any text editor
+- Easy to backup, migrate, or process with scripts
+
+### Visualization
+
+| Purpose | Technology | Why |
+|---------|------------|-----|
+| **Citation Graph** | Cytoscape.js | Most mature network visualization library (10+ years) |
+| **Charts** | Recharts | Declarative, React-friendly |
+| **Markdown Rendering** | react-markdown + remark | Unified Markdown ecosystem |
+
+### Optional Integrations
+
+**Zotero**: If you already use Zotero for PDF management, Cardex can read its database and sync annotations.
+
+```yaml
+# config.yaml (optional)
+zotero:
+  enabled: true
+  library_path: ~/Zotero/storage
+```
+
+**Full tech stack details**: [docs/technology-stack.md](./docs/technology-stack.md)
+
 | Layer | Technology | Description |
 |-------|------------|-------------|
 | **Backend** | FastAPI | Lightweight, high-performance Python web framework |
