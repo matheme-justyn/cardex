@@ -71,7 +71,18 @@ This document serves as the primary instruction set for AI agents (like OpenCode
 
 ## Project Overview
 
-<!-- TODO: Fill in project description, goals, and context -->
+
+**Cardex** is an academic knowledge management system — from PDF to structured knowledge cards.
+
+**📋 Product Requirements**: See [docs/PRD.md](./docs/PRD.md) for complete specification.
+
+**Key Features:**
+- Automated PDF ingestion with metadata extraction
+- Multi-angle summarization via pluggable Skill system
+- Evidence-based quality assessment
+- Citation graph and unread alerts
+- AI-assisted argumentation engine
+
 
 ## Working Mode
 
