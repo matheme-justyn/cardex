@@ -1,0 +1,38 @@
+# Simple Workflow - Minimal Setup
+#
+# This is a minimal workflow for users who want simplicity.
+# Suitable for:
+#   - Personal reading collections
+#   - Quick PDF organization
+#   - Users who don't need processing tracking
+#
+# Folder structure:
+#   - _input: All PDFs stay here
+#   - No _processed folder (keep it simple)
+
+[workflow]
+version = "1.0.0"
+
+[workflow.steps]
+# Only create input folder and config
+
+[[workflow.steps.step]]
+id = "create_input"
+description = "Create _input folder for PDFs"
+action = "mkdir"
+target = "_input"
+required = true
+
+[[workflow.steps.step]]
+id = "create_config"
+description = "Create _cardex-config.toml for library settings"
+action = "write_config"
+target = "_cardex-config.toml"
+required = true
+
+[folders]
+input = "_input"
+config_file = "_cardex-config.toml"
+
+[upgrade]
+# No migrations defined for simple workflow

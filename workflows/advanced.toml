@@ -1,0 +1,65 @@
+# Advanced Workflow - Detailed Organization
+#
+# This workflow provides detailed organization for power users.
+# Suitable for:
+#   - Large research projects with multiple categories
+#   - Users who need fine-grained organization
+#   - Collaborative research teams
+#
+# Folder structure:
+#   - _input: New PDFs waiting to be processed
+#   - _processed: Successfully ingested PDFs
+#   - _archive: Old or reference papers
+#   - _rejected: PDFs that failed processing or are not relevant
+
+[workflow]
+version = "1.0.0"
+
+[workflow.steps]
+# Create comprehensive folder structure
+
+[[workflow.steps.step]]
+id = "create_input"
+description = "Create _input folder for new PDFs"
+action = "mkdir"
+target = "_input"
+required = true
+
+[[workflow.steps.step]]
+id = "create_processed"
+description = "Create _processed folder for ingested PDFs"
+action = "mkdir"
+target = "_processed"
+required = true
+
+[[workflow.steps.step]]
+id = "create_archive"
+description = "Create _archive folder for old papers"
+action = "mkdir"
+target = "_archive"
+required = false
+
+[[workflow.steps.step]]
+id = "create_rejected"
+description = "Create _rejected folder for failed/irrelevant PDFs"
+action = "mkdir"
+target = "_rejected"
+required = false
+
+[[workflow.steps.step]]
+id = "create_config"
+description = "Create _cardex-config.toml for library settings"
+action = "write_config"
+target = "_cardex-config.toml"
+required = true
+
+[folders]
+input = "_input"
+processed = "_processed"
+archive = "_archive"
+rejected = "_rejected"
+config_file = "_cardex-config.toml"
+
+[upgrade]
+# Migration from simple/default to advanced
+"1.0.0" = ["create_archive", "create_rejected"]

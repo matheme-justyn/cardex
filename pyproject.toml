@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cardex"
-version = "0.1.1"
+version = "0.1.3"
 description = "Academic knowledge management system - from PDF to structured knowledge cards"
 authors = [
     {name = "Justyn Chen", email = "your-email@example.com"}
@@ -25,6 +25,7 @@ classifiers = [
 dependencies = [
     "click>=8.1.0",
     "pyyaml>=6.0",
+    "toml>=0.10.2",
     "streamlit>=1.30.0",
     "pymupdf>=1.23.0",
     "pandas>=2.0.0",

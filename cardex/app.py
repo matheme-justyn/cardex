@@ -13,6 +13,7 @@ import toml
 
 from cardex.config import CardexConfig
 from cardex.scanner import PDFScanner
+from cardex.workflow import LibraryWorkflow, LibraryStatus
 
 
 class I18n:
@@ -605,6 +606,100 @@ def main():
     tab1, tab2 = st.tabs([i18n.t("tabs.library"), i18n.t("tabs.tutorial")])
     
     # Tab 1: Library (PDF list)
+    with tab1:
+        # Library Workflow Status Card
+        # Determine workflow name (from existing config or default)
+        workflow_name = "default"
+        config_file = library_root / "_cardex-config.toml"
+        if config_file.exists():
+            try:
+                import toml
+                with open(config_file, "r") as f:
+                    config_data = toml.load(f)
+                workflow_name = config_data.get("library", {}).get("workflow", "default")
+            except Exception:
+                pass
+        
+        workflow = LibraryWorkflow(library_root, workflow_name=workflow_name)
+        status = workflow.get_status()
+        
+        # Status card
+        with st.container():
+            st.subheader(i18n.t("workflow.status_title"))
+            
+            col1, col2, col3 = st.columns([2, 1, 1])
+            
+            with col1:
+                if status == LibraryStatus.UNINITIALIZED:
+                    st.warning(i18n.t("workflow.status_uninitialized"))
+                elif status == LibraryStatus.INITIALIZED:
+                    st.success(i18n.t("workflow.status_initialized"))
+                elif status == LibraryStatus.OUTDATED:
+                    st.warning(i18n.t("workflow.status_outdated"))
+            
+            with col2:
+                st.metric(i18n.t("workflow.version_current"), workflow.get_library_version() or "N/A")
+            
+            with col3:
+                st.metric(i18n.t("workflow.version_expected"), workflow.get_expected_version())
+            
+            # Action button
+            if status == LibraryStatus.UNINITIALIZED:
+                # Workflow selection
+                st.write(i18n.t("workflow.select_workflow"))
+                workflow_choice = st.selectbox(
+                    i18n.t("workflow.workflow_type"),
+                    ["default", "simple", "advanced"],
+                    format_func=lambda x: i18n.t(f"workflow.workflows.{x}"),
+                    key="workflow_selector"
+                )
+                
+                # Update workflow if changed
+                if workflow_choice != workflow_name:
+                    workflow = LibraryWorkflow(library_root, workflow_name=workflow_choice)
+                
+                if st.button(i18n.t("workflow.action_initialize"), type="primary", use_container_width=True):
+                    with st.spinner(i18n.t("workflow.messages.initializing")):
+                        result = workflow.initialize()
+                    if result["success"]:
+                        st.success(i18n.t("workflow.messages.initialized_success"))
+                        if result["created"]:
+                            st.write(i18n.t("workflow.messages.initialized_details"))
+                            for item in result["created"]:
+                                st.text(f"  • {item}")
+                        st.rerun()
+                    else:
+                        st.error(i18n.t("workflow.messages.error_title"))
+                        for error in result["errors"]:
+                            st.text(f"  • {error}")
+            
+            elif status == LibraryStatus.OUTDATED:
+                if st.button(i18n.t("workflow.action_upgrade"), type="primary", use_container_width=True):
+                    with st.spinner(i18n.t("workflow.messages.upgrading")):
+                        result = workflow.upgrade()
+                    if result["success"]:
+                        st.success(i18n.t("workflow.messages.upgraded_success"))
+                        st.info(i18n.t("workflow.messages.upgrade_from_to", from_version=result["from_version"], to_version=result["to_version"]))
+                        if result["steps"]:
+                            for step in result["steps"]:
+                                st.text(f"  • {step}")
+                        st.rerun()
+                    else:
+                        st.error(i18n.t("workflow.messages.error_title"))
+                        for error in result.get("errors", []):
+                            st.text(f"  • {error}")
+            
+            else:  # INITIALIZED
+                st.button(i18n.t("workflow.action_initialized"), disabled=True, use_container_width=True)
+            
+            # Show input folder info
+            if status == LibraryStatus.INITIALIZED:
+                st.info(i18n.t("workflow.input_folder"))
+                st.code(str(workflow.get_input_folder()), language="bash")
+                st.caption(i18n.t("workflow.input_folder_desc"))
+        
+        st.divider()
+        
     with tab1:
         with st.spinner(i18n.t("messages.scanning")):
             pdf_list = scan_library(library_root, config.recursive_scan)

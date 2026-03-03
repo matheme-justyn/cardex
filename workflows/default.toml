@@ -1,0 +1,59 @@
+# Default Workflow - Academic Research
+#
+# This is the default workflow for academic literature management.
+# Suitable for researchers who need to:
+#   - Ingest PDFs with metadata extraction
+#   - Track processed files
+#   - Organize papers with summaries and citations
+#
+# Folder structure:
+#   - _input: Drop new PDFs here
+#   - _processed: Ingested PDFs are moved here (optional)
+#
+# See other workflows:
+#   - workflows/simple.toml: Minimal setup (only _input)
+#   - workflows/advanced.toml: Advanced organization (multiple folders)
+
+[workflow]
+# Library workflow structure version (NOT Cardex software version)
+version = "1.0.0"
+
+[workflow.steps]
+# Linear workflow steps for library initialization
+# Each step creates required directories and files
+
+[[workflow.steps.step]]
+id = "create_input"
+description = "Create _input folder for new PDFs"
+action = "mkdir"
+target = "_input"
+required = true
+
+[[workflow.steps.step]]
+id = "create_processed"
+description = "Create _processed folder for ingested PDFs"
+action = "mkdir"
+target = "_processed"
+required = false
+[[workflow.steps.step]]
+id = "create_config"
+description = "Create _cardex-config.toml for library settings"
+action = "write_config"
+target = "_cardex-config.toml"
+required = true
+
+
+[folders]
+# Folder structure for the library
+input = "_input"          # New PDFs go here
+processed = "_processed"  # Optional: move PDFs after processing
+config_file = "_cardex-config.toml"
+
+[upgrade]
+# Upgrade instructions for version migrations
+# Format: "from_version" = ["list", "of", "migration", "steps"]
+# 
+# Example: If a library folder was created with an older workflow version,
+#          list the migration steps needed to upgrade to current version.
+# 
+# Currently at 1.0.0 (first stable release) - no migrations defined yet.

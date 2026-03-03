@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-03-03
+
+### Added
+- **Library Workflow Management System**:
+  - Status detection for library folders (uninitialized/initialized/outdated)
+  - Linear workflow UI with guidance buttons
+  - Automatic folder structure creation (`_input` for new PDFs, `_processed` for ingested files)
+  - Version tracking via `_cardex-config.toml` (structured TOML config)
+  - **Multiple workflow support** - choose from 3 pre-defined workflows:
+    - `default` - Academic research with processing tracking (_input, _processed)
+    - `simple` - Minimal setup with only _input folder
+    - `advanced` - Detailed organization (_input, _processed, _archive, _rejected)
+  - Workflows defined in `workflows/` directory for easy customization
+  - Upgrade flow for version mismatches
+  - Full i18n support for workflow UI and messages
+  - **Library workflow version** (1.0.0) is now separate from **Cardex software version** (0.1.3)
+    - Library workflow version tracks folder structure changes only
+    - Allows independent evolution of software features and library structure
+
+### Changed
+- **BREAKING**: Input folder changed from `.input` to `_input` for Finder visibility on macOS
+- **BREAKING**: Processed folder changed from `.processed` to `_processed` for consistency
+- **BREAKING**: Version tracking changed from `.cardex-version` (plain text) to `_cardex-config.toml` (structured TOML)
+- Added `toml>=0.10.2` dependency for TOML config file support
+
+### Fixed
+- Fixed `.library-workflow.toml.example` to include all required steps
+
+
 ## [0.1.2] - 2026-03-03
 
 ### Added

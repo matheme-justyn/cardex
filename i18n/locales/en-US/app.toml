@@ -90,10 +90,10 @@ welcome_desc = "Cardex is an academic literature management system that helps yo
 title = "🚀 Quick Start"
 step1_title = "1️⃣ Set Library Path"
 step1_desc = "Select your PDF storage folder in the left sidebar. You can use quick select buttons or enter the path manually."
-step2_title = "2️⃣ Browse PDFs"
-step2_desc = "Switch back to the 'Library' tab to view all scanned PDF files."
-step3_title = "3️⃣ Search Files"
-step3_desc = "Use the search box to quickly find the documents you need."
+step2_title = "2️⃣ Setup Folders"
+step2_desc = "You'll see a status card at the top of the 'Library' tab. If it shows 'Uninitialized', click 'Setup Folders' button to automatically create the _input folder."
+step3_title = "3️⃣ Add PDFs and Browse"
+step3_desc = "Place new PDF files into the _input folder, then view all scanned documents below."
 
 [tutorial.features]
 title = "✨ Key Features"
@@ -143,6 +143,35 @@ tip2_prompt = """I want to organize my PDF library. Please suggest a folder stru
 Please provide a tree structure example and explain how to use it."""
 tip3_title = "🎨 Quick Customization"
 tip3_desc = "Want to adjust language, theme, or other settings? Simply switch in the left sidebar - changes take effect immediately."
+
+[workflow]
+status_title = "📋 Library Status"
+status_uninitialized = "⚪ Uninitialized"
+status_initialized = "✅ Initialized"
+status_outdated = "⚠️ Needs Upgrade"
+action_initialize = "🚀 Setup Folders"
+action_upgrade = "⬆️ Upgrade Library"
+action_initialized = "✅ Ready"
+version_current = "Current Version"
+version_expected = "Latest Version"
+input_folder = "📂 New PDF Location"
+input_folder_desc = "Place new PDF files in this folder:"
+select_workflow = "Choose a workflow that fits your needs:"
+workflow_type = "Workflow Type"
+
+[workflow.workflows]
+default = "📚 Default - Academic research (with processing tracking)"
+simple = "📖 Simple - Minimal setup (only input folder)"
+advanced = "🔬 Advanced - Detailed organization (multiple folders)"
+
+[workflow.messages]
+initializing = "⏳ Initializing library..."
+initialized_success = "✅ Library initialized successfully!"
+initialized_details = "Created:"
+upgrading = "⏳ Upgrading library..."
+upgraded_success = "✅ Library upgraded successfully!"
+upgrade_from_to = "Upgraded from {from_version} to {to_version}"
+error_title = "❌ Error"
 
 [tutorial.coming_soon]
 title = "🔮 Coming Soon"
