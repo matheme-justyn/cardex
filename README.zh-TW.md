@@ -328,7 +328,27 @@ library/
 
 ## 🗓️ 開發計畫
 
-### Phase 1: 核心基礎（M1-M2）
+### Phase 0：服務基礎（新增 - 當前優先）
+- [ ] 配置系統（YAML 格式）
+  - 使用者指定文獻庫資料夾路徑
+  - 配置儲存在 ~/.cardex/config.yaml
+- [ ] CLI 命令
+  - `cardex init`：初始化配置
+  - `cardex serve`：啟動 Web 服務
+- [ ] PDF 掃描器
+  - 發現配置資料夾中的所有 PDF
+  - 支援遞迴掃描（包含子資料夾）
+  - 顯示檔名、大小、路徑
+- [ ] Web UI（Streamlit 原型）
+  - 顯示發現的 PDF 列表
+  - 基本搜尋/過濾（依檔名）
+  - 手動刷新按鈕
+  - 資料夾配置設定面板
+- [ ] **目標**：在任何處理之前，先看到你有哪些 PDF
+
+📄 **詳細規格**：[docs/phase-0-service-foundation.md](./docs/phase-0-service-foundation.md)
+
+### Phase 1：文獻攝入管線（M1-M2）
 - [x] 專案腳手架、SQLite schema、Docker Compose
 - [ ] Ingest pipeline（不含 OCR）
   - 檔案檢查、文字提取

@@ -328,7 +328,27 @@ Naming strategy defined in `config/naming_strategy.yaml`, fully customizable.
 
 ## 🗓️ Development Roadmap
 
-### Phase 1: Core Foundation (M1-M2)
+### Phase 0: Service Foundation (NEW - Current Priority)
+- [ ] Configuration system (YAML-based)
+  - User specifies library folder path
+  - Config stored in ~/.cardex/config.yaml
+- [ ] CLI commands
+  - `cardex init`: Initialize configuration
+  - `cardex serve`: Start web service
+- [ ] PDF Scanner
+  - Discover all PDFs in configured folder
+  - Support recursive scanning
+  - Display filename, size, path
+- [ ] Web UI (Streamlit prototype)
+  - Show list of discovered PDFs
+  - Basic search/filter by filename
+  - Manual refresh button
+  - Settings panel for folder configuration
+- [ ] **Goal**: See what PDFs you have before any processing
+
+📄 **Detailed Spec**: [docs/phase-0-service-foundation.md](./docs/phase-0-service-foundation.md)
+
+### Phase 1: Ingest Pipeline (M1-M2)
 - [x] Project scaffold, SQLite schema, Docker Compose
 - [ ] Ingest pipeline (without OCR)
   - File check, text extraction

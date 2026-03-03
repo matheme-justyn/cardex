@@ -254,6 +254,9 @@ Each argument block contains: claim text, supporting evidence quote, source pape
 
 | # | Milestone | Scope |
 |---|-----------|-------|
+| **M0** | Service Foundation | **NEW - Current Priority**: Config system (YAML), CLI (init/serve), PDF scanner, Streamlit UI (list view only). Goal: See what PDFs you have. [Details](./phase-0-service-foundation.md) |
+| **M1** | Core scaffold | SQLite schema, CLI skeleton, Docker Compose, folder structure |
+|---|-----------|-------|
 | **M1** | Core scaffold | SQLite schema, CLI skeleton, Docker Compose, folder structure |
 | **M2** | Ingest pipeline | Steps 1–7 of ingest: file check, ~~OCR~~, metadata, naming, move |
 | **M3** | LlamaIndex integration | ~~Embedding~~, ~~vector store~~, basic query engine (deferred to M4+) |
@@ -263,7 +266,7 @@ Each argument block contains: claim text, supporting evidence quote, source pape
 | **M7** | Argue Engine | Semantic search + evidence-weighted argument composition |
 | **M8** | Web UI v2 | Full React frontend, Citation Graph view, Skills management view |
 
-**v1 Priority**: M1, M2 (simplified), M6 (Streamlit)
+**Current Priority**: M0 (Service Foundation) → M1, M2 (simplified), M6 (Streamlit)
 
 ---
 
@@ -281,6 +284,15 @@ Each argument block contains: claim text, supporting evidence quote, source pape
 ---
 
 ## 12. Success Criteria
+
+**Phase 0 (Service Foundation) is successful if:**
+
+- [ ] User can run `cardex init` and configure library path
+- [ ] User can run `cardex serve` and see web UI in browser
+- [ ] Web UI displays list of all PDFs in configured folder
+- [ ] User can search/filter PDFs by filename
+- [ ] User can toggle recursive scan on/off
+- [ ] No crashes when folder is empty or contains non-PDF files
 
 **MVP (v0.1) is successful if:**
 
