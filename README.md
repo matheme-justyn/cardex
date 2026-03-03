@@ -11,6 +11,15 @@ Cardex is a fully programmatic academic literature management system designed fo
 
 > ⚠️ **Pre-release**: This project is in active development (0.X versioning). Breaking changes may occur before 1.0.0 release.
 
+## 📇 About the Name
+
+**Cardex** is a portmanteau of "**Card Index**" — a tribute to the nearly extinct profession of **Card Catalog Filer**.
+
+Before computerized catalogs became ubiquitous (circa 1980s–2000s), libraries employed dedicated staff to maintain wooden card catalog drawers. For every new book, these workers — predominantly women — handwrote or typed multiple index cards (one for author, title, and subject each) and filed them alphabetically in precise order. They spent countless hours building and maintaining the library's knowledge infrastructure, yet their contributions were often undervalued and overlooked.
+
+Cardex honors this invisible labor and reimagines the card catalog for the digital age — where AI assists, but the human researcher remains in control.
+
+
 
 ---
 
