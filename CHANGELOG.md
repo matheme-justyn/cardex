@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-03-06
+
+### Added
+- **Version Display Improvements**:
+  - Display Cardex software version at the bottom of sidebar (📦 Cardex 版本: v0.2.0)
+  - Clearly distinguish between Cardex software version and Workflow version
+  - Updated workflow status labels to explicitly show "Workflow 當前版本" and "Workflow 最新版本"
+  - Updated "需要升版" message to "Workflow 需要升版" to avoid confusion
+  - Full i18n support for new version display (zh-TW and en-US)
+
+### Changed
+- Improved version terminology in UI to prevent confusion between:
+  - **Cardex Software Version** (e.g., 0.2.0) - Application features and bug fixes
+  - **Library Workflow Version** (e.g., 1.0.0) - Folder structure definitions
+
 ## [0.1.3] - 2026-03-03
 
 ### Added

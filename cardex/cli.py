@@ -13,7 +13,7 @@ from cardex.scanner import PDFScanner
 
 
 @click.group()
-@click.version_option(version="0.1.3", prog_name="cardex")
+@click.version_option(version="0.2.0", prog_name="cardex")
 def main():
     """Cardex - Academic Knowledge Management System.
 

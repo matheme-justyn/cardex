@@ -1,6 +1,6 @@
 # Cardex
 
-[![Version](https://img.shields.io/badge/version-0.1.3-blue.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](./VERSION)
 [![License](https://img.shields.io/badge/license-TBD-yellow.svg)](./LICENSE)
 
 [English](./README.md) | 繁體中文

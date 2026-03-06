@@ -599,8 +599,13 @@ def main():
             st.cache_data.clear()
             st.rerun()
         st.divider()
-
+        
         st.caption(f"{i18n.t('sidebar.config_label')}: {config.config_path}")
+        
+        # Display Cardex version at bottom
+        from cardex import __version__
+        st.divider()
+        st.caption(f"📦 {i18n.t('sidebar.app_version')}: v{__version__}")
 
     # Main content: Tabs for Library and Tutorial
     tab1, tab2 = st.tabs([i18n.t("tabs.library"), i18n.t("tabs.tutorial")])
