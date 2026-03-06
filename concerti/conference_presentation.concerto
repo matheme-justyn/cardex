@@ -1,0 +1,127 @@
+# Conference Presentation Concerto
+# Solo: Your research | Orchestra: Academic conference audience
+
+name: "Conference Presentation"
+type: "conference_talk"
+
+# Target audience
+audience:
+  primary: "Academic conference attendees"
+  secondary: "Graduate students, early career researchers"
+  expertise_level: "Mixed (expert to novice)"
+
+# Orchestra: Conference expectations
+orchestra:
+  tone: "engaging, clear, time-conscious"
+  structure:
+    - "Title slide with key visual"
+    - "Motivation (Why does this matter?)"
+    - "Core question or thesis"
+    - "Main findings (3-5 key points)"
+    - "Implications and future work"
+    - "Q&A preparation"
+  
+  time_limit:
+    presentation: 20  # minutes
+    qa: 5
+  
+  requirements:
+    - "Visual-heavy (minimal text per slide)"
+    - "One key point per slide"
+    - "Use examples and case studies"
+    - "End with provocative question for discussion"
+    - "Slides readable from back of room"
+    - "Budget time for inevitable overruns"
+
+# Solo: How to present your paradigm findings
+solo:
+  emphasis:
+    - "Novel insights from your paradigm"
+    - "Surprising findings or tensions"
+    - "Open questions for the field"
+    - "Connections to other work"
+  
+  avoid:
+    - "Reading slides verbatim"
+    - "Too much methodological detail"
+    - "Cramming all findings into talk"
+    - "Apologizing for limitations excessively"
+
+# Synthesis template (Markdown for slides)
+template: |
+  ---
+  # {paradigm_name}
+  ## A Cross-Cutting Analysis
+  
+  {presenter_name}  
+  {affiliation}  
+  {conference_name} | {date}
+  
+  ---
+  
+  ## Why This Matters
+  
+  {motivation_statement}
+  
+  [Visual: compelling image or data]
+  
+  ---
+  
+  ## The Question
+  
+  > {core_research_question}
+  
+  ---
+  
+  ## What We Found: Key Insight #1
+  
+  {finding_1_headline}
+  
+  [Visual: chart or diagram]
+  
+  {finding_1_brief_explanation}
+  
+  ---
+  
+  ## What We Found: Key Insight #2
+  ...
+  
+  ---
+  
+  ## The Tension
+  
+  {identified_controversy_or_debate}
+  
+  [Visual: comparison table]
+  
+  ---
+  
+  ## What This Means
+  
+  **For scholars**: {implication_1}
+  
+  **For practitioners**: {implication_2}
+  
+  **For future research**: {implication_3}
+  
+  ---
+  
+  ## Open Question
+  
+  > {provocative_question_for_discussion}
+  
+  ---
+  
+  ## Thank You
+  
+  {contact_info}
+  
+  Questions?
+
+# Output formatting
+output:
+  format: "markdown"  # Convert to slides with Marp, reveal.js, etc.
+  slides_per_minute: 1.5
+  max_slides: 30
+  include_speaker_notes: true
+  visual_emphasis: "high"

@@ -1,0 +1,104 @@
+# Policy Brief Concerto
+# Solo: Your research | Orchestra: Policymaker expectations
+
+name: "Policy Brief"
+type: "policy_document"
+
+# Target audience
+audience:
+  primary: "Government policymakers and advisors"
+  secondary: "NGO leaders, international organizations"
+  expertise_level: "Informed non-specialist"
+
+# Orchestra: Policymaker expectations
+orchestra:
+  tone: "concise, action-oriented, pragmatic"
+  structure:
+    - "Executive Summary (1 page max)"
+    - "Key Findings (bullet points)"
+    - "Policy Recommendations (numbered, specific)"
+    - "Implementation Roadmap (optional)"
+    - "Supporting Evidence (brief)"
+  
+  citation_style: "footnotes"  # Minimal, unobtrusive
+  length:
+    target: 2000
+    min: 1500
+    max: 2500
+    unit: "words"
+  
+  requirements:
+    - "Lead with actionable recommendations"
+    - "Use plain language (avoid jargon)"
+    - "Focus on 'what' and 'how', not 'why'"
+    - "Include implementation timeline if possible"
+    - "Highlight cost-benefit considerations"
+    - "Use visuals (charts, tables) liberally"
+
+# Solo: How to present your paradigm findings
+solo:
+  emphasis:
+    - "Practical implications of research"
+    - "Feasibility of proposed solutions"
+    - "Stakeholder perspectives"
+    - "Evidence of real-world impact"
+  
+  avoid:
+    - "Academic jargon"
+    - "Lengthy theoretical discussions"
+    - "Ambiguous recommendations"
+    - "Overly cautious hedging"
+
+# Synthesis template
+template: |
+  # Policy Brief: {paradigm_name}
+  
+  ## Executive Summary
+  
+  **Issue**: {core_problem_statement}
+  
+  **Key Findings**:
+  - {finding_1}
+  - {finding_2}
+  - {finding_3}
+  
+  **Recommendations**:
+  1. {recommendation_1}
+  2. {recommendation_2}
+  3. {recommendation_3}
+  
+  ---
+  
+  ## Background
+  {brief_context}
+  
+  ## Current State of Affairs
+  {current_situation}
+  
+  ## Evidence-Based Recommendations
+  
+  ### Recommendation 1: {rec_1_title}
+  
+  **Rationale**: {rec_1_rationale}
+  
+  **Implementation**: {rec_1_steps}
+  
+  **Expected Impact**: {rec_1_impact}
+  
+  ### Recommendation 2: {rec_2_title}
+  ...
+  
+  ## Conclusion
+  {call_to_action}
+  
+  ---
+  
+  **For Further Information**: [Contact details]
+
+# Output formatting
+output:
+  format: "markdown"
+  include_metadata: false
+  generate_bibliography: false
+  include_infographics: true
+  max_pages: 4

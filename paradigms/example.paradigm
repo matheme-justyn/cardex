@@ -1,0 +1,85 @@
+# Paradigm Configuration Template
+# Copy this file and customize for your research needs
+
+name: "Example Paradigm Name"
+type: topic  # Options: researcher | topic | school
+
+# Core research questions this paradigm addresses
+core_questions:
+  - "What is the main research question?"
+  - "What specific aspects does this paradigm focus on?"
+
+# Theoretical frameworks used in this paradigm
+theoretical_frameworks:
+  - "Framework 1 (e.g., International Law)"
+  - "Framework 2 (e.g., Critical Theory)"
+
+# Ontology: What does this paradigm assume about reality?
+ontology:
+  - "Assumption 1 about the nature of the subject matter"
+  - "Assumption 2 about what exists in this domain"
+
+# Epistemology: How does this paradigm acquire knowledge?
+epistemology:
+  - "Legal interpretation"
+  - "Case analysis"
+  - "Comparative method"
+
+# For 'topic' type: Different schools of thought within this topic
+schools:
+  - name: "School A"
+    representatives: ["Scholar 1", "Scholar 2"]
+    thesis: "Core argument of this school"
+  
+  - name: "School B"
+    representatives: ["Scholar 3", "Scholar 4"]
+    thesis: "Alternative perspective"
+
+# For 'researcher' type: Individual researcher's stance
+identity:
+  academic_background: "PhD in [Field], 10 years experience"
+  institutional_affiliation: "[University/Institute]"
+  theoretical_stance:
+    - "Stance 1 (e.g., Privacy rights advocate)"
+    - "Stance 2 (e.g., Critical of military necessity overreach)"
+
+# For 'school' type: Defining characteristics of the school
+school_characteristics:
+  founding_year: 1970
+  key_figures: ["Founder 1", "Founder 2"]
+  core_tenets:
+    - "Tenet 1"
+    - "Tenet 2"
+
+# Analysis lenses: How to analyze papers through this paradigm
+lenses:
+  - name: "Lens 1 Name"
+    prompt: "prompts/lens1_analysis.md"
+    output_structure: |
+      ### Core Contribution
+      [What does this paper contribute to the lens topic?]
+      
+      ### Position Analysis
+      - Support/Oppose/Neutral: [Judgment]
+      - Key Arguments: [Extract]
+      
+      ### Relationship with Other Literature
+      [Citations and cross-references]
+  
+  - name: "Lens 2 Name"
+    prompt: "prompts/lens2_analysis.md"
+    output_structure: |
+      ### Methodological Approach
+      [How does this paper approach the problem?]
+      
+      ### Evidence Quality
+      [Assessment of evidence strength]
+
+# Synthesis configuration: How to aggregate analysis cards
+synthesis:
+  template: "literature_review"  # or "thematic_analysis", "comparative"
+  structure:
+    - "Introduction with research question"
+    - "Thematic grouping of findings"
+    - "Controversies and debates"
+    - "Future research directions"

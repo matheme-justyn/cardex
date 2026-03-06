@@ -59,6 +59,126 @@ The system is organized as a layered pipeline. Each layer is independently opera
 
 ---
 
+## 3.1 Paradigm System（派典系統）
+
+**NEW ARCHITECTURE (March 2026)**: Cardex introduces a **Paradigm-driven analysis system** to enable cross-cutting perspectives on the same literature corpus.
+
+### 3.1.1 Core Concept
+
+A **Paradigm（派典）** is a configuration file that defines:
+- A **researcher's cognitive framework** (theoretical stance, methodological preferences)
+- A **research topic's analytical lens** (core questions, theoretical frameworks)
+- A **research school's perspective** (shared beliefs, values, exemplars)
+
+**Key Innovation**: The same PDF can be analyzed through **multiple paradigms**, generating different analysis cards that reflect different theoretical perspectives.
+
+### 3.1.2 Paradigm Types
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Researcher** | Individual researcher's digital twin | "Robin - IHL Privacy Researcher" |
+| **Topic** | Research topic framework | "Data Privacy in Armed Conflict" |
+| **School** | Academic school of thought | "Critical Legal Studies" |
+
+### 3.1.3 Workflow
+
+```
+Input: Batch of PDFs (e.g., 20 papers in "1_國際法/" folder)
+↓
+Apply Paradigm: "IHL Data Privacy" paradigm configuration
+↓
+Generate Analysis Cards: Each paper analyzed through paradigm's lenses
+↓
+Synthesis: Aggregate all analysis cards into comprehensive review
+```
+
+### 3.1.4 File Structure
+
+```
+~/.cardex/
+├── paradigms/
+│   ├── example.paradigm          # Template (committed to git)
+│   ├── ihl_data_privacy.paradigm # User-created (gitignored)
+│   └── robin_researcher.paradigm # User-created (gitignored)
+└── .gitignore                    # Ignores *.paradigm except example.paradigm
+```
+
+### 3.1.5 Paradigm File Format
+
+A paradigm file (`.paradigm`) is YAML-based:
+
+```yaml
+# paradigms/ihl_data_privacy.paradigm
+name: "國際法與武裝衝突中的數據地位"
+type: topic  # researcher | topic | school
+
+# 核心問題
+core_questions:
+  - "數據在 IHL 下的法律定位是什麼？"
+  - "隱私權在戰時如何適用？"
+
+# 理論框架
+theoretical_frameworks:
+  - "International Humanitarian Law (IHL)"
+  - "International Human Rights Law (IHRL)"
+
+# 學派（如果是 topic type）
+schools:
+  - name: "數據=財產派"
+    representatives: ["Blank", "Jensen"]
+    thesis: "將數據定義為受 IHL 保護的財產"
+  
+  - name: "隱私權持續適用派"
+    representatives: ["O'Connell", "Watt"]
+    thesis: "隱私權在戰時不中止"
+
+# 分析視角（Lenses）
+lenses:
+  - name: "Legal Status of Data"
+    prompt: "prompts/legal_status_of_data.md"
+    output_structure: |
+      ### 核心貢獻
+      [論文對數據法律地位的貢獻]
+      
+      ### 立場分析
+      - 支持/反對/中立：[判斷]
+      - 關鍵論證：[摘錄]
+```
+
+### 3.1.6 Integration with Skill System
+
+- **Paradigm**: User-facing configuration layer (what perspective to use)
+- **Lens**: Analysis angle within a paradigm (how to extract insights)
+- **Skill**: Technical implementation layer (prompt + LLM engine)
+
+**Relationship**:
+```
+Paradigm (派典配置)
+  └─ Lenses (分析視角)
+      └─ Skills (技術實作) ← Reuses existing Skill engine
+```
+
+### 3.1.7 Concerto System（協奏系統）
+
+**Concerto（協奏曲）**: A dialogue between your research paradigm and audience expectations.
+
+**Musical Metaphor**:
+- **Solo (獨奏)**: Your research perspective defined by the Paradigm
+- **Orchestra (樂團)**: The expectations and standards of your target audience
+- **Concerto (協奏)**: The harmonious collaboration between both
+
+**Example Concerti**:
+
+| Concerto | Solo | Orchestra | Output Style |
+|----------|------|-----------|--------------|
+| `journal_submission` | Your research findings | Academic journal standards | Formal, evidence-based, 8000 words |
+| `policy_brief` | Your research findings | Policymaker expectations | Concise, action-oriented, 2000 words |
+| `conference_presentation` | Your research findings | Academic conference norms | Structured slides, 20 minutes |
+| `public_lecture` | Your research findings | General public understanding | Accessible language, storytelling |
+
+**File Location**: `~/.cardex/concerti/`
+
+
 ## 4. Data Model
 
 ### 4.1 SQLite Tables
@@ -109,6 +229,48 @@ The system is organized as a layered pipeline. Each layer is independently opera
 | `cited_title` | TEXT | Title of the cited paper |
 | `in_library` | INTEGER | 0 = not yet ingested, 1 = in library |
 | `citation_count` | INTEGER | How many papers in library cite this |
+
+#### paradigms
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | TEXT PK | UUID |
+| `name` | TEXT | Paradigm name (e.g., "IHL Data Privacy") |
+| `type` | TEXT | researcher / topic / school |
+| `file_path` | TEXT | Path to .paradigm file |
+| `core_questions` | TEXT | JSON array of research questions |
+| `theoretical_frameworks` | TEXT | JSON array of frameworks |
+| `created_at` | TEXT | ISO 8601 timestamp |
+| `updated_at` | TEXT | ISO 8601 timestamp |
+
+#### analyses
+
+Replaces the original `summaries` table to reflect paradigm-driven analysis.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | TEXT PK | UUID |
+| `paper_id` | TEXT FK | → papers.id |
+| `paradigm_id` | TEXT FK | → paradigms.id |
+| `lens_name` | TEXT | Name of the lens used (e.g., "Legal Status of Data") |
+| `content` | TEXT | Markdown content of the analysis card |
+| `generated_at` | TEXT | ISO 8601 timestamp |
+| `model` | TEXT | LLM model identifier used |
+
+#### syntheses
+
+Stores aggregated knowledge syntheses from multiple analysis cards.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | TEXT PK | UUID |
+| `paradigm_id` | TEXT FK | → paradigms.id |
+| `concerto` | TEXT | Concerto type (e.g., journal_submission, policy_brief) |
+| `paper_ids` | TEXT | JSON array of paper IDs included |
+| `content` | TEXT | Markdown content of synthesis |
+| `generated_at` | TEXT | ISO 8601 timestamp |
+| `model` | TEXT | LLM model identifier used |
+
 
 ### 4.2 File System Layout
 
@@ -186,6 +348,192 @@ The web interface is a self-hosted application providing full read/write access 
 | **Frontend** | React + Tailwind (or Streamlit for v1 prototype) |
 | **AI Layer** | LlamaIndex + configurable LLM (OpenAI / local Ollama) |
 | **Deployment** | Docker Compose (single command startup) |
+
+### 6.3 Paradigm-Driven Workflow: Two-Page Design
+
+**NEW (March 2026)**: Cardex introduces a two-page workflow for paradigm-driven analysis.
+
+#### Page 1: Paradigm Analysis (派典分析)
+
+**Purpose**: Select paradigm + papers → Generate analysis cards
+
+**UI Layout**:
+
+```
+┌───────────────────────────────────────────────────────────┐
+│  🎼 Paradigm Analysis                                      │
+├───────────────────────────────────────────────────────────┤
+│  Step 1: Select Paradigm                                     │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │ ▼ Select Paradigm                                │  │
+│  │   ● IHL Data Privacy                              │  │
+│  │   ○ Robin - IHL Researcher                       │  │
+│  │   + Create New Paradigm                          │  │
+│  └────────────────────────────────────────────────────┘  │
+│  Type: Topic | Lenses: 4 | Questions: 2                     │
+├───────────────────────────────────────────────────────────┤
+│  Step 2: Select Papers                                       │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │ 🔍 Search or filter...                          │  │
+│  └────────────────────────────────────────────────────┘  │
+│  [📁 1_國際法] [📁 2_數據權利] [📁 3_技術架構]           │
+│                                                             │
+│  ☐ Select All (23 papers)                                │
+│  ☑ [O'Connell 2022] Privacy Rights...                     │
+│  ☑ [Blank 2022] Data as Property...                       │
+│  ☐ [West 2022] Precautionary Principle...                 │
+│  Selected: 2 papers                                          │
+├───────────────────────────────────────────────────────────┤
+│  Step 3: Configure Lenses                                    │
+│  ☑ Legal Status of Data                                   │
+│  ☑ Privacy Rights Continuity                              │
+│  ☐ Legal Gaps Identification                              │
+│                                                             │
+│        [🎼 Generate Analysis Cards]                      │
+│                                                             │
+│  Estimated: 4 cards (2 papers × 2 lenses)                  │
+└───────────────────────────────────────────────────────────┘
+```
+
+**Key Features**:
+- Quick folder buttons (📁) for common paper groups
+- Real-time card count estimate
+- Smart defaults (all lenses checked)
+- Progress indicator during generation
+
+**Workflow**:
+1. User selects a paradigm (e.g., "IHL Data Privacy")
+2. User selects papers (folder-based or individual)
+3. User configures which lenses to apply (default: all)
+4. System generates analysis cards (paper × lens combinations)
+5. Results saved to `~/.cardex/analyses/` and database
+
+**State Persistence**: Selected paradigm and generated analyses carry over to Page 2
+
+#### Page 2: Concerto Synthesis (協奏匯總)
+
+**Purpose**: Select concerto + analysis cards → Generate synthesis document
+
+**Key Features**:
+- Paradigm selector (pre-selected if coming from Page 1)
+- Analysis card browser with filters (lens, date range, paper)
+- Card preview modal
+- Concerto selector with audience/tone/length details
+- Synthesis configuration (output path, custom settings)
+- Progress indicator with synthesis stages
+
+**Workflow**:
+1. User selects paradigm (auto-selected if from Page 1)
+2. User browses and selects analysis cards
+3. User chooses concerto (e.g., "Journal Submission", "Policy Brief")
+4. System generates synthesis document following concerto template
+5. Output saved to `synthesis/` folder and database
+
+**Detailed Specification**: See [docs/gui-paradigm-specification.md](./gui-paradigm-specification.md)
+
+## 6.5 Paradigm-Driven CLI Commands
+
+**NEW (March 2026)**: Cardex introduces paradigm-based analysis commands.
+
+### Paradigm Management
+
+```bash
+# List all paradigms
+cardex paradigm list
+
+# Show paradigm details
+cardex paradigm show <name>
+
+# Create new paradigm (interactive or from template)
+cardex paradigm create --type topic --name "IHL Data Privacy"
+cardex paradigm create --type researcher --name "Robin"
+cardex paradigm create --type school --name "Critical Legal Studies"
+
+# Edit paradigm (opens in $EDITOR)
+cardex paradigm edit <name>
+
+# Validate paradigm file syntax
+cardex paradigm validate <file.paradigm>
+```
+
+### Paradigm Analysis
+
+```bash
+# Analyze batch of PDFs with a paradigm
+cardex analyze \
+  --paradigm "IHL Data Privacy" \
+  --files "1_國際法/*.pdf"
+
+# Analyze entire folder recursively
+cardex analyze \
+  --paradigm "IHL Data Privacy" \
+  --folder "1_國際法" \
+  --recursive
+
+# Analyze specific files
+cardex analyze \
+  --paradigm "IHL Data Privacy" \
+  --files "[O_Connell 2022].pdf" "[Blank 2022].pdf"
+
+# Specify which lenses to use (default: all lenses in paradigm)
+cardex analyze \
+  --paradigm "IHL Data Privacy" \
+  --lenses "Legal Status of Data,Privacy Continuity"
+```
+
+### View Analysis Results
+
+```bash
+# Show all analyses for a paper
+cardex show "[O_Connell 2022]"
+
+# Show specific paradigm's analysis
+cardex show "[O_Connell 2022]" --paradigm "IHL Data Privacy"
+
+# Show specific lens analysis
+cardex show "[O_Connell 2022]" \
+  --paradigm "IHL Data Privacy" \
+  --lens "Legal Status of Data"
+```
+
+### Synthesis Commands
+
+```bash
+# Create synthesis from paradigm analyses
+cardex synthesis create \
+  --paradigm "IHL Data Privacy" \
+  --folder "1_國際法" \
+  --output synthesis/ihl_privacy_review.md
+
+# Specify concerto (output style for different audiences)
+# Concerto: A dialogue between your research paradigm and audience expectations
+cardex synthesis create \
+  --paradigm "IHL Data Privacy" \
+  --folder "1_國際法" \
+  --concerto journal_submission \
+  --output submission_draft.md
+
+# Synthesis with specific lenses only
+cardex synthesis create \
+  --paradigm "IHL Data Privacy" \
+  --folder "1_國際法" \
+  --lenses "Legal Status of Data" \
+  --output legal_status_review.md
+```
+
+### Background Execution
+
+```bash
+# Run analysis in background (for large batches)
+cardex analyze \
+  --paradigm "IHL Data Privacy" \
+  --folder "1_國際法" \
+  --background
+
+# Check background job status
+cardex jobs list
+cardex jobs show <job_id>
+```
 
 ---
 

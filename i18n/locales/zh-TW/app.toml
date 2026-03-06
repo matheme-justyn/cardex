@@ -184,3 +184,126 @@ phase3 = "**Phase 3**：引用圖譜和論證引擎"
 title = "💬 問題回報"
 desc = "如果您遇到問題或有建議，請在 GitHub 開 issue："
 link_text = "GitHub Issues"
+
+# Paradigm Analysis Page
+[paradigm_analysis]
+page_title = "🎼 派典分析"
+page_subtitle = "以研究派典分析你的文獻"
+step1_title = "📋 步驟 1：選擇派典"
+step2_title = "📁 步驟 2：選擇文獻"
+step3_title = "🔬 步驟 3：配置分析視角"
+step4_title = "📊 分析摘要"
+
+[paradigm_analysis.paradigm_selector]
+select_placeholder = "選擇派典"
+no_paradigms_warning = "⚠️ 找不到派典。請先建立派典。"
+no_paradigms_info = "將你的 `.paradigm` 檔案放在 `~/.cardex/paradigms/`"
+details_title = "📖 派典詳細資訊"
+type_label = "類型"
+core_questions_label = "核心問題"
+lenses_label = "分析視角"
+frameworks_label = "理論框架"
+
+[paradigm_analysis.paper_selector]
+selection_mode_label = "選擇模式"
+mode_individual = "個別檔案"
+mode_folder = "整個資料夾"
+folder_path_placeholder = "例如：~/Documents/papers/1_國際法"
+folder_tip = "💡 此資料夾中的所有 PDF 檔案都將被分析"
+search_placeholder = "依標題、作者或關鍵字搜尋..."
+search_caption = "選擇要分析的文獻："
+selected_count = "✅ 已選擇：{count} 篇文獻"
+note = "⚠️ **注意**：文獻選擇功能將在下一階段完整實作。目前僅顯示 UI 示範。"
+
+[paradigm_analysis.lens_selector]
+caption = "選擇要套用的分析視角："
+no_lenses_warning = "此派典未定義任何分析視角。"
+
+[paradigm_analysis.summary]
+papers_metric = "文獻"
+lenses_metric = "視角"
+expected_cards_metric = "預期卡片數"
+estimated_time_metric = "預估時間"
+generate_button = "🎼 產生分析卡片"
+progress_text = "分析中... ({current} / {total} 張卡片已完成)"
+current_task = "目前處理："
+success_title = "✅ 分析完成！"
+success_summary = """
+**結果摘要：**
+- {papers} 篇文獻已分析
+- {lenses} 個視角已套用
+- {cards} 張卡片已儲存至 `~/.cardex/analyses/`
+"""
+view_cards_button = "📄 檢視產生的卡片"
+continue_button = "🎭 繼續至匯總 →"
+footer_tip = "💡 提示：分析卡片儲存在 `~/.cardex/analyses/` 且可在匯總頁面中查看。"
+
+# Concerto Synthesis Page
+[concerto_synthesis]
+page_title = "🎭 協奏匯總"
+page_subtitle = "為目標受眾組織你的研究發現"
+step1_title = "🎼 步驟 1：選擇來源派典"
+step2_title = "📇 步驟 2：選擇分析卡片"
+step3_title = "🎻 步驟 3：選擇協奏"
+step4_title = "📊 匯總摘要"
+
+[concerto_synthesis.paradigm_selector]
+select_placeholder = "選擇派典"
+no_paradigms_warning = "⚠️ 找不到派典。請先建立派典。"
+available_cards = "📊 可用分析卡片：{count} 張"
+last_analyzed = "最後分析："
+
+[concerto_synthesis.card_selector]
+no_cards_warning = "⚠️ 此派典找不到分析卡片。"
+no_cards_info = "請先使用派典分析頁面產生分析卡片。"
+go_to_analysis_button = "← 前往派典分析"
+filter_title = "篩選卡片"
+lens_filter_label = "分析視角"
+date_range_label = "日期範圍"
+date_last_7_days = "最近 7 天"
+date_last_30_days = "最近 30 天"
+date_last_3_months = "最近 3 個月"
+date_all_time = "全部時間"
+paper_search_placeholder = "依文獻標題篩選..."
+showing_cards = "顯示 {filtered} / {total} 張卡片"
+select_all = "全選 ({count} 張卡片)"
+preview_button = "預覽"
+
+[concerto_synthesis.concerto_selector]
+select_placeholder = "選擇協奏"
+no_concerti_warning = "⚠️ 找不到協奏。"
+no_concerti_info = "將你的 `.concerto` 檔案放在 `~/.cardex/concerti/`"
+details_title = "🎭 協奏詳細資訊"
+type_label = "類型"
+audience_label = "受眾"
+target_length_label = "目標長度"
+tone_label = "語調"
+structure_label = "結構"
+
+[concerto_synthesis.summary]
+cards_metric = "卡片"
+paradigm_metric = "派典"
+expected_length_metric = "預期長度"
+estimated_time_metric = "預估時間"
+output_path_label = "輸出路徑"
+output_tip = "💡 輸出將儲存至：`~/.cardex/{path}`"
+generate_button = "🎭 產生匯總文件"
+progress_text = "匯總中... (階段 {current} / {total})"
+stage_loading = "載入分析卡片"
+stage_template = "套用協奏模板"
+stage_organizing = "組織主題章節"
+stage_generating = "產生摘要與導言"
+stage_formatting = "格式化參考文獻"
+success_title = "✅ 匯總完成！"
+success_output = "**輸出：** `~/.cardex/{path}`"
+success_stats = """
+**統計資料：**
+- 總字數：~{words}
+- 引用：{cards} 張卡片已匯總
+- 派典：{paradigm}
+- 協奏：{concerto}
+"""
+open_button = "📄 開啟文件"
+copy_button = "📋 複製路徑"
+regenerate_button = "🔄 重新產生"
+footer_tip = "💡 提示：匯總文件以 Markdown 格式儲存，可用任何文字編輯器編輯。"

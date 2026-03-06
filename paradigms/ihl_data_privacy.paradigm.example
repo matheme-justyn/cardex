@@ -1,0 +1,139 @@
+# 國際法與武裝衝突中的數據地位
+# Data Privacy in Armed Conflict (IHL Paradigm)
+#
+# 基於 CyCon 2026 研究專案的派典配置
+
+name: "國際法與武裝衝突中的數據地位"
+type: topic
+
+# 核心問題
+core_questions:
+  - "數據在國際人道法 (IHL) 下是什麼？"
+  - "國家在衝突中有哪些關於數據的權利與義務？"
+  - "隱私權在武裝衝突期間如何適用？"
+
+# 理論框架
+theoretical_frameworks:
+  - "International Humanitarian Law (IHL)"
+  - "International Human Rights Law (IHRL)"
+  - "Law of Armed Conflict (LOAC)"
+
+# 本體論
+ontology:
+  - "數據是一種可受法律保護的實體"
+  - "武裝衝突不終止人權保護"
+  - "軍事必要性與人權保護需要平衡"
+
+# 認識論
+epistemology:
+  - "法律詮釋學 (Legal Hermeneutics)"
+  - "案例法分析 (Case Law Analysis)"
+  - "國際法比較 (Comparative International Law)"
+  - "教義分析 (Doctrinal Analysis)"
+
+# 學派
+schools:
+  - name: "數據=財產派"
+    representatives: ["Blank", "Jensen"]
+    thesis: "將數據定義為受 IHL 保護的「財產」是關鍵前提，並設定「軍事必要性」作為干預數據的高門檻"
+  
+  - name: "隱私權持續適用派"
+    representatives: ["O'Connell", "Watt"]
+    thesis: "數據隱私權在武裝衝突期間應持續適用，與和平時期相同，不因戰爭而中止"
+  
+  - name: "法律空白派"
+    representatives: ["Geiß", "Lahmann"]
+    thesis: "現有 IHL 框架因基於物理「物件」與「攻擊」，在應對純粹的數據操作時存在顯著的法律空白"
+  
+  - name: "平衡派"
+    representatives: ["West", "Mimran", "Shany"]
+    thesis: "需在 IHL 的軍事必要性與 IHRL 的隱私權之間尋求動態平衡，取決於控制程度與暴力水平"
+
+# 分析視角 (Lenses)
+lenses:
+  - name: "Legal Status of Data"
+    description: "數據的法律性質定位"
+    prompt: "prompts/ihl_legal_status.md"
+    output_structure: |
+      ### 核心貢獻
+      [論文對「數據法律地位」問題的貢獻]
+      
+      ### 立場分析
+      - 數據定義：財產/資訊/混合/其他
+      - 支持哪個學派：數據=財產派/隱私權持續派/法律空白派/平衡派
+      - 關鍵論證：[摘錄原文核心論證]
+      
+      ### 與其他文獻關係
+      [引用或反駁了哪些學者？是否形成對話？]
+  
+  - name: "Privacy Rights Continuity"
+    description: "隱私權在衝突中的適用性"
+    prompt: "prompts/ihl_privacy_continuity.md"
+    output_structure: |
+      ### 核心問題
+      論文如何處理「隱私權在戰時是否持續適用」的問題？
+      
+      ### 法律論證
+      - 援引的法律依據：[IHL條款/IHRL條款/判例]
+      - 軍事必要性門檻：高/中/低
+      - 比例原則應用：嚴格/寬鬆/未提及
+      
+      ### 實務影響
+      [對軍事監控、占領地隱私保護等實務問題的影響]
+  
+  - name: "Legal Gaps Identification"
+    description: "識別 IHL 框架的法律空白"
+    prompt: "prompts/ihl_legal_gaps.md"
+    output_structure: |
+      ### 識別的法律空白
+      [論文指出哪些現有 IHL 框架無法處理的問題？]
+      
+      ### 空白的成因
+      - 技術發展超前法律：是/否
+      - 概念框架不適用：是/否
+      - 國家實踐不一致：是/否
+      
+      ### 提出的解決方案
+      [作者建議如何填補這些空白？]
+  
+  - name: "IHL-IHRL Interaction"
+    description: "國際人道法與國際人權法的交互作用"
+    prompt: "prompts/ihl_ihrl_interaction.md"
+    output_structure: |
+      ### 法律關係模式
+      - 並行適用 (Parallel Application)
+      - 人道法優先 (IHL Primacy)
+      - 人權法優先 (IHRL Primacy)
+      - 情境依存 (Context-Dependent)
+      
+      ### 衝突解決機制
+      [當 IHL 與 IHRL 衝突時，論文如何解決？]
+      
+      ### 引用的判例或學說
+      [ICJ判例、學者意見等]
+
+# 匯總配置
+synthesis:
+  template: "thematic_literature_review"
+  structure:
+    - section: "核心研究問題"
+      content: "數據在 IHL 下的法律定位是什麼？"
+    
+    - section: "主要學派"
+      subsections:
+        - "數據=財產派（Blank, Jensen）"
+        - "隱私權持續適用派（O'Connell, Watt）"
+        - "法律空白派（Geiß, Lahmann）"
+        - "平衡派（West, Mimran）"
+    
+    - section: "爭議點與法律空白"
+      themes:
+        - "純數據操作的法律定性"
+        - "軍事必要性門檻的模糊性"
+        - "佔領地數位隱私保護不足"
+    
+    - section: "未來研究方向"
+      items:
+        - "數據作為攻擊目標的法律標準"
+        - "私營科技公司的法律責任"
+        - "AI 與自主武器系統中的數據保護"

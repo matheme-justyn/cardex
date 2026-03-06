@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-06
+
+### Added
+- **Paradigm System GUI**:
+  - New two-page Streamlit interface for paradigm-driven analysis
+  - Page 1: Paradigm Analysis - Select paradigm + papers → Generate analysis cards
+  - Page 2: Concerto Synthesis - Select concerto + cards → Generate synthesis document
+  - Paradigm and Concerto configuration file loaders (YAML-based)
+  - Database schema for paradigms, analyses, and syntheses
+  - Complete i18n support (zh-TW and en-US) for new pages
+  - Example paradigm and concerto files in `~/.cardex/`
+
+- **New Modules**:
+  - `cardex/database.py` - SQLite database manager with paradigm/analysis tables
+  - `cardex/paradigm.py` - Paradigm and Concerto configuration loaders
+  - `cardex/pages/1_🎼_Paradigm_Analysis.py` - Paradigm analysis page
+  - `cardex/pages/2_🎭_Concerto_Synthesis.py` - Concerto synthesis page
+
+- **Documentation**:
+  - Comprehensive GUI specification document (`docs/gui-paradigm-specification.md`)
+  - Updated PRD with paradigm system workflows
+  - 816-line detailed UI specification with component specs
+
+### Changed
+- Streamlit app now supports multipage architecture
+- Updated README badges to version 0.3.0
+
+
 ## [0.2.0] - 2026-03-06
 
 ### Added

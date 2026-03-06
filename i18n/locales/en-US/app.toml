@@ -184,3 +184,126 @@ phase3 = "**Phase 3**: Citation graph and argumentation engine"
 title = "💬 Feedback"
 desc = "If you encounter issues or have suggestions, please open an issue on GitHub:"
 link_text = "GitHub Issues"
+
+# Paradigm Analysis Page
+[paradigm_analysis]
+page_title = "🎼 Paradigm Analysis"
+page_subtitle = "Analyze your papers through a research paradigm"
+step1_title = "📋 Step 1: Select Paradigm"
+step2_title = "📁 Step 2: Select Papers"
+step3_title = "🔬 Step 3: Configure Analysis Lenses"
+step4_title = "📊 Analysis Summary"
+
+[paradigm_analysis.paradigm_selector]
+select_placeholder = "Select paradigm"
+no_paradigms_warning = "⚠️ No paradigms found. Please create a paradigm first."
+no_paradigms_info = "Place your `.paradigm` files in `~/.cardex/paradigms/`"
+details_title = "📖 Paradigm Details"
+type_label = "Type"
+core_questions_label = "Core Questions"
+lenses_label = "Lenses"
+frameworks_label = "Theoretical Frameworks"
+
+[paradigm_analysis.paper_selector]
+selection_mode_label = "Selection Mode"
+mode_individual = "Individual Files"
+mode_folder = "Entire Folder"
+folder_path_placeholder = "e.g., ~/Documents/papers/1_國際法"
+folder_tip = "💡 All PDF files in this folder will be analyzed"
+search_placeholder = "Search by title, author, or keywords..."
+search_caption = "Select papers to analyze:"
+selected_count = "✅ Selected: {count} papers"
+note = "⚠️ **Note**: Paper selection will be fully implemented in the next phase. Currently showing UI mockup only."
+
+[paradigm_analysis.lens_selector]
+caption = "Select which analytical lenses to apply:"
+no_lenses_warning = "This paradigm has no lenses defined."
+
+[paradigm_analysis.summary]
+papers_metric = "Papers"
+lenses_metric = "Lenses"
+expected_cards_metric = "Expected Cards"
+estimated_time_metric = "Estimated Time"
+generate_button = "🎼 Generate Analysis Cards"
+progress_text = "Analyzing papers... ({current} of {total} cards completed)"
+current_task = "Currently processing:"
+success_title = "✅ Analysis Complete!"
+success_summary = """
+**Results Summary:**
+- {papers} papers analyzed
+- {lenses} lenses applied
+- {cards} cards saved to `~/.cardex/analyses/`
+"""
+view_cards_button = "📄 View Generated Cards"
+continue_button = "🎭 Continue to Synthesis →"
+footer_tip = "💡 Tip: Analysis cards are saved to `~/.cardex/analyses/` and can be reviewed in the Synthesis page."
+
+# Concerto Synthesis Page
+[concerto_synthesis]
+page_title = "🎭 Concerto Synthesis"
+page_subtitle = "Compose your findings for the target audience"
+step1_title = "🎼 Step 1: Select Source Paradigm"
+step2_title = "📇 Step 2: Select Analysis Cards"
+step3_title = "🎻 Step 3: Choose Concerto"
+step4_title = "📊 Synthesis Summary"
+
+[concerto_synthesis.paradigm_selector]
+select_placeholder = "Select paradigm"
+no_paradigms_warning = "⚠️ No paradigms found. Please create a paradigm first."
+available_cards = "📊 Available Analysis Cards: {count} cards"
+last_analyzed = "Last analyzed:"
+
+[concerto_synthesis.card_selector]
+no_cards_warning = "⚠️ No analysis cards found for this paradigm."
+no_cards_info = "Generate analysis cards first using the Paradigm Analysis page."
+go_to_analysis_button = "← Go to Paradigm Analysis"
+filter_title = "Filter Cards"
+lens_filter_label = "Lenses"
+date_range_label = "Date Range"
+date_last_7_days = "Last 7 days"
+date_last_30_days = "Last 30 days"
+date_last_3_months = "Last 3 months"
+date_all_time = "All time"
+paper_search_placeholder = "Filter by paper title..."
+showing_cards = "Showing {filtered} of {total} cards"
+select_all = "Select All ({count} cards)"
+preview_button = "Preview"
+
+[concerto_synthesis.concerto_selector]
+select_placeholder = "Select concerto"
+no_concerti_warning = "⚠️ No concerti found."
+no_concerti_info = "Place your `.concerto` files in `~/.cardex/concerti/`"
+details_title = "🎭 Concerto Details"
+type_label = "Type"
+audience_label = "Audience"
+target_length_label = "Target Length"
+tone_label = "Tone"
+structure_label = "Structure"
+
+[concerto_synthesis.summary]
+cards_metric = "Cards"
+paradigm_metric = "Paradigm"
+expected_length_metric = "Expected Length"
+estimated_time_metric = "Estimated Time"
+output_path_label = "Output Path"
+output_tip = "💡 Output will be saved to: `~/.cardex/{path}`"
+generate_button = "🎭 Generate Synthesis Document"
+progress_text = "Synthesizing document... (Step {current} of {total})"
+stage_loading = "Loading analysis cards"
+stage_template = "Applying concerto template"
+stage_organizing = "Organizing thematic sections"
+stage_generating = "Generating abstract and introduction"
+stage_formatting = "Formatting bibliography"
+success_title = "✅ Synthesis Complete!"
+success_output = "**Output:** `~/.cardex/{path}`"
+success_stats = """
+**Statistics:**
+- Total words: ~{words}
+- Citations: {cards} cards synthesized
+- Paradigm: {paradigm}
+- Concerto: {concerto}
+"""
+open_button = "📄 Open Document"
+copy_button = "📋 Copy Path"
+regenerate_button = "🔄 Regenerate"
+footer_tip = "💡 Tip: Synthesis documents are saved as Markdown files and can be edited with any text editor."

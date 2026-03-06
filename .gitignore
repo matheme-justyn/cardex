@@ -154,3 +154,15 @@ doc/
 *.ppt
 *.xlsx
 *.xls
+
+# Paradigm files (user-specific research configurations)
+# Only example.paradigm is committed
+paradigms/*.paradigm
+!paradigms/example.paradigm
+
+# Concerto files (output style configurations)
+# Only example concerti are committed
+concerti/*.concerto
+!concerti/example.concerto
+!concerti/policy_brief.concerto
+!concerti/conference_presentation.concerto

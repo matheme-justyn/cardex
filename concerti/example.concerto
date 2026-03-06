@@ -1,0 +1,91 @@
+# Concerto Configuration Template
+# A dialogue between your research paradigm (solo) and audience expectations (orchestra)
+
+name: "Journal Submission"
+type: "academic_journal"
+
+# Target audience
+audience:
+  primary: "Academic reviewers and editors"
+  secondary: "Peer researchers in the field"
+  expertise_level: "Expert"
+
+# Orchestra: Audience expectations and standards
+orchestra:
+  tone: "formal, evidence-based, objective"
+  structure:
+    - "Abstract (150-250 words)"
+    - "Introduction with clear research gap"
+    - "Literature review organized by themes"
+    - "Methodology (if applicable)"
+    - "Main arguments with evidence"
+    - "Discussion of controversies and limitations"
+    - "Conclusion and future research directions"
+  
+  citation_style: "APA 7th"  # or "Chicago", "MLA", "IEEE"
+  length:
+    target: 8000
+    min: 6000
+    max: 10000
+    unit: "words"
+  
+  requirements:
+    - "Every claim must be backed by citations"
+    - "Use academic register (avoid colloquialisms)"
+    - "Address counterarguments explicitly"
+    - "Acknowledge limitations transparently"
+    - "Use passive voice where appropriate"
+
+# Solo: How to present your paradigm findings
+solo:
+  emphasis:
+    - "Original contribution to the field"
+    - "Systematic literature synthesis"
+    - "Critical analysis of existing work"
+    - "Identification of research gaps"
+  
+  avoid:
+    - "Personal opinions without evidence"
+    - "Overgeneralization"
+    - "Unsubstantiated claims"
+    - "Informal language"
+
+# Synthesis template
+template: |
+  # {paradigm_name}: A Comprehensive Review
+  
+  ## Abstract
+  {abstract}
+  
+  ## Introduction
+  {introduction}
+  
+  ## Theoretical Framework
+  {theoretical_frameworks}
+  
+  ## Thematic Analysis
+  
+  ### Theme 1: {theme_1_name}
+  {theme_1_content}
+  
+  ### Theme 2: {theme_2_name}
+  {theme_2_content}
+  
+  ## Controversies and Debates
+  {controversies}
+  
+  ## Research Gaps and Future Directions
+  {future_research}
+  
+  ## Conclusion
+  {conclusion}
+  
+  ## References
+  {references}
+
+# Output formatting
+output:
+  format: "markdown"
+  include_metadata: true
+  generate_bibliography: true
+  include_appendix: false
