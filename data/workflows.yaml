@@ -1,0 +1,541 @@
+# Workflows
+# Step-by-step playbooks for common development tasks
+#
+# Version: 1.0.0
+# Last Updated: 2026-03-10
+#
+# Usage:
+#   Execute workflow: @workflow feature-development
+#   List workflows: @list workflows
+#   Show steps: @show workflow:feature-development
+
+workflows:
+  # ============================================================================
+  # Feature Development Workflows
+  # ============================================================================
+  
+  - id: "feature-development"
+    name: "Feature Development Workflow"
+    description: "Complete workflow for building a new feature from idea to deployment"
+    version: "1.0.0"
+    estimated_time: "2-5 days"
+    difficulty: "intermediate"
+    
+    steps:
+      - step: 1
+        name: "Requirements Gathering"
+        skill: "brainstorming"
+        description: "Define feature requirements and user stories"
+        actions:
+          - "Identify stakeholders"
+          - "List user stories"
+          - "Define acceptance criteria"
+          - "Identify technical constraints"
+        outputs:
+          - "Feature specification document"
+          - "User stories with acceptance criteria"
+        
+      - step: 2
+        name: "Architecture Design"
+        skill: "architecture-design"
+        description: "Design technical architecture for the feature"
+        actions:
+          - "Identify affected components"
+          - "Design data models"
+          - "Define API contracts"
+          - "Create architecture diagram"
+        outputs:
+          - "Architecture diagram (Mermaid/PlantUML)"
+          - "API specification (OpenAPI)"
+          
+      - step: 3
+        name: "Write Tests First"
+        skill: "test-driven-development"
+        description: "Write comprehensive tests before implementation"
+        actions:
+          - "Write unit tests for new logic"
+          - "Write integration tests for APIs"
+          - "Write E2E tests for user flows"
+          - "Ensure all tests fail initially"
+        outputs:
+          - "Test suite (failing)"
+          
+      - step: 4
+        name: "Implementation"
+        skill: "coding"
+        description: "Implement feature to make tests pass"
+        actions:
+          - "Implement backend logic"
+          - "Implement frontend components"
+          - "Make all tests pass"
+          - "Follow coding conventions"
+        outputs:
+          - "Working feature implementation"
+          - "All tests passing"
+          
+      - step: 5
+        name: "Code Review"
+        skill: "code-review"
+        description: "Review code for quality and security"
+        actions:
+          - "Check for security vulnerabilities"
+          - "Verify performance"
+          - "Review code readability"
+          - "Check test coverage"
+        outputs:
+          - "Code review report"
+          - "List of issues to fix"
+          
+      - step: 6
+        name: "Documentation"
+        skill: "documentation"
+        description: "Document the new feature"
+        actions:
+          - "Update API documentation"
+          - "Write user guide"
+          - "Add inline code comments"
+          - "Update CHANGELOG.md"
+        outputs:
+          - "Updated documentation"
+          
+      - step: 7
+        name: "Deployment"
+        skill: "deployment"
+        description: "Deploy feature to production"
+        actions:
+          - "Create deployment checklist"
+          - "Deploy to staging"
+          - "Run smoke tests"
+          - "Deploy to production"
+        outputs:
+          - "Feature live in production"
+          
+    tags: ["feature", "development", "tdd"]
+
+  # ============================================================================
+  # Bug Fixing Workflows
+  # ============================================================================
+  
+  - id: "bug-fix"
+    name: "Bug Fix Workflow"
+    description: "Systematic approach to diagnosing and fixing bugs"
+    version: "1.0.0"
+    estimated_time: "2-8 hours"
+    difficulty: "intermediate"
+    
+    steps:
+      - step: 1
+        name: "Reproduce Bug"
+        skill: "systematic-debugging"
+        description: "Reliably reproduce the bug"
+        actions:
+          - "Gather bug report details"
+          - "Identify reproduction steps"
+          - "Test in local environment"
+          - "Document exact conditions"
+        outputs:
+          - "Reproduction steps"
+          - "Expected vs actual behavior"
+          
+      - step: 2
+        name: "Root Cause Analysis"
+        skill: "systematic-debugging"
+        description: "Find the underlying cause"
+        actions:
+          - "Review logs and error messages"
+          - "Use debugger to trace execution"
+          - "Check recent code changes"
+          - "Identify exact line/component"
+        outputs:
+          - "Root cause identified"
+          - "Affected code location"
+          
+      - step: 3
+        name: "Write Failing Test"
+        skill: "test-driven-development"
+        description: "Create test that reproduces the bug"
+        actions:
+          - "Write minimal test case"
+          - "Verify test fails consistently"
+          - "Document test purpose"
+        outputs:
+          - "Failing test that reproduces bug"
+          
+      - step: 4
+        name: "Fix Bug"
+        skill: "coding"
+        description: "Implement fix minimally"
+        actions:
+          - "Fix the identified issue"
+          - "Make test pass"
+          - "Verify no regressions"
+          - "Keep changes minimal"
+        outputs:
+          - "Bug fixed"
+          - "All tests passing"
+          
+      - step: 5
+        name: "Verify Fix"
+        skill: "testing"
+        description: "Ensure fix works correctly"
+        actions:
+          - "Test original reproduction steps"
+          - "Test edge cases"
+          - "Check for side effects"
+          - "Run full test suite"
+        outputs:
+          - "Verified fix"
+          
+      - step: 6
+        name: "Deploy Fix"
+        skill: "hotfix-deployment"
+        description: "Deploy bug fix to production"
+        actions:
+          - "Create hotfix branch"
+          - "Deploy to staging"
+          - "Verify fix in staging"
+          - "Deploy to production"
+          - "Monitor for issues"
+        outputs:
+          - "Fix deployed"
+          - "Monitoring confirmed"
+          
+    tags: ["bug", "debugging", "fix"]
+
+  # ============================================================================
+  # Refactoring Workflows
+  # ============================================================================
+  
+  - id: "refactoring"
+    name: "Code Refactoring Workflow"
+    description: "Safely refactor code while maintaining functionality"
+    version: "1.0.0"
+    estimated_time: "1-3 days"
+    difficulty: "advanced"
+    
+    steps:
+      - step: 1
+        name: "Identify Technical Debt"
+        skill: "code-review"
+        description: "Find code that needs refactoring"
+        actions:
+          - "Run static analysis tools"
+          - "Review code complexity metrics"
+          - "Identify duplicated code"
+          - "List pain points"
+        outputs:
+          - "Technical debt inventory"
+          - "Prioritized refactoring list"
+          
+      - step: 2
+        name: "Ensure Test Coverage"
+        skill: "testing-strategy"
+        description: "Add tests before refactoring"
+        actions:
+          - "Check current test coverage"
+          - "Add missing tests"
+          - "Ensure 80%+ coverage"
+          - "Run test suite"
+        outputs:
+          - "Comprehensive test suite"
+          
+      - step: 3
+        name: "Plan Refactoring"
+        skill: "refactoring"
+        description: "Plan refactoring approach"
+        actions:
+          - "Break into small steps"
+          - "Identify dependencies"
+          - "Plan rollback strategy"
+          - "Document approach"
+        outputs:
+          - "Refactoring plan"
+          - "Rollback strategy"
+          
+      - step: 4
+        name: "Refactor in Small Steps"
+        skill: "refactoring"
+        description: "Refactor incrementally"
+        actions:
+          - "Make one change at a time"
+          - "Run tests after each change"
+          - "Commit working states"
+          - "Keep functionality identical"
+        outputs:
+          - "Refactored code"
+          - "All tests still passing"
+          
+      - step: 5
+        name: "Code Review"
+        skill: "code-review"
+        description: "Review refactored code"
+        actions:
+          - "Verify no behavior changes"
+          - "Check for improvements"
+          - "Ensure tests pass"
+          - "Review commits"
+        outputs:
+          - "Code review approval"
+          
+      - step: 6
+        name: "Deploy"
+        skill: "deployment"
+        description: "Deploy refactored code"
+        actions:
+          - "Deploy to staging"
+          - "Run regression tests"
+          - "Monitor performance"
+          - "Deploy to production"
+        outputs:
+          - "Refactored code in production"
+          
+    tags: ["refactoring", "quality", "technical-debt"]
+
+  # ============================================================================
+  # Security Workflows
+  # ============================================================================
+  
+  - id: "security-audit"
+    name: "Security Audit Workflow"
+    description: "Comprehensive security audit of application"
+    version: "1.0.0"
+    estimated_time: "1-2 weeks"
+    difficulty: "advanced"
+    
+    steps:
+      - step: 1
+        name: "Threat Modeling"
+        skill: "threat-modeling"
+        description: "Identify potential threats"
+        actions:
+          - "Map attack surface"
+          - "Identify assets"
+          - "List threat actors"
+          - "Create threat model"
+        outputs:
+          - "Threat model diagram"
+          - "Prioritized threat list"
+          
+      - step: 2
+        name: "Code Audit"
+        skill: "security-audit"
+        description: "Review code for vulnerabilities"
+        actions:
+          - "Check for SQL injection"
+          - "Check for XSS vulnerabilities"
+          - "Review authentication logic"
+          - "Check for secrets in code"
+        outputs:
+          - "Security findings list"
+          
+      - step: 3
+        name: "Dependency Audit"
+        skill: "dependency-audit"
+        description: "Check third-party dependencies"
+        actions:
+          - "Run npm audit / pip-audit"
+          - "Check for outdated packages"
+          - "Review dependency licenses"
+          - "Identify critical vulnerabilities"
+        outputs:
+          - "Dependency vulnerability report"
+          
+      - step: 4
+        name: "Penetration Testing"
+        skill: "penetration-testing"
+        description: "Attempt to exploit vulnerabilities"
+        actions:
+          - "Test authentication bypass"
+          - "Test injection attacks"
+          - "Test privilege escalation"
+          - "Test data exposure"
+        outputs:
+          - "Penetration test report"
+          
+      - step: 5
+        name: "Fix Vulnerabilities"
+        skill: "secure-coding"
+        description: "Remediate identified issues"
+        actions:
+          - "Prioritize by severity"
+          - "Fix critical issues first"
+          - "Update dependencies"
+          - "Add security tests"
+        outputs:
+          - "Fixed vulnerabilities"
+          - "Updated dependencies"
+          
+      - step: 6
+        name: "Security Documentation"
+        skill: "documentation"
+        description: "Document security measures"
+        actions:
+          - "Write security policy"
+          - "Document secure practices"
+          - "Create incident response plan"
+          - "Update SECURITY.md"
+        outputs:
+          - "Security documentation"
+          
+    tags: ["security", "audit", "penetration-testing"]
+
+  # ============================================================================
+  # DevOps Workflows
+  # ============================================================================
+  
+  - id: "ci-cd-setup"
+    name: "CI/CD Pipeline Setup"
+    description: "Set up continuous integration and deployment"
+    version: "1.0.0"
+    estimated_time: "2-4 days"
+    difficulty: "intermediate"
+    
+    steps:
+      - step: 1
+        name: "Pipeline Design"
+        skill: "ci-cd"
+        description: "Design CI/CD pipeline"
+        actions:
+          - "Define build stages"
+          - "Define deployment stages"
+          - "Define quality gates"
+          - "Create pipeline diagram"
+        outputs:
+          - "Pipeline architecture"
+          
+      - step: 2
+        name: "Configure Build"
+        skill: "ci-cd"
+        description: "Set up build automation"
+        actions:
+          - "Configure build tool"
+          - "Set up test automation"
+          - "Configure linters"
+          - "Set up code coverage"
+        outputs:
+          - "Automated build pipeline"
+          
+      - step: 3
+        name: "Configure Deployment"
+        skill: "deployment"
+        description: "Set up automated deployment"
+        actions:
+          - "Configure staging deployment"
+          - "Configure production deployment"
+          - "Set up rollback mechanism"
+          - "Configure monitoring"
+        outputs:
+          - "Automated deployment pipeline"
+          
+      - step: 4
+        name: "Testing"
+        skill: "testing"
+        description: "Test CI/CD pipeline"
+        actions:
+          - "Test build process"
+          - "Test deployment to staging"
+          - "Test rollback procedure"
+          - "Test notifications"
+        outputs:
+          - "Verified pipeline"
+          
+      - step: 5
+        name: "Documentation"
+        skill: "documentation"
+        description: "Document pipeline"
+        actions:
+          - "Write pipeline documentation"
+          - "Document deployment process"
+          - "Document rollback process"
+          - "Create runbooks"
+        outputs:
+          - "CI/CD documentation"
+          
+    tags: ["ci-cd", "devops", "automation"]
+
+# ============================================================================
+# Workflow Metadata
+# ============================================================================
+
+metadata:
+  version: "1.0.0"
+  last_updated: "2026-03-10"
+  schema_version: "1.0"
+  
+# Usage Examples:
+#
+# Execute workflow interactively:
+#   @workflow feature-development
+#
+# Skip to specific step:
+#   @workflow feature-development --start-at 3
+#
+# Execute workflow with overrides:
+#   @workflow feature-development --skip code-review
+#
+# List available workflows:
+#   @list workflows
+#
+# Show workflow details:
+#   @show workflow:feature-development
+#
+# Create custom workflow:
+#   @create workflow my-custom-workflow
+
+  # ============================================================================
+  # Custom Project Workflows (你可以自己加入)
+  # ============================================================================
+  
+  - id: "my-feature-flow"
+    name: "我的功能開發流程"
+    description: "客製化的功能開發工作流程"
+    version: "1.0.0"
+    estimated_time: "2-3 days"
+    difficulty: "intermediate"
+    
+    steps:
+      - step: 1
+        name: "構思與規劃"
+        skill: "brainstorming"
+        description: "使用 brainstorming skill 定義需求"
+        actions:
+          - "定義功能目標"
+          - "列出使用者故事"
+          - "確認技術限制"
+        outputs:
+          - "功能規格文件"
+          
+      - step: 2
+        name: "測試先行"
+        skill: "test-driven-development"
+        description: "先寫測試"
+        actions:
+          - "撰寫單元測試"
+          - "撰寫整合測試"
+          - "確認測試失敗"
+        outputs:
+          - "測試套件（失敗）"
+          
+      - step: 3
+        name: "實作功能"
+        skill: "coding"
+        description: "實作讓測試通過"
+        actions:
+          - "實作後端邏輯"
+          - "實作前端元件"
+          - "讓所有測試通過"
+        outputs:
+          - "可運作的功能"
+          
+      - step: 4
+        name: "Code Review"
+        skill: "requesting-code-review"
+        description: "請求程式碼審查"
+        actions:
+          - "檢查程式碼品質"
+          - "檢查安全性"
+          - "檢查效能"
+        outputs:
+          - "Code review 報告"
+          
+    tags: ["feature", "custom", "my-project"]

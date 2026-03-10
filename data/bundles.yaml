@@ -1,0 +1,313 @@
+# Skill Bundles
+# Role-based collections of skills that work together
+#
+# Version: 1.0.0
+# Last Updated: 2026-03-10
+#
+# Usage:
+#   Load a bundle: @use bundle:backend-dev
+#   List skills in bundle: @list bundle:backend-dev
+
+bundles:
+  # ============================================================================
+  # Full-Stack Development Bundles
+  # ============================================================================
+  
+  - id: "backend-dev"
+    name: "Backend Development"
+    description: "Complete backend development skill set"
+    version: "1.0.0"
+    skills:
+      - name: "api-design"
+        version: ">=2.0.0"
+        required: true
+      - name: "database-schema"
+        version: ">=1.0.0"
+        required: true
+      - name: "test-driven-development"
+        version: ">=1.0.0"
+        required: true
+      - name: "security-audit"
+        version: ">=1.0.0"
+        required: false
+      - name: "performance-profiling"
+        version: ">=1.0.0"
+        required: false
+    tags: ["backend", "api", "database"]
+    
+  - id: "frontend-dev"
+    name: "Frontend Development"
+    description: "Modern frontend development with React/Vue"
+    version: "1.0.0"
+    skills:
+      - name: "component-design"
+        version: ">=1.0.0"
+        required: true
+      - name: "state-management"
+        version: ">=1.0.0"
+        required: true
+      - name: "accessibility"
+        version: ">=1.0.0"
+        required: true
+      - name: "performance-optimization"
+        version: ">=1.0.0"
+        required: false
+      - name: "responsive-design"
+        version: ">=1.0.0"
+        required: false
+    tags: ["frontend", "react", "vue", "ui"]
+    
+  - id: "fullstack-dev"
+    name: "Full-Stack Development"
+    description: "Complete frontend + backend skill set"
+    version: "1.0.0"
+    extends:
+      - "frontend-dev"
+      - "backend-dev"
+    additional_skills:
+      - name: "deployment"
+        version: ">=1.0.0"
+        required: true
+      - name: "ci-cd"
+        version: ">=1.0.0"
+        required: false
+    tags: ["fullstack", "frontend", "backend"]
+
+  # ============================================================================
+  # Specialized Role Bundles
+  # ============================================================================
+  
+  - id: "devops-specialist"
+    name: "DevOps Specialist"
+    description: "Infrastructure, deployment, and monitoring"
+    version: "1.0.0"
+    skills:
+      - name: "infrastructure-as-code"
+        version: ">=1.0.0"
+        required: true
+      - name: "container-orchestration"
+        version: ">=1.0.0"
+        required: true
+      - name: "ci-cd"
+        version: ">=1.0.0"
+        required: true
+      - name: "monitoring-setup"
+        version: ">=1.0.0"
+        required: true
+      - name: "security-hardening"
+        version: ">=1.0.0"
+        required: false
+    tags: ["devops", "infrastructure", "deployment"]
+    
+  - id: "security-engineer"
+    name: "Security Engineer"
+    description: "Security auditing and hardening"
+    version: "1.0.0"
+    skills:
+      - name: "security-audit"
+        version: ">=1.0.0"
+        required: true
+      - name: "penetration-testing"
+        version: ">=1.0.0"
+        required: true
+      - name: "threat-modeling"
+        version: ">=1.0.0"
+        required: true
+      - name: "secure-coding"
+        version: ">=1.0.0"
+        required: true
+      - name: "compliance-check"
+        version: ">=1.0.0"
+        required: false
+    tags: ["security", "audit", "compliance"]
+    
+  - id: "data-engineer"
+    name: "Data Engineer"
+    description: "Data pipelines and analytics"
+    version: "1.0.0"
+    skills:
+      - name: "data-pipeline"
+        version: ">=1.0.0"
+        required: true
+      - name: "etl-design"
+        version: ">=1.0.0"
+        required: true
+      - name: "database-optimization"
+        version: ">=1.0.0"
+        required: true
+      - name: "data-quality"
+        version: ">=1.0.0"
+        required: true
+      - name: "analytics-setup"
+        version: ">=1.0.0"
+        required: false
+    tags: ["data", "pipeline", "analytics"]
+
+  # ============================================================================
+  # Project Phase Bundles
+  # ============================================================================
+  
+  - id: "project-start"
+    name: "Project Kickoff"
+    description: "Skills for starting new projects"
+    version: "1.0.0"
+    skills:
+      - name: "brainstorming"
+        version: ">=1.0.0"
+        required: true
+      - name: "architecture-design"
+        version: ">=1.0.0"
+        required: true
+      - name: "tech-stack-selection"
+        version: ">=1.0.0"
+        required: true
+      - name: "project-setup"
+        version: ">=1.0.0"
+        required: true
+      - name: "documentation-structure"
+        version: ">=1.0.0"
+        required: false
+    tags: ["planning", "architecture", "setup"]
+    
+  - id: "feature-development"
+    name: "Feature Development"
+    description: "Skills for building new features"
+    version: "1.0.0"
+    skills:
+      - name: "brainstorming"
+        version: ">=1.0.0"
+        required: true
+      - name: "test-driven-development"
+        version: ">=1.0.0"
+        required: true
+      - name: "code-review"
+        version: ">=1.0.0"
+        required: true
+      - name: "documentation"
+        version: ">=1.0.0"
+        required: false
+    tags: ["development", "feature", "tdd"]
+    
+  - id: "production-ready"
+    name: "Production Readiness"
+    description: "Skills for preparing production deployment"
+    version: "1.0.0"
+    skills:
+      - name: "security-audit"
+        version: ">=1.0.0"
+        required: true
+      - name: "performance-testing"
+        version: ">=1.0.0"
+        required: true
+      - name: "monitoring-setup"
+        version: ">=1.0.0"
+        required: true
+      - name: "deployment-checklist"
+        version: ">=1.0.0"
+        required: true
+      - name: "rollback-plan"
+        version: ">=1.0.0"
+        required: true
+      - name: "incident-response"
+        version: ">=1.0.0"
+        required: false
+    tags: ["production", "deployment", "monitoring"]
+
+  # ============================================================================
+  # Maintenance & Operations Bundles
+  # ============================================================================
+  
+  - id: "debugging-master"
+    name: "Debugging & Troubleshooting"
+    description: "Skills for diagnosing and fixing issues"
+    version: "1.0.0"
+    skills:
+      - name: "systematic-debugging"
+        version: ">=1.0.0"
+        required: true
+      - name: "log-analysis"
+        version: ">=1.0.0"
+        required: true
+      - name: "performance-profiling"
+        version: ">=1.0.0"
+        required: true
+      - name: "root-cause-analysis"
+        version: ">=1.0.0"
+        required: true
+      - name: "hotfix-deployment"
+        version: ">=1.0.0"
+        required: false
+    tags: ["debugging", "troubleshooting", "analysis"]
+    
+  - id: "code-quality"
+    name: "Code Quality & Refactoring"
+    description: "Improve code quality and maintainability"
+    version: "1.0.0"
+    skills:
+      - name: "code-review"
+        version: ">=1.0.0"
+        required: true
+      - name: "refactoring"
+        version: ">=1.0.0"
+        required: true
+      - name: "technical-debt"
+        version: ">=1.0.0"
+        required: true
+      - name: "testing-strategy"
+        version: ">=1.0.0"
+        required: true
+      - name: "documentation"
+        version: ">=1.0.0"
+        required: false
+    tags: ["quality", "refactoring", "testing"]
+
+# ============================================================================
+# Bundle Metadata
+# ============================================================================
+
+metadata:
+  version: "1.0.0"
+  last_updated: "2026-03-10"
+  schema_version: "1.0"
+  
+# Usage Examples:
+#
+# Load single bundle:
+#   @use bundle:backend-dev
+#
+# Load multiple bundles:
+#   @use bundle:frontend-dev bundle:devops-specialist
+#
+# Load bundle with overrides:
+#   @use bundle:backend-dev --exclude security-audit
+#   @use bundle:frontend-dev --include performance-optimization
+#
+# List available bundles:
+#   @list bundles
+#
+# Show bundle details:
+#   @info bundle:backend-dev
+
+  # ============================================================================
+  # Custom Project Bundles (你可以自己加入)
+  # ============================================================================
+  
+  - id: "my-project-default"
+    name: "My Project Default Skills"
+    description: "本專案預設技能組合"
+    version: "1.0.0"
+    skills:
+      - name: "brainstorming"
+        version: ">=1.0.0"
+        required: true
+      - name: "test-driven-development"
+        version: ">=1.0.0"
+        required: true
+      - name: "systematic-debugging"
+        version: ">=1.0.0"
+        required: true
+      - name: "requesting-code-review"
+        version: ">=1.0.0"
+        required: false
+    tags: ["default", "project"]
+

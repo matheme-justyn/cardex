@@ -125,6 +125,32 @@ You're using this scaffolding for your project. File organization:
 **To change mode:** Edit `config.toml` and set `[project] mode = "scaffolding"` or `"project"`
 
 
+
+## Default Skills for This Project
+
+**Auto-load these skills based on task context:**
+
+| Task Type | Skills | Trigger Keywords |
+|-----------|--------|------------------|
+| Feature Development | `superpowers/brainstorming`<br>`superpowers/test-driven-development` | "新增功能", "實作", "開發" |
+| Bug Fixing | `superpowers/systematic-debugging` | "bug", "錯誤", "修正", "不work" |
+| Code Review | `superpowers/requesting-code-review` | "review", "檢查程式碼" |
+| Planning | `superpowers/brainstorming`<br>`superpowers/writing-plans` | "規劃", "設計", "架構" |
+| Git Workflow | `superpowers/using-git-worktrees` | "feature branch", "worktree" |
+
+**Usage:**
+```
+# AI will auto-detect based on your request
+User: "新增使用者登入功能"  → auto-loads brainstorming + test-driven-development
+User: "修正登入 bug"        → auto-loads systematic-debugging
+
+# Or manually load via skill tool
+skill(name="superpowers/brainstorming")
+```
+
+**Available Skills:** See `.template/docs/SKILLS_USAGE_GUIDE.md` for complete guide.
+
+
 ## Tech Stack
 
 <!-- TODO: List technologies, frameworks, and tools used in this project -->

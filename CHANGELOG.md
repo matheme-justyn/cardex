@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Scaffolding Update**: Upgraded from my-vibe-scaffolding v1.10.0 to v1.13.0
+  - Added OpenCode project-isolated database configuration (`.vscode/settings.json`)
+  - Added Skills system documentation (SKILL_FORMAT_GUIDE, AGENTS_MD_GUIDE, SKILLS_USAGE_GUIDE)
+  - Added bundles.yaml and workflows.yaml for task-based skill loading
+  - Added ADR 0007: Agent Skills Ecosystem Integration
+  - Updated AGENTS.md with "Default Skills for This Project" section
+  - Benefits: Avoid multi-project database conflicts, better AI development workflow
+
 ## [0.4.0] - 2026-03-10
 
 ### Added

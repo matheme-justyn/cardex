@@ -9,7 +9,6 @@ Thumbs.db
 Desktop.ini
 
 # IDEs and Editors
-.vscode/settings.json
 .idea/
 *.swp
 *.swo
@@ -145,7 +144,6 @@ doc/
 
 
 # 模板版本追蹤（從模板建立專案時記錄）
-.template-version
 
 # Internal documents (PRD, specs, etc.)
 *.docx
@@ -173,4 +171,4 @@ catalogs/*.catalog.yaml
 !catalogs/example.catalog.yaml
 !catalogs/flat.catalog.yaml
 !catalogs/by_year.catalog.yaml
-!catalogs/by_venue.catalog.yaml
+!catalogs/by_venue.catalog.yaml.opencode-data/
