@@ -29,10 +29,10 @@ class CardexDatabase:
         self.initialize_schema()
 
     def initialize_schema(self):
-        """Create tables if they don't exist."""
+        """Create tables if they don't exist and run migrations."""
         cursor = self.conn.cursor()
 
-        # Papers table (existing - from PRD)
+        # Papers table (extended for ingestion workflow)
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS papers (
             id TEXT PRIMARY KEY,
@@ -41,11 +41,20 @@ class CardexDatabase:
             year INTEGER,
             venue TEXT,
             venue_rank TEXT,
-            doi TEXT,
+            doi TEXT UNIQUE,
             file_path TEXT,
             status TEXT DEFAULT 'unread',
             ocr_required INTEGER DEFAULT 0,
-            ingested_at TEXT
+            ingested_at TEXT,
+            
+            -- Ingestion workflow fields (Phase 1)
+            original_filename TEXT,
+            current_filename TEXT,
+            catalog_method TEXT,
+            doi_source TEXT,
+            ingest_status TEXT DEFAULT 'pending',
+            error_message TEXT,
+            last_verified_at TEXT
         )
         """)
 
@@ -90,7 +99,35 @@ class CardexDatabase:
         )
         """)
 
+        # Run migrations for existing databases
+        self._run_migrations()
+
         self.conn.commit()
+
+    def _run_migrations(self):
+        """Run database migrations for schema changes."""
+        cursor = self.conn.cursor()
+
+        # Check if new columns exist, add if missing
+        cursor.execute("PRAGMA table_info(papers)")
+        columns = {row[1] for row in cursor.fetchall()}
+
+        migrations = [
+            ("original_filename", "ALTER TABLE papers ADD COLUMN original_filename TEXT"),
+            ("current_filename", "ALTER TABLE papers ADD COLUMN current_filename TEXT"),
+            ("catalog_method", "ALTER TABLE papers ADD COLUMN catalog_method TEXT"),
+            ("doi_source", "ALTER TABLE papers ADD COLUMN doi_source TEXT"),
+            ("ingest_status", "ALTER TABLE papers ADD COLUMN ingest_status TEXT DEFAULT 'pending'"),
+            ("error_message", "ALTER TABLE papers ADD COLUMN error_message TEXT"),
+            ("last_verified_at", "ALTER TABLE papers ADD COLUMN last_verified_at TEXT"),
+        ]
+
+        for column_name, sql in migrations:
+            if column_name not in columns:
+                try:
+                    cursor.execute(sql)
+                except Exception as e:
+                    print(f"Migration warning: {column_name} - {e}")
 
     def save_paradigm(
         self, paradigm_id: str, name: str, paradigm_type: str, yaml_content: str

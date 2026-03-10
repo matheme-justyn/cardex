@@ -81,6 +81,7 @@ auto = "🔄 Follow System"
 [tabs]
 library = "📚 Library"
 tutorial = "📖 Tutorial"
+catalog_assistant = "📚 Catalog Assistant"
 
 [tutorial]
 title = "🎓 Cardex Tutorial"
@@ -307,3 +308,147 @@ open_button = "📄 Open Document"
 copy_button = "📋 Copy Path"
 regenerate_button = "🔄 Regenerate"
 footer_tip = "💡 Tip: Synthesis documents are saved as Markdown files and can be edited with any text editor."
+output_saved_to = "💡 Output will be saved to: `~/.cardex/{path}`"
+stage_progress = "Stage {current}/{total}: {stage}..."
+success_summary = """
+**Output:** `~/.cardex/{path}`
+
+**Statistics:**
+- Total words: ~{words}
+- Citations: {cards} cards synthesized
+- Paradigm: {paradigm}
+- Concerto: {concerto}
+"""
+copy_path_button = "📋 Copy Path"
+selected_count = "✅ Selected: {count} cards"
+
+[rooms]
+statistics_title = "🏛️ External Affairs Room"
+catalog_title = "📚 Catalog Room"
+restoration_title = "🔧 Restoration Room"
+guide_title = "🧭 Guide Room"
+
+[rooms.statistics]
+show_details = "Show Details"
+input_folder_info = "New PDF Storage Location"
+input_folder_caption = "Please place new PDF files in this folder"
+items_per_page = "Items per page"
+previous_page = "Previous"
+next_page = "Next"
+page_info = "Page {current} of {total}"
+
+[rooms.catalog]
+description = "Workflow status tracking"
+
+[rooms.restoration]
+folder_label = "Folder Path"
+paradigm_label = "Select Paradigms"
+generate_button = "🎼 Generate Analysis Cards"
+error_no_folder = "Please enter folder path"
+error_no_paradigm = "Please select at least one paradigm"
+success_started = "Started analyzing {count} paradigms..."
+
+[rooms.guide]
+paradigm_filter_label = "Paradigm Filter"
+concerto_label = "Select Concerto"
+generate_button = "🎭 Generate Synthesis Document"
+success_started = "Started generating {concerto} synthesis..."
+phase1_notice = "This feature will be fully implemented in Phase 1"
+
+[catalog_operations]
+title = "📋 Catalog Operations"
+no_configs_warning = "No catalog configs found. Please check Catalog Assistant first."
+tab_ingest = "📥 Ingest Papers"
+tab_recatalog = "🔄 Switch Catalog"
+
+[catalog_operations.ingest]
+title = "📥 Ingest Papers to Library"
+workflow_desc = """
+**Workflow**:
+1. Select PDF file (upload or choose existing)
+2. Choose catalog config (how to organize)
+3. System automatically:
+   - Extracts metadata (DOI, title, authors, year)
+   - Queries online DOI if needed
+   - Renames file (DOI or title based)
+   - Moves to target directory
+   - Records in database
+"""
+select_catalog = "Select Catalog Config"
+upload_pdf = "Upload PDF"
+upload_help = "Select PDF file to add to library"
+enable_network = "Enable online DOI lookup"
+enable_network_help = "Query Crossref and Semantic Scholar if DOI not found in PDF"
+start_button = "🚀 Start Cataloging"
+processing = "Processing..."
+success = "✅ Success!"
+failed = "❌ Failed"
+error = "❌ Error"
+filename_label = "Filename"
+location_label = "Location"
+method_label = "Method"
+
+[catalog_operations.recatalog]
+title = "🔄 Switch Catalog Method"
+description = """
+**Description**:
+- Switching reorganizes your entire library
+- System reads metadata from database
+- Moves files according to new catalog method
+- Files in `_input/` are never moved
+
+⚠️ **Recommendation**: Backup your library first!
+"""
+current_method = "Current method"
+select_new_catalog = "Select New Catalog Config"
+same_method_warning = "⚠️ Same as current method ({method}), no need to switch."
+new_method_label = "New method"
+confirm_switch = "I've backed up, confirm switch"
+execute_button = "🔄 Execute Recatalog"
+processing = "Recataloging... This may take a few minutes"
+complete = "✅ Recatalog Complete!"
+failed = "❌ Recatalog failed"
+files_moved = "Files moved"
+files_skipped = "Files skipped"
+missing_files_warning = "⚠️ {count} files not found"
+view_missing = "View missing files"
+config_updated = "✅ Config updated"
+
+[catalog_room]
+no_files_in_input = "📭 No PDF files in _input directory"
+files_in_input = "Files to catalog"
+select_catalog_method = "Select catalog method"
+
+[catalog_room.table]
+filename = "Filename"
+extension = "Extension"
+status = "Status"
+old_location = "Old Location"
+new_location = "New Location"
+
+[catalog_room.status]
+pending = "Pending"
+processing = "Processing"
+completed = "Completed"
+error = "Error"
+
+[catalog_room.button]
+new_catalog = "New Catalog"
+new_catalog_help = "Catalog files in _input only"
+recatalog = "Recatalog"
+recatalog_help = "Recatalog all non-underscore directories"
+
+[catalog_room.processing]
+new_catalog = "Cataloging _input files..."
+recatalog = "Recataloging entire library..."
+current = "Currently processing"
+
+[catalog_room.result]
+new_catalog_complete = "✅ New catalog complete! Success: {success}, Failed: {error}"
+recatalog_complete = "✅ Recatalog complete! Moved: {moved}, Skipped: {skipped}"
+
+[catalog_room.confirm]
+recatalog_warning = "⚠️ Recatalog will reorganize all non-underscore directories. Continue?"
+yes = "Confirm"
+no = "Cancel"
+cancelled = "Recatalog cancelled"

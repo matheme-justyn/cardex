@@ -1,0 +1,38 @@
+name: "Flat Structure"
+description: "Simple flat structure - all papers in one directory"
+version: "1.0"
+
+method: "flat"
+
+naming:
+  primary: "doi"
+  fallback: "title"
+  sanitize:
+    replace_slash: "-"
+    replace_space: "_"
+    lowercase: false
+    max_length: 255
+    remove_special_chars: ["?", "!", ":", ";", "*", '"', "<", ">", "|"]
+  duplicate_strategy: "number"
+
+special_dirs:
+  inbox: "_input"
+  duplicates: "_duplicates"
+  no_metadata: "_no_metadata"
+  needs_ocr: "_needs_ocr"
+
+doi_lookup:
+  enabled: true
+  apis:
+    - "crossref"
+    - "semantic_scholar"
+  timeout: 10
+  max_retries: 3
+  retry_delay: 2
+
+advanced:
+  auto_categorize: false
+  verify_after_move: true
+  preserve_original_name: true
+  backup_before_recatalog: true
+  log_level: "INFO"

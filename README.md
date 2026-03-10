@@ -1,6 +1,6 @@
 # Cardex
 
-[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](./VERSION)
 [![License](https://img.shields.io/badge/license-TBD-yellow.svg)](./LICENSE)
 
 English | [繁體中文](./README.zh-TW.md)
@@ -165,23 +165,44 @@ See [docs/technology-stack.md](./docs/technology-stack.md) for detailed rational
 
 ## 🗓️ Development Status
 
-**Current Phase**: Phase 0 - Service Foundation
+**Current Phase**: Phase 1 - Building on completed M0, M1, M2
 
-✅ **Completed**:
-- Project structure and documentation
-- Technology stack decisions
-- Data model design
+✅ **Milestones Completed (March 2026)**:
 
-🚧 **In Progress**:
-- Configuration system (`~/.cardex/config.yaml`)
-- PDF scanner (discover PDFs in folder)
-- Basic web UI (display PDF list)
-- CLI commands (`cardex init`, `cardex serve`)
+**M0 - Service Foundation**:
+- Configuration system (`~/.cardex/config.yaml`, environment overrides)
+- PDF scanner with basic metadata extraction (size, pages, readability)
+- Streamlit web UI with library view, search, filtering, theme switching
+- CLI commands (`cardex init`, `cardex serve`, `cardex scan`)
+- i18n support (en-US, zh-TW) with live language switching
 
-📋 **Next Up**:
-- Phase 1: Ingest pipeline (metadata extraction, enrichment)
-- Phase 2: Skill system (multi-angle summarization)
-- Phase 3: Citation graph and Argue Engine
+**M1 - Database & Deployment**:
+- SQLite database with full schema (papers, paradigms, analyses, syntheses, notes, citations)
+- Docker/Podman containerization with multi-arch support (amd64/arm64)
+- Comprehensive build/deployment scripts (`scripts/build.sh`, `scripts/deploy.sh`)
+
+**M4 (Partial) - Paradigm System**:
+- YAML-based paradigm configuration (researcher/topic/school types)
+- Multi-lens analysis workflow (Paradigm Analysis page)
+- Concerto synthesis system (audience-specific output generation)
+- Full Streamlit UI with 2 dedicated pages
+
+**M2 - Ingest Pipeline** ✅ (Completed March 2026):
+- Complete cataloging system with DOI-based file naming
+- SQLite tracking with 7 new columns (original_filename, current_filename, catalog_method, doi_source, ingest_status, error_message, last_verified_at)
+- Metadata extraction from PDFs (title, authors, DOI, year) with multiple fallback strategies
+- Online DOI lookup via Crossref and Semantic Scholar APIs
+- Intelligent file naming: DOI → safe filename, or title → filename with sanitization
+- 4 catalog methods: flat, by_year, by_venue, custom categories
+- Re-cataloging system for switching organization methods
+- "編目助手" (Catalog Assistant) UI page with comprehensive tutorial
+- Modules: `metadata_extractor.py`, `doi_resolver.py`, `naming_strategy.py`, `cataloging.py`, `catalog_assistant.py`
+
+📋 **Next Milestones**:
+- **M4**: Complete traditional Skill system (general summaries)
+- **M5**: Citation graph and unread alerts
+- **M6**: Complete Web UI v1 (Paper Detail view, Citation Graph visualization)
+- **M7**: Argue Engine (evidence-weighted argumentation)
 
 ---
 

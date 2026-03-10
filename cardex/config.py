@@ -32,7 +32,7 @@ class CardexConfig:
             "auto_open_browser": True,
         },
         "i18n": {
-            "locale": "zh-TW",  # Default language: Traditional Chinese
+            "locale": "zh-TW",  # Default language: Traditional Chinese (Taiwan)
         },
         "theme": {
             "mode": "light",  # Default theme: light, dark, or auto

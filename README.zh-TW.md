@@ -1,6 +1,6 @@
 # Cardex
 
-[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](./VERSION)
 [![License](https://img.shields.io/badge/license-TBD-yellow.svg)](./LICENSE)
 
 [English](./README.md) | 繁體中文
@@ -167,23 +167,28 @@ cardex export --format bibtex > library.bib
 
 ## 🗓️ 開發狀態
 
-**當前階段**：Phase 0 - 服務基礎
+**當前階段**：Phase 1 - Ingest Pipeline（建立在 Phase 0 基礎之上）
 
-✅ **已完成**：
-- 專案結構和文件
-- 技術棧決策
-- 資料模型設計
+✅ **Phase 0 已完成**：
+- 設定系統（`~/.cardex/config.yaml`、環境變數覆寫）
+- PDF 掃描器含 metadata 擷取（檔案大小、頁數、可讀性）
+- Streamlit Web UI 含資料庫瀏覽、搜尋、篩選
+- CLI 指令（`cardex init`、`cardex serve`、`cardex scan`）
+- i18n 支援（en-US、zh-TW）和主題切換
+- SQLite 資料庫含完整 schema（papers、paradigms、analyses、syntheses）
+- Docker/Podman 容器化含完整部署腳本
+- Paradigm Analysis 系統（YAML-based、多視角分析）
+- Concerto Synthesis 系統（針對不同受眾的輸出生成）
 
-🚧 **進行中**：
-- 設定系統（`~/.cardex/config.yaml`）
-- PDF 掃描器（發現資料夾中的 PDF）
-- 基本 Web UI（顯示 PDF 列表）
-- CLI 指令（`cardex init`、`cardex serve`）
+🛠️ **Phase 1 進行中**：
+- 進階 PDF metadata 擷取（作者、標題、出處、DOI）
+- 檔案重新命名和組織系統
+- 傳統 Skill 系統（用於一般性摘要）
 
 📋 **接下來**：
-- Phase 1：Ingest pipeline（metadata 擷取、enrichment）
-- Phase 2：Skill 系統（多角度摘要）
-- Phase 3：引用圖和 Argue Engine
+- Phase 2：引用圖和未讀通知
+- Phase 3：Argue Engine（證據加權論證）
+- Phase 4：進階 RAG 使用 LlamaIndex + ChromaDB
 
 ---
 

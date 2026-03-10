@@ -81,6 +81,7 @@ auto = "🔄 跟隨系統"
 [tabs]
 library = "📚 圖書館"
 tutorial = "📖 使用教學"
+catalog_assistant = "📚 編目助手"
 
 [tutorial]
 title = "🎓 Cardex 使用教學"
@@ -307,3 +308,147 @@ open_button = "📄 開啟文件"
 copy_button = "📋 複製路徑"
 regenerate_button = "🔄 重新產生"
 footer_tip = "💡 提示：匯總文件以 Markdown 格式儲存，可用任何文字編輯器編輯。"
+output_saved_to = "💡 輸出將儲存至：`~/.cardex/{path}`"
+stage_progress = "階段 {current}/{total}：{stage}..."
+success_summary = """
+**輸出：** `~/.cardex/{path}`
+
+**統計資料：**
+- 總字數：~{words}
+- 引用：{cards} 張卡片已匯總
+- 派典：{paradigm}
+- 協奏：{concerto}
+"""
+copy_path_button = "📋 複製路徑"
+selected_count = "✅ 已選擇：{count} 張卡片"
+
+[rooms]
+statistics_title = "🏛️ 涉外室"
+catalog_title = "📚 目錄室"
+restoration_title = "🔧 修復室"
+guide_title = "🧭 嚮導室"
+
+[rooms.statistics]
+show_details = "查看詳細列表"
+input_folder_info = "新 PDF 存放處"
+input_folder_caption = "請將新的 PDF 檔案放入此資料夾"
+items_per_page = "每頁顯示"
+previous_page = "上一頁"
+next_page = "下一頁"
+page_info = "第 {current} 頁，共 {total} 頁"
+
+[rooms.catalog]
+description = "工作流程狀態追蹤"
+
+[rooms.restoration]
+folder_label = "資料夾路徑"
+paradigm_label = "選擇派典"
+generate_button = "🎼 產生分析卡片"
+error_no_folder = "請輸入資料夾路徑"
+error_no_paradigm = "請至少選擇一個派典"
+success_started = "已開始分析 {count} 個派典..."
+
+[rooms.guide]
+paradigm_filter_label = "派典篩選"
+concerto_label = "選擇協奏"
+generate_button = "🎭 產生合成文件"
+success_started = "已開始產生 {concerto} 合成文件..."
+phase1_notice = "此功能將在 Phase 1 完成實作"
+
+[catalog_operations]
+title = "📋 編目操作"
+no_configs_warning = "沒有找到 catalog 配置。請先在「編目助手」中了解如何配置。"
+tab_ingest = "📥 新增文獻"
+tab_recatalog = "🔄 切換編目方法"
+
+[catalog_operations.ingest]
+title = "📥 新增文獻到圖書館"
+workflow_desc = """
+**流程**：
+1. 選擇 PDF 檔案（從電腦上傳或選擇現有檔案）
+2. 選擇 catalog 配置（決定如何組織這份文獻）
+3. 系統會自動：
+   - 提取 metadata（DOI, title, authors, year）
+   - 如果需要，查詢線上 DOI
+   - 重新命名檔案（DOI 或 title based）
+   - 移動到對應目錄
+   - 記錄到資料庫
+"""
+select_catalog = "選擇 Catalog 配置"
+upload_pdf = "上傳 PDF"
+upload_help = "選擇要新增到圖書館的 PDF 檔案"
+enable_network = "啟用線上 DOI 查詢"
+enable_network_help = "如果 PDF 中找不到 DOI，會查詢 Crossref 和 Semantic Scholar"
+start_button = "🚀 開始編目"
+processing = "處理中..."
+success = "✅ 成功！"
+failed = "❌ 失敗"
+error = "❌ 錯誤"
+filename_label = "檔案名稱"
+location_label = "位置"
+method_label = "編目方法"
+
+[catalog_operations.recatalog]
+title = "🔄 切換編目方法"
+description = """
+**說明**：
+- 切換編目方法會重新組織你的整個圖書館
+- 系統會從資料庫讀取所有文獻的 metadata
+- 根據新的編目方法移動檔案到對應目錄
+- `_input/` 目錄的檔案不會被移動
+
+⚠️ **建議**：切換前請備份你的圖書館！
+"""
+current_method = "目前編目方法"
+select_new_catalog = "選擇新的 Catalog 配置"
+same_method_warning = "⚠️ 新方法與目前方法相同 ({method})，無需切換。"
+new_method_label = "新方法"
+confirm_switch = "我已備份圖書館，確定要切換"
+execute_button = "🔄 執行重新編目"
+processing = "重新編目中... 這可能需要幾分鐘"
+complete = "✅ 重新編目完成！"
+failed = "❌ 重新編目失敗"
+files_moved = "移動的檔案"
+files_skipped = "跳過的檔案"
+missing_files_warning = "⚠️ 找不到 {count} 個檔案"
+view_missing = "查看遺失檔案"
+config_updated = "✅ 配置已更新"
+
+[catalog_room]
+no_files_in_input = "📭 _input 目錄中沒有 PDF 檔案"
+files_in_input = "待編目檔案"
+select_catalog_method = "選擇編目方法"
+
+[catalog_room.table]
+filename = "檔名"
+extension = "副檔名"
+status = "執行狀態"
+old_location = "舊位置"
+new_location = "新位置"
+
+[catalog_room.status]
+pending = "尚未執行"
+processing = "處理中"
+completed = "已完成"
+error = "錯誤"
+
+[catalog_room.button]
+new_catalog = "新編"
+new_catalog_help = "只編目 _input 目錄的檔案"
+recatalog = "重編"
+recatalog_help = "重新編目所有非 _ 開頭的目錄"
+
+[catalog_room.processing]
+new_catalog = "正在編目 _input 檔案..."
+recatalog = "正在重新編目整個圖書館..."
+current = "目前處理"
+
+[catalog_room.result]
+new_catalog_complete = "✅ 新編完成！成功: {success}, 失敗: {error}"
+recatalog_complete = "✅ 重編完成！移動: {moved}, 跳過: {skipped}"
+
+[catalog_room.confirm]
+recatalog_warning = "⚠️ 重編會重新組織所有非 _ 開頭的目錄，確定要繼續嗎？"
+yes = "確定"
+no = "取消"
+cancelled = "已取消重編操作"

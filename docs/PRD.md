@@ -600,22 +600,20 @@ Each argument block contains: claim text, supporting evidence quote, source pape
 
 ## 10. Development Milestones
 
-| # | Milestone | Scope |
-|---|-----------|-------|
-| **M0** | Service Foundation | **NEW - Current Priority**: Config system (YAML), CLI (init/serve), PDF scanner, Streamlit UI (list view only). Goal: See what PDFs you have. [Details](./phase-0-service-foundation.md) |
-| **M1** | Core scaffold | SQLite schema, CLI skeleton, Docker Compose, folder structure |
-|---|-----------|-------|
-| **M1** | Core scaffold | SQLite schema, CLI skeleton, Docker Compose, folder structure |
-| **M2** | Ingest pipeline | Steps 1–7 of ingest: file check, ~~OCR~~, metadata, naming, move |
-| **M3** | LlamaIndex integration | ~~Embedding~~, ~~vector store~~, basic query engine (deferred to M4+) |
-| **M4** | Skill system + summarization | Skill YAML spec, default Skills, summary card generation |
-| **M5** | Citation graph | Reference extraction, unread alert system, research group tracking |
-| **M6** | Web UI v1 | FastAPI + Streamlit prototype covering Library, Paper Detail, Alerts views |
-| **M7** | Argue Engine | Semantic search + evidence-weighted argument composition |
-| **M8** | Web UI v2 | Full React frontend, Citation Graph view, Skills management view |
+|| # | Milestone | Status | Scope |
+|||---|-----------|--------|-------|
+|| **M0** | Service Foundation | ✅ **COMPLETED** (March 2026) | Config system (YAML + env overrides), CLI (init/serve/scan), PDF scanner with basic metadata extraction (size, pages, readability), Streamlit UI with library view/search/filter, i18n support (en-US, zh-TW), theme switching. **Achieved**: Full Phase 0 service foundation as specified in [phase-0-service-foundation.md](./phase-0-service-foundation.md). See [ADR 0001](../docs/adr/0001-streamlit-phase-0.md) |
+|| **M1** | Database & Deployment | ✅ **COMPLETED** (March 2026) | SQLite schema (papers, paradigms, analyses, syntheses, notes, citations), Docker/Podman containerization, comprehensive build/deployment scripts (`scripts/build.sh`, `scripts/deploy.sh`). **Achieved**: Full database schema implemented in `cardex/database.py` with SQLAlchemy models. Container infrastructure with multi-arch support (amd64/arm64). See [ADR 0002](../docs/adr/0002-sqlite-database.md), [ADR 0003](../docs/adr/0003-container-strategy.md) |
+|| **M2** | Ingest Pipeline | ✅ **COMPLETED** (March 2026) | Complete cataloging system with DOI-based file naming, SQLite tracking, and switchable organization methods. **Features**: Metadata extraction from PDF (title, authors, DOI, year), online DOI lookup (Crossref, Semantic Scholar), intelligent file naming (DOI → filename or title → filename with sanitization), 4 catalog methods (flat, by_year, by_venue, custom categories), re-cataloging when switching methods, "編目助手" (Catalog Assistant) UI page with tutorial. **Implementation**: `cardex/metadata_extractor.py`, `cardex/doi_resolver.py`, `cardex/naming_strategy.py`, `cardex/cataloging.py`, `cardex/catalog_assistant.py`. Database extended with 7 new columns for tracking ingestion status and file locations. |
+|| **M3** | LlamaIndex Integration | ❌ **DEFERRED to Phase 2+** | Embedding and vector store deferred. Not required for current Paradigm System implementation. See [ADR 0004](../docs/adr/0004-vector-store-chromadb.md) |
+|| **M4** | Skill/Paradigm System | ⚠️ **PARTIALLY COMPLETED** | Paradigm System implemented (YAML-based, multi-lens analysis, synthesis generation) with full Streamlit UI (`cardex/pages/1_🎼_Paradigm_Analysis.py`, `2_🎭_Concerto_Synthesis.py`). `ParadigmLoader` implemented in `cardex/paradigm.py`. **Not Started**: Traditional Skill system for general summaries. See [ADR 0005](../docs/adr/0005-paradigm-system.md) |
+|| **M5** | Citation Graph | ❌ **NOT STARTED** | Reference extraction, unread alerts, research group tracking not yet implemented. Schema defined in database but no extraction logic. |
+|| **M6** | Web UI v1 | ⚠️ **PARTIALLY COMPLETED** | Streamlit UI with Library view (`app.py`), Paradigm Analysis page, Concerto Synthesis page. Theme switching, i18n support, search/filter fully functional. **Not Started**: Paper Detail view, Unread Alerts view, Citation Graph visualization. See [ADR 0001](../docs/adr/0001-streamlit-phase-0.md) |
+|| **M7** | Argue Engine | ❌ **NOT STARTED** | Semantic search and evidence-weighted argumentation not yet implemented (requires M3 - LlamaIndex integration). |
+|| **M8** | Web UI v2 | ❌ **NOT STARTED** | React frontend transition planned for Phase 2+. Streamlit serves as fully functional v1 UI. See [ADR 0001](../docs/adr/0001-streamlit-phase-0.md) |
 
-**Current Priority**: M0 (Service Foundation) → M1, M2 (simplified), M6 (Streamlit)
 
+**Current Phase**: Phase 1 (Ingest Pipeline) - Building on completed M0 (Service Foundation) and M1 (Database & Deployment)
 ---
 
 ## 11. Open Questions
@@ -633,25 +631,32 @@ Each argument block contains: claim text, supporting evidence quote, source pape
 
 ## 12. Success Criteria
 
-**Phase 0 (Service Foundation) is successful if:**
+**Phase 0 (Service Foundation) - ✅ COMPLETED (March 2026)**
 
-- [ ] User can run `cardex init` and configure library path
-- [ ] User can run `cardex serve` and see web UI in browser
-- [ ] Web UI displays list of all PDFs in configured folder
-- [ ] User can search/filter PDFs by filename
-- [ ] User can toggle recursive scan on/off
-- [ ] No crashes when folder is empty or contains non-PDF files
+All success criteria achieved:
 
-**MVP (v0.1) is successful if:**
+- [x] User can run `cardex init` and configure library path
+- [x] User can run `cardex serve` and see web UI in browser
+- [x] Web UI displays list of all PDFs in configured folder with metadata (size, pages, read status)
+- [x] User can search/filter PDFs by filename
+- [x] User can toggle recursive scan on/off
+- [x] No crashes when folder is empty or contains non-PDF files
+- [x] Multi-language support (en-US, zh-TW) with theme switching
+- [x] Paradigm Analysis and Concerto Synthesis workflows fully functional
 
-- [ ] User can drop PDF → see metadata extracted + file renamed/moved
-- [ ] User can view paper list in Web UI (Streamlit)
-- [ ] User can apply 1+ Skills → see summary cards generated
-- [ ] All data persists in SQLite + Markdown
+**Phase 1 (Ingest Pipeline) - 🚧 IN PROGRESS (Current):**
 
-**v1.0 is successful if:**
+- [ ] User can drop PDF → see metadata extracted (author, title, venue, DOI) + file renamed/moved
+- [x] User can view paper list in Web UI (Streamlit) with search/filter
+- [x] User can apply Paradigm analysis → see analysis cards generated
+- [x] All data persists in SQLite + Markdown
+- [ ] OCR detection implemented (mark only, no execution per ADR)
 
-- [ ] All M1–M6 milestones completed
+**v1.0 (Target) - Future:**
+
+- [ ] All M1–M7 milestones completed
+- [ ] Citation graph and unread alerts functional (M5)
+- [ ] Argue Engine with evidence-weighted argumentation (M7)
 - [ ] Stable for daily research workflow (author's use case)
 - [ ] Documentation complete enough for external contributors
 

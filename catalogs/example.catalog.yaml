@@ -1,0 +1,141 @@
+# Cardex Catalog Configuration
+# 定義文獻庫的編目組織方式 | Defines how your library is organized
+
+# ==============================================================================
+# 基本資訊 | Basic Information
+# ==============================================================================
+
+name: "Example Catalog"
+description: |
+  This is an example catalog configuration that demonstrates 
+  how to organize your academic library.
+
+# Catalog version (for future migrations)
+version: "1.0"
+
+# ==============================================================================
+# 編目方法 | Catalog Method
+# ==============================================================================
+
+method: "by_year"  # Options: flat | by_year | by_venue | custom
+
+# flat: All papers in one directory
+#   Example: ~/library/paper1.pdf, ~/library/paper2.pdf
+
+# by_year: Organize by publication year
+#   Example: ~/library/2023/paper1.pdf, ~/library/2024/paper2.pdf
+
+# by_venue: Organize by conference/journal name
+#   Example: ~/library/NeurIPS/paper1.pdf, ~/library/ICML/paper2.pdf
+
+# custom: Organize by custom categories you define
+#   Example: ~/library/ML_Theory/paper1.pdf, ~/library/NLP/paper2.pdf
+
+# ==============================================================================
+# 自訂分類 | Custom Categories (for method="custom" only)
+# ==============================================================================
+
+categories:
+  - name: "ML Theory"
+    description: "Machine Learning Theory papers"
+    keywords: ["theory", "foundations", "mathematics"]
+    
+  - name: "NLP Applications"
+    description: "Natural Language Processing applications"
+    keywords: ["nlp", "text", "language model"]
+    
+  - name: "Computer Vision"
+    description: "Computer Vision and Image Processing"
+    keywords: ["vision", "image", "video"]
+
+# When method="custom", papers are categorized by:
+# 1. Manual assignment during ingestion
+# 2. Keyword matching in title/abstract
+# 3. User-defined rules (future)
+
+# ==============================================================================
+# 檔案命名規則 | File Naming Rules
+# ==============================================================================
+
+naming:
+  # Primary strategy: doi | title | original
+  primary: "doi"
+  
+  # Fallback when primary fails
+  fallback: "title"
+  
+  # Sanitization rules
+  sanitize:
+    replace_slash: "-"        # Replace '/' in DOI with '-'
+    replace_space: "_"        # Replace spaces in title with '_'
+    lowercase: false          # Convert to lowercase
+    max_length: 255           # Maximum filename length (excluding extension)
+    remove_special_chars: ["?", "!", ":", ";", "*", '"', "<", ">", "|"]
+  
+  # Handle duplicates
+  duplicate_strategy: "number"  # Options: number | timestamp | error
+  # number: append _2, _3, etc.
+  # timestamp: append _YYYYMMDD_HHMMSS
+  # error: raise error and require manual intervention
+
+# ==============================================================================
+# 特殊目錄 | Special Directories
+# ==============================================================================
+
+special_dirs:
+  # Inbox directory - files here are never moved during recatalog
+  inbox: "_input"
+  
+  # Duplicates directory - for detected duplicate papers
+  duplicates: "_duplicates"
+  
+  # Missing metadata - for papers that failed metadata extraction
+  no_metadata: "_no_metadata"
+  
+  # OCR required - for scanned PDFs that need OCR
+  needs_ocr: "_needs_ocr"
+
+# ==============================================================================
+# DOI 查詢設定 | DOI Lookup Settings
+# ==============================================================================
+
+doi_lookup:
+  # Enable online DOI lookup when not found in PDF
+  enabled: true
+  
+  # APIs to try (in order)
+  apis:
+    - "crossref"
+    - "semantic_scholar"
+  
+  # API keys (optional, for rate limit increase)
+  api_keys:
+    crossref: ""  # Optional
+    semantic_scholar: ""  # Optional
+  
+  # Timeout per API call (seconds)
+  timeout: 10
+  
+  # Retry settings
+  max_retries: 3
+  retry_delay: 2  # seconds
+
+# ==============================================================================
+# 進階設定 | Advanced Settings
+# ==============================================================================
+
+advanced:
+  # Auto-categorize papers during ingestion
+  auto_categorize: true
+  
+  # Verify file integrity after move
+  verify_after_move: true
+  
+  # Keep original filename in database
+  preserve_original_name: true
+  
+  # Create backup before recatalog
+  backup_before_recatalog: true
+  
+  # Logging level for catalog operations
+  log_level: "INFO"  # DEBUG | INFO | WARNING | ERROR

@@ -166,3 +166,11 @@ concerti/*.concerto
 !concerti/example.concerto
 !concerti/policy_brief.concerto
 !concerti/conference_presentation.concerto
+
+# Catalog files (user-specific catalog configurations)
+# Only example catalogs are committed
+catalogs/*.catalog.yaml
+!catalogs/example.catalog.yaml
+!catalogs/flat.catalog.yaml
+!catalogs/by_year.catalog.yaml
+!catalogs/by_venue.catalog.yaml

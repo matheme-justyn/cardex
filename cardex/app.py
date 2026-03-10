@@ -14,73 +14,9 @@ import toml
 from cardex.config import CardexConfig
 from cardex.scanner import PDFScanner
 from cardex.workflow import LibraryWorkflow, LibraryStatus
-
-
-class I18n:
-    """Simple i18n handler for Streamlit UI."""
-
-    def __init__(self, locale: str = "en-US"):
-        """Initialize i18n with specified locale.
-
-        Args:
-            locale: BCP 47 language tag (e.g., "en-US", "zh-TW")
-        """
-        self.locale = locale
-        self.translations = self._load_translations(locale)
-        self.fallback = self._load_translations("en-US") if locale != "en-US" else {}
-
-    def _load_translations(self, locale: str) -> Dict[str, Any]:
-        """Load translations from i18n/locales/{locale}/app.toml.
-
-        Args:
-            locale: Language code
-
-        Returns:
-            Translation dictionary
-        """
-        # Get project root (parent of cardex package)
-        project_root = Path(__file__).parent.parent
-        translation_file = project_root / "i18n" / "locales" / locale / "app.toml"
-
-        if translation_file.exists():
-            return toml.load(translation_file)
-        return {}
-
-    def t(self, key: str, **kwargs) -> str:
-        """Get translated string by dot-separated key.
-
-        Args:
-            key: Dot-separated translation key (e.g., "page.title")
-            **kwargs: Variables to format into the string
-
-        Returns:
-            Translated and formatted string
-
-        Example:
-            >>> i18n.t("search.showing", count=5, total=10)
-            "Showing 5 of 10 files"
-        """
-        keys = key.split(".")
-        value = self.translations
-
-        # Try to get from current locale
-        for k in keys:
-            if isinstance(value, dict) and k in value:
-                value = value[k]
-            else:
-                # Fallback to English
-                value = self.fallback
-                for k in keys:
-                    if isinstance(value, dict) and k in value:
-                        value = value[k]
-                    else:
-                        return key  # Return key itself if not found
-
-        # Format with variables if provided
-        if isinstance(value, str) and kwargs:
-            return value.format(**kwargs)
-        return value
-
+from cardex.ui_common import I18n, render_sidebar_settings
+from cardex.catalog_assistant import render_catalog_assistant
+from cardex.catalog_room import render_catalog_room
 
 def apply_theme(theme: str):
     """Apply theme using comprehensive CSS overrides.
@@ -420,53 +356,6 @@ def main():
     # Sidebar: Settings, language selector, and theme selector
     with st.sidebar:
         st.header(i18n.t("sidebar.settings_header"))
-
-        # Language selector
-        languages = {
-            "en-US": "English (US)",
-            "zh-TW": "繁體中文（台灣）",
-        }
-        selected_lang = st.selectbox(
-            i18n.t("sidebar.language_label"),
-            options=list(languages.keys()),
-            format_func=lambda x: languages[x],
-            index=list(languages.keys()).index(st.session_state.locale),
-            key="language_selector",
-        )
-
-        # Update locale if changed
-        if selected_lang != st.session_state.locale:
-            st.session_state.locale = selected_lang
-            st.rerun()
-
-        # Theme selector
-        themes = {
-            "light": i18n.t("theme.light"),
-            "dark": i18n.t("theme.dark"),
-            "auto": i18n.t("theme.auto"),
-        }
-        selected_theme = st.selectbox(
-            i18n.t("sidebar.theme_label"),
-            options=list(themes.keys()),
-            format_func=lambda x: themes[x],
-            index=list(themes.keys()).index(st.session_state.theme),
-            key="theme_selector",
-        )
-
-        # Update theme if changed
-        if selected_theme != st.session_state.theme:
-            st.session_state.theme = selected_theme
-            st.rerun()
-
-        st.divider()
-
-        # Save preferences button
-        if st.button(i18n.t("sidebar.save_preferences_button") if i18n.t("sidebar.save_preferences_button") != "sidebar.save_preferences_button" else "💾 儲存偏好設定", use_container_width=True):
-            config.set("i18n.locale", st.session_state.locale)
-            config.set("theme.mode", st.session_state.theme)
-            config.save()
-            st.success(i18n.t("messages.preferences_saved") if i18n.t("messages.preferences_saved") != "messages.preferences_saved" else "✅ 偏好設定已儲存")
-
         # Library path configuration - simple and safe
         st.subheader(i18n.t("sidebar.library_config_header") if i18n.t("sidebar.library_config_header") != "sidebar.library_config_header" else "📁 圖書館設定")
         
@@ -602,13 +491,13 @@ def main():
         
         st.caption(f"{i18n.t('sidebar.config_label')}: {config.config_path}")
         
-        # Display Cardex version at bottom
-        from cardex import __version__
         st.divider()
-        st.caption(f"📦 {i18n.t('sidebar.app_version')}: v{__version__}")
+        
+        # Common sidebar settings (language, theme, version)
+        render_sidebar_settings(config, i18n)
 
     # Main content: Tabs for Library and Tutorial
-    tab1, tab2 = st.tabs([i18n.t("tabs.library"), i18n.t("tabs.tutorial")])
+    tab1, tab2, tab3 = st.tabs([i18n.t("tabs.library"), i18n.t("tabs.tutorial"), i18n.t("tabs.catalog_assistant")])
     
     # Tab 1: Library (PDF list)
     with tab1:
@@ -628,82 +517,6 @@ def main():
         workflow = LibraryWorkflow(library_root, workflow_name=workflow_name)
         status = workflow.get_status()
         
-        # Status card
-        with st.container():
-            st.subheader(i18n.t("workflow.status_title"))
-            
-            col1, col2, col3 = st.columns([2, 1, 1])
-            
-            with col1:
-                if status == LibraryStatus.UNINITIALIZED:
-                    st.warning(i18n.t("workflow.status_uninitialized"))
-                elif status == LibraryStatus.INITIALIZED:
-                    st.success(i18n.t("workflow.status_initialized"))
-                elif status == LibraryStatus.OUTDATED:
-                    st.warning(i18n.t("workflow.status_outdated"))
-            
-            with col2:
-                st.metric(i18n.t("workflow.version_current"), workflow.get_library_version() or "N/A")
-            
-            with col3:
-                st.metric(i18n.t("workflow.version_expected"), workflow.get_expected_version())
-            
-            # Action button
-            if status == LibraryStatus.UNINITIALIZED:
-                # Workflow selection
-                st.write(i18n.t("workflow.select_workflow"))
-                workflow_choice = st.selectbox(
-                    i18n.t("workflow.workflow_type"),
-                    ["default", "simple", "advanced"],
-                    format_func=lambda x: i18n.t(f"workflow.workflows.{x}"),
-                    key="workflow_selector"
-                )
-                
-                # Update workflow if changed
-                if workflow_choice != workflow_name:
-                    workflow = LibraryWorkflow(library_root, workflow_name=workflow_choice)
-                
-                if st.button(i18n.t("workflow.action_initialize"), type="primary", use_container_width=True):
-                    with st.spinner(i18n.t("workflow.messages.initializing")):
-                        result = workflow.initialize()
-                    if result["success"]:
-                        st.success(i18n.t("workflow.messages.initialized_success"))
-                        if result["created"]:
-                            st.write(i18n.t("workflow.messages.initialized_details"))
-                            for item in result["created"]:
-                                st.text(f"  • {item}")
-                        st.rerun()
-                    else:
-                        st.error(i18n.t("workflow.messages.error_title"))
-                        for error in result["errors"]:
-                            st.text(f"  • {error}")
-            
-            elif status == LibraryStatus.OUTDATED:
-                if st.button(i18n.t("workflow.action_upgrade"), type="primary", use_container_width=True):
-                    with st.spinner(i18n.t("workflow.messages.upgrading")):
-                        result = workflow.upgrade()
-                    if result["success"]:
-                        st.success(i18n.t("workflow.messages.upgraded_success"))
-                        st.info(i18n.t("workflow.messages.upgrade_from_to", from_version=result["from_version"], to_version=result["to_version"]))
-                        if result["steps"]:
-                            for step in result["steps"]:
-                                st.text(f"  • {step}")
-                        st.rerun()
-                    else:
-                        st.error(i18n.t("workflow.messages.error_title"))
-                        for error in result.get("errors", []):
-                            st.text(f"  • {error}")
-            
-            else:  # INITIALIZED
-                st.button(i18n.t("workflow.action_initialized"), disabled=True, use_container_width=True)
-            
-            # Show input folder info
-            if status == LibraryStatus.INITIALIZED:
-                st.info(i18n.t("workflow.input_folder"))
-                st.code(str(workflow.get_input_folder()), language="bash")
-                st.caption(i18n.t("workflow.input_folder_desc"))
-        
-        st.divider()
         
     with tab1:
         with st.spinner(i18n.t("messages.scanning")):
@@ -713,79 +526,226 @@ def main():
             st.warning(i18n.t("errors.no_pdfs"))
             st.info(i18n.t("errors.place_pdfs", path=library_root))
         else:
-            # Statistics
+            # Calculate statistics
             stats = get_stats(pdf_list)
-            col1, col2, col3, col4 = st.columns(4)
             
-            with col1:
-                st.metric(i18n.t("stats.total_pdfs"), stats["total_count"])
-            with col2:
-                st.metric(i18n.t("stats.readable"), stats["readable_count"])
-            with col3:
-                st.metric(i18n.t("stats.unreadable"), stats["unreadable_count"])
-            with col4:
-                st.metric(i18n.t("stats.total_size"), f"{stats['total_size_mb']:.1f} MB")
-            
-            st.divider()
-            
-            # Search/Filter
-            search_query = st.text_input(i18n.t("search.label"), placeholder=i18n.t("search.placeholder"))
-            
-            # Filter PDF list
-            filtered_list = pdf_list
-            if search_query:
-                filtered_list = [pdf for pdf in pdf_list if search_query.lower() in pdf.filename.lower()]
-            
-            st.caption(i18n.t("search.showing", count=len(filtered_list), total=len(pdf_list)))
-            
-            # Convert to DataFrame for display
-            df_data = []
-            for pdf in filtered_list:
-                status = (
-                    i18n.t("table.status_readable")
-                    if pdf.is_readable
-                    else i18n.t("table.status_unreadable")
+            # 🏛️ 涉外室 - Statistics Room
+            with st.expander(i18n.t("rooms.statistics_title"), expanded=False):
+                col1, col2, col3, col4 = st.columns(4)
+                
+                with col1:
+                    st.metric(i18n.t("stats.total_pdfs"), stats["total_count"])
+                with col2:
+                    st.metric(i18n.t("stats.readable"), stats["readable_count"])
+                with col3:
+                    st.metric(i18n.t("stats.unreadable"), stats["unreadable_count"])
+                with col4:
+                    st.metric(i18n.t("stats.total_size"), f"{stats['total_size_mb']:.1f} MB")
+                
+                # Input folder info
+                st.info(i18n.t("rooms.statistics.input_folder_info"))
+                st.code(str(workflow.get_input_folder()), language="bash")
+                st.caption(i18n.t("rooms.statistics.input_folder_caption"))
+                
+                st.divider()
+                
+                
+                # Search/Filter
+                search_query = st.text_input(i18n.t("search.label"), placeholder=i18n.t("search.placeholder"))
+                
+                # Filter PDF list
+                filtered_list = pdf_list
+                if search_query:
+                    filtered_list = [pdf for pdf in pdf_list if search_query.lower() in pdf.filename.lower()]
+                
+                # Pagination controls
+                col1, col2 = st.columns([3, 1])
+                with col1:
+                    st.caption(i18n.t("search.showing", count=len(filtered_list), total=len(pdf_list)))
+                with col2:
+                    items_per_page = st.selectbox(
+                        i18n.t("rooms.statistics.items_per_page"),
+                        options=[10, 25, 50, 100],
+                        index=0,
+                        key="items_per_page"
+                    )
+                
+                # Calculate pagination
+                total_items = len(filtered_list)
+                total_pages = (total_items + items_per_page - 1) // items_per_page  # Ceiling division
+                
+                if "current_page" not in st.session_state:
+                    st.session_state.current_page = 1
+                
+                # Ensure current page is within bounds
+                if st.session_state.current_page > total_pages:
+                    st.session_state.current_page = total_pages if total_pages > 0 else 1
+                
+                # Slice the filtered list for current page
+                start_idx = (st.session_state.current_page - 1) * items_per_page
+                end_idx = start_idx + items_per_page
+                paginated_list = filtered_list[start_idx:end_idx]
+                
+                # Convert to DataFrame for display
+                df_data = []
+                for pdf in paginated_list:
+                    pdf_status = (
+                        i18n.t("table.status_readable")
+                        if pdf.is_readable
+                        else i18n.t("table.status_unreadable")
+                    )
+                    df_data.append(
+                        {
+                            i18n.t("table.status"): pdf_status,
+                            i18n.t("table.filename"): pdf.filename,
+                            i18n.t("table.size"): format_file_size(pdf.size_bytes),
+                            i18n.t("table.pages"): pdf.page_count if pdf.page_count else "N/A",
+                            i18n.t("table.modified"): format_datetime(pdf.modified_time),
+                            i18n.t("table.path"): str(pdf.path.relative_to(library_root)) if pdf.path.is_relative_to(library_root) else str(pdf.path),
+                        }
+                    )
+                
+                df = pd.DataFrame(df_data)
+                
+                # Display table
+                st.dataframe(
+                    df,
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config={
+                        i18n.t("table.status"): st.column_config.TextColumn(width="small"),
+                        i18n.t("table.filename"): st.column_config.TextColumn(width="medium"),
+                        i18n.t("table.size"): st.column_config.TextColumn(width="small"),
+                        i18n.t("table.pages"): st.column_config.TextColumn(width="small"),
+                        i18n.t("table.modified"): st.column_config.TextColumn(width="medium"),
+                        i18n.t("table.path"): st.column_config.TextColumn(width="large"),
+                    },
                 )
-                df_data.append(
-                    {
-                        i18n.t("table.status"): status,
-                        i18n.t("table.filename"): pdf.filename,
-                        i18n.t("table.size"): format_file_size(pdf.size_bytes),
-                        i18n.t("table.pages"): pdf.page_count if pdf.page_count else "N/A",
-                        i18n.t("table.modified"): format_datetime(pdf.modified_time),
-                        i18n.t("table.path"): str(pdf.path.relative_to(library_root)) if pdf.path.is_relative_to(library_root) else str(pdf.path),
-                    }
-                )
+                
+                # Pagination controls at bottom
+                if total_pages > 1:
+                    col1, col2, col3 = st.columns([1, 3, 1])
+                    with col1:
+                        if st.button("⬅️ " + i18n.t("rooms.statistics.previous_page"), disabled=st.session_state.current_page <= 1):
+                            st.session_state.current_page -= 1
+                            st.rerun()
+                    with col2:
+                        st.caption(i18n.t("rooms.statistics.page_info", current=st.session_state.current_page, total=total_pages))
+                    with col3:
+                        if st.button(i18n.t("rooms.statistics.next_page") + " ➡️", disabled=st.session_state.current_page >= total_pages):
+                            st.session_state.current_page += 1
+                            st.rerun()
+                
+                # Show errors if any
+                errors = [pdf for pdf in filtered_list if not pdf.is_readable]
+                if errors:
+                    with st.expander(i18n.t("messages.unreadable_files", count=len(errors)), expanded=False):
+                        for pdf in errors:
+                            st.text(f"❌ {pdf.filename}")
+                            if pdf.error:
+                                st.caption(f"   {i18n.t('messages.error_label')}: {pdf.error}")
+
+            with st.expander(i18n.t("rooms.catalog_title"), expanded=False):
+                from cardex.database import CardexDatabase
+                db = CardexDatabase()
+                render_catalog_room(config, db, library_root, workflow, status, i18n)
             
-            df = pd.DataFrame(df_data)
+            # 🔧 修復室 - Paradigm Analysis Room
+            with st.expander(i18n.t("rooms.restoration_title"), expanded=False):
+                st.subheader(i18n.t("paradigm_analysis.step1_title"))
+                
+                from cardex.paradigm import ParadigmLoader
+                paradigm_loader = ParadigmLoader()
+                paradigms = paradigm_loader.list_paradigms()
+                
+                if not paradigms:
+                    st.warning(i18n.t("paradigm_analysis.paradigm_selector.no_paradigms_warning"))
+                    st.info(i18n.t("paradigm_analysis.paradigm_selector.no_paradigms_info"))
+                else:
+                    with st.form("paradigm_analysis_form"):
+                        # Folder path input
+                        folder_path = st.text_input(
+                            i18n.t("paradigm_analysis.paper_selector.folder_path_placeholder"),
+                            placeholder="/path/to/your/papers",
+                            help=i18n.t("paradigm_analysis.paper_selector.folder_tip")
+                        )
+                        
+                        # Paradigm multiselect
+                        paradigm_options = [f"{p['name']} ({p['type']})" for p in paradigms]
+                        selected_paradigms = st.multiselect(
+                            i18n.t("paradigm_analysis.paradigm_selector.select_placeholder"),
+                            paradigm_options,
+                            help=i18n.t("paradigm_analysis.lens_selector.caption")
+                        )
+                        
+                        # Submit button
+                        submitted = st.form_submit_button(
+                            "🎼 " + i18n.t("paradigm_analysis.summary.generate_button"),
+                            type="primary",
+                            use_container_width=True
+                        )
+                        
+                        if submitted:
+                            if not folder_path:
+                                st.error(i18n.t("rooms.restoration.error_no_folder"))
+                            elif not selected_paradigms:
+                                st.error(i18n.t("rooms.restoration.error_no_paradigm"))
+                            else:
+                                st.success(i18n.t("rooms.restoration.success_started", count=len(selected_paradigms)))
+                                st.info(i18n.t("rooms.guide.phase1_notice"))
             
-            # Display table
-            st.dataframe(
-                df,
-                use_container_width=True,
-                hide_index=True,
-                column_config={
-                    i18n.t("table.status"): st.column_config.TextColumn(width="small"),
-                    i18n.t("table.filename"): st.column_config.TextColumn(width="medium"),
-                    i18n.t("table.size"): st.column_config.TextColumn(width="small"),
-                    i18n.t("table.pages"): st.column_config.TextColumn(width="small"),
-                    i18n.t("table.modified"): st.column_config.TextColumn(width="medium"),
-                    i18n.t("table.path"): st.column_config.TextColumn(width="large"),
-                },
-            )
-            
-            # Show errors if any
-            errors = [pdf for pdf in filtered_list if not pdf.is_readable]
-            if errors:
-                with st.expander(i18n.t("messages.unreadable_files", count=len(errors)), expanded=False):
-                    for pdf in errors:
-                        st.text(f"❌ {pdf.filename}")
-                        if pdf.error:
-                            st.caption(f"   {i18n.t('messages.error_label')}: {pdf.error}")
-    
+            # 🧭 嚮導室 - Concerto Synthesis Room
+            with st.expander(i18n.t("rooms.guide_title"), expanded=False):
+                st.subheader(i18n.t("concerto_synthesis.step1_title"))
+                
+                from cardex.paradigm import ConcertoLoader
+                from cardex.database import CardexDatabase
+                
+                concerto_loader = ConcertoLoader()
+                db = CardexDatabase()
+                
+                concerti = concerto_loader.list_concerti()
+                
+                if not concerti:
+                    st.warning(i18n.t("concerto_synthesis.concerto_selector.no_concerti_warning"))
+                    st.info(i18n.t("concerto_synthesis.concerto_selector.no_concerti_info"))
+                elif not paradigms:
+                    st.warning(i18n.t("concerto_synthesis.paradigm_selector.no_paradigms_warning"))
+                else:
+                    with st.form("concerto_synthesis_form"):
+                        # Paradigm filter
+                        paradigm_filter_options = [f"{p['name']} ({p['type']})" for p in paradigms]
+                        selected_paradigm_filter = st.selectbox(
+                            i18n.t("concerto_synthesis.paradigm_selector.select_placeholder"),
+                            paradigm_filter_options,
+                            help=i18n.t("concerto_synthesis.card_selector.filter_title")
+                        )
+                        
+                        # Concerto selector
+                        concerto_options = [c["name"] for c in concerti]
+                        selected_concerto = st.selectbox(
+                            i18n.t("concerto_synthesis.concerto_selector.select_placeholder"),
+                            concerto_options,
+                            help=i18n.t("concerto_synthesis.concerto_selector.details_title")
+                        )
+                        
+                        # Submit button
+                        submitted = st.form_submit_button(
+                            "🎭 " + i18n.t("concerto_synthesis.summary.generate_button"),
+                            type="primary",
+                            use_container_width=True
+                        )
+                        
+                        if submitted:
+                            st.success(i18n.t("rooms.guide.success_started", concerto=selected_concerto))
+                            st.info(i18n.t("rooms.guide.phase1_notice"))
     # Tab 2: Tutorial
     with tab2:
         render_tutorial(i18n)
+    
+    # Tab 3: Catalog Assistant
+    with tab3:
+        render_catalog_assistant(config, i18n)
 
 
 def render_tutorial(i18n):

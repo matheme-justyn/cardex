@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-03-10
+
+### Added
+- **Complete Cataloging System** (M2 Milestone):
+  - DOI-based file naming with intelligent fallback strategies
+  - Metadata extraction from PDFs (title, authors, DOI, year)
+  - Online DOI lookup via Crossref and Semantic Scholar APIs
+  - Four catalog methods: flat, by_year, by_venue, custom categories
+  - Re-cataloging system for switching organization methods
+  - SQLite tracking with 7 new columns (original_filename, current_filename, catalog_method, doi_source, ingest_status, error_message, last_verified_at)
+  - "目錄室" (Catalog Room) UI in Library tab with file browser and cataloging controls
+  - "編目助手" (Catalog Assistant) as independent top-level tab with comprehensive tutorial
+
+- **New Modules**:
+  - `cardex/catalog_loader.py` (192 lines) - YAML-based catalog configuration loader
+  - `cardex/catalog_room.py` (285 lines) - Catalog room UI with file browser
+  - `cardex/catalog_assistant.py` (278 lines) - Educational catalog configuration guide
+  - `cardex/cataloging.py` (434 lines) - Core cataloging logic and workflows
+  - `cardex/metadata_extractor.py` (304 lines) - PDF metadata extraction
+  - `cardex/doi_resolver.py` (374 lines) - External DOI lookup via APIs
+  - `cardex/naming_strategy.py` (281 lines) - Filename generation from DOI/title
+  - `cardex/ui_common.py` - Shared UI components and i18n helper
+
+- **Configuration Templates**:
+  - `catalogs/example.catalog.yaml` (141 lines) - Comprehensive catalog template
+  - `catalogs/flat.catalog.yaml` (39 lines) - Flat directory structure
+  - `catalogs/by_year.catalog.yaml` (39 lines) - Year-based organization
+  - `catalogs/by_venue.catalog.yaml` (39 lines) - Venue-based organization
+  - User configs in `~/.cardex/catalogs/` (Git-ignored)
+
+- **i18n Enhancements**:
+  - Added `[catalog_room]` section to app.toml (zh-TW and en-US)
+  - Removed ALL hardcoded bilingual text patterns
+  - Full translation coverage for catalog system UI
+
+### Fixed
+- **Critical Bug**: Variable name collision in `cardex/app.py` (line 592-596)
+  - Changed `status` to `pdf_status` to prevent overwriting workflow status enum
+  - Fixed catalog room not displaying due to incorrect status type check
+
+### Changed
+- **Architecture Refactoring**:
+  - Moved Catalog Assistant from Library expander to independent Tab 3
+  - Converted Catalog Assistant to pure tutorial/configuration guide
+  - Integrated Catalog Room into Library tab as "目錄室" expander
+  - Database schema extended with 7 new columns in papers table
+- Updated `.gitignore` to exclude `~/.cardex/catalogs/`
+- Updated version badges to 0.4.0
+
+### Removed
+- `cardex/pages/` directory (intentional single-page architecture)
+  - Deleted `1_🎼_Paradigm_Analysis.py` (moved to main app)
+  - Deleted `2_🎭_Concerto_Synthesis.py` (moved to main app)
+
 ## [0.3.0] - 2026-03-06
 
 ### Added
